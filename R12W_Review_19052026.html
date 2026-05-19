@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>R12W – Báo Cáo Review | 19.05.2026</title>
+<style>
+:root{--bg:#f8fafc;--card:#ffffff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+.nav{background:#1e293b;color:white;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-title{font-size:16px;font-weight:700}
+.nav-date{font-size:12px;color:#94a3b8}
+.nav-links{display:flex;gap:16px}
+.nav-links a{color:#94a3b8;text-decoration:none;font-size:12px}
+.nav-links a:hover{color:white}
+.hero{background:linear-gradient(135deg,#1e293b 0%,#334155 100%);color:white;padding:40px 40px 32px}
+.hero h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.hero p{color:#94a3b8;font-size:15px}
+.hero-kpis{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.hero-kpi{background:rgba(255,255,255,0.08);border-radius:12px;padding:16px 24px;min-width:130px}
+.hero-kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
+.hero-kpi-val{font-size:24px;font-weight:700;margin-top:4px}
+.data-note{background:rgba(255,193,7,0.15);border:1px solid rgba(255,193,7,0.4);border-radius:8px;padding:10px 16px;margin-top:16px;font-size:12px;color:#fcd34d}
+.main{max-width:1100px;margin:0 auto;padding:32px 24px}
+.section-title{font-size:20px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.overview-card,.seg-card{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:32px}
+table{width:100%;border-collapse:collapse}
+th{background:#f1f5f9;padding:10px 12px;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover{background:#f8fafc}
+.num{font-variant-numeric:tabular-nums}
+.bar-wrap{display:flex;align-items:center;gap:8px}
+.bar-fill{height:8px;border-radius:4px;min-width:2px}
+.bar-label{font-size:12px;color:var(--muted);min-width:40px}
+.badge{padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.b1{background:#fef9c3;color:#854d0e}.b2{background:#f1f5f9;color:#475569}.b3{background:#fef3c7;color:#92400e}
+.blow{background:#fee2e2;color:#991b1b}.bmid{background:#f1f5f9;color:#64748b}
+.region-card{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:32px;overflow:hidden}
+.region-header{padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+.region-title{display:flex;gap:16px;align-items:flex-start}
+.region-icon{font-size:32px}
+.region-title h2{font-size:20px;font-weight:700}
+.region-geo{color:var(--muted);font-size:12px;margin-top:2px}
+.region-kpis{display:flex;gap:12px;flex-wrap:wrap}
+.kpi-box{text-align:center;min-width:70px}
+.kpi-label{font-size:10px;text-transform:uppercase;color:var(--muted)}
+.kpi-val{font-size:18px;font-weight:700;margin-top:2px}
+.region-body{padding:24px}
+.section-block{margin-bottom:24px}
+.section-block h3{font-size:14px;font-weight:700;margin-bottom:12px;color:#374151}
+.section-block ul{padding-left:20px}
+.section-block li{margin-bottom:6px;color:#4b5563}
+.section-block p{color:#4b5563}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.two-col h3{font-size:14px;font-weight:700;margin-bottom:12px;color:#374151}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.alert-box{padding:12px 16px;border-radius:8px;margin-bottom:8px;font-size:13px}
+.alert-danger{background:#fef2f2;border-left:3px solid #ef4444;color:#374151}
+.alert-success{background:#f0fdf4;border-left:3px solid #10b981;color:#374151}
+.table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);margin-bottom:0}
+.table-wrap table{margin:0}
+.action-section{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:700px){.action-section{grid-template-columns:1fr}}
+.action-block{padding:16px;border-radius:8px}
+.action-block h3{font-size:13px;font-weight:700;margin-bottom:10px}
+.action-block ul{padding-left:18px}
+.action-block li{margin-bottom:6px;font-size:13px}
+.action-tnkh{background:#eff6ff;border:1px solid #bfdbfe}
+.action-tnkh h3{color:#1d4ed8}
+.action-region{background:#f0fdf4;border:1px solid #bbf7d0}
+.action-region h3{color:#166534}
+.tt-rec{background:#fafaf5;border:1px solid #d4d4a8;border-radius:8px;padding:16px}
+.tt-rec h3{font-size:13px;font-weight:700;margin-bottom:10px;color:#78350f}
+.tt-pill{display:inline-block;background:#fef3c7;color:#92400e;padding:4px 12px;border-radius:20px;font-size:13px;margin-bottom:8px}
+.tt-rec p{font-size:13px;color:#4b5563}
+.sys-actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.sys-actions-grid{grid-template-columns:1fr}}
+.sys-action{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.sys-action-title{font-weight:700;font-size:14px;margin-bottom:6px;color:#1d4ed8}
+.sys-action p{font-size:13px;color:#4b5563}
+footer{text-align:center;padding:32px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:32px}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-title">📊 R12W — Báo Cáo Review Hệ Thống</div>
+  <div class="nav-links">
+    <a href="#overview">Tổng quan</a>
+    <a href="#segment">Segment</a>
+    <a href="#regions">Từng vùng</a>
+    <a href="#actions">Hành động</a>
+  </div>
+  <div class="nav-date">Cập nhật: 19.05.2026</div>
+</nav>
+<div class="hero">
+  <h1>R12W — Báo Cáo Review Tổng Hệ Thống</h1>
+  <p>Dữ liệu tích lũy 01–18.05.2026 · 8 vùng · 50 salon · Ngày review: 19.05.2026</p>
+  <div class="hero-kpis">
+    <div class="hero-kpi"><div class="hero-kpi-label">Tổng pool</div><div class="hero-kpi-val">105,992</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-label">Đã xử lý</div><div class="hero-kpi-val">80,217</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-label">% Xử lý TB</div><div class="hero-kpi-val">42.4%</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-label">Đã book</div><div class="hero-kpi-val">17,765</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-label">Khách đến</div><div class="hero-kpi-val">17,152</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-val">22.1%</div><div class="hero-kpi-label">% Book TB</div></div>
+  </div>
+  <div class="data-note">⚠️ Số liệu tích lũy từ 01–18.05.2026 (18 ngày). % Đạt MT là tỷ lệ hoàn thành mục tiêu tháng tính đến thời điểm review.</div>
+</div>
+<div class="main">
+<h2 class="section-title" id="overview">📊 Tổng quan – Xếp hạng các vùng</h2>
+<div class="overview-card">
+  <table>
+    <thead><tr><th>GĐKV / Vùng</th><th>Pool</th><th>% Xử lý</th><th>% Book</th><th>% Kết nối</th><th>% Đạt MT</th><th>Salon</th></tr></thead>
+    <tbody>
+    <tr>
+        <td><strong>🥇 Nguyễn Như Quỳnh</strong><br><small style="color:#6b7280">Miền Bắc – Bắc Ninh / Thái Nguyên</small></td>
+        <td class="num">11,827</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:77.8%;background:#6366f1"></div><span class="bar-label">77.8%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:25.1%;background:#3b82f6"></div><span class="bar-label">25.1%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:94.6%;background:#10b981"></div><span class="bar-label">94.6%</span></div></td>
+        <td><strong>78.6%</strong> <span class="badge b1">🥇 #1</span></td>
+        <td class="num">6</td>
+    </tr>
+    <tr>
+        <td><strong>🥈 Nguyễn Việt Cường</strong><br><small style="color:#6b7280">Bình Dương / Đồng Nai / TP.HCM ngoại ô</small></td>
+        <td class="num">21,801</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:65.5%;background:#6366f1"></div><span class="bar-label">65.5%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:22.6%;background:#3b82f6"></div><span class="bar-label">22.6%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:93.9%;background:#10b981"></div><span class="bar-label">93.9%</span></div></td>
+        <td><strong>77.7%</strong> <span class="badge b2">🥈 #2</span></td>
+        <td class="num">9</td>
+    </tr>
+    <tr>
+        <td><strong>🥉 Tống Xuân Quyền</strong><br><small style="color:#6b7280">Nam Bộ – TP.HCM / Long An / An Giang / Đồng Tháp</small></td>
+        <td class="num">21,743</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:89.5%;background:#6366f1"></div><span class="bar-label">89.5%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:26.3%;background:#3b82f6"></div><span class="bar-label">26.3%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:69.8%;background:#10b981"></div><span class="bar-label">69.8%</span></div></td>
+        <td><strong>77.6%</strong> <span class="badge b3">🥉 #3</span></td>
+        <td class="num">8</td>
+    </tr>
+    <tr>
+        <td><strong> Đoàn Trung Đức</strong><br><small style="color:#6b7280">TP.HCM nội thành – Bình Thạnh / Gò Vấp / Phú Nhuận</small></td>
+        <td class="num">18,008</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:73.3%;background:#6366f1"></div><span class="bar-label">73.3%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:27.9%;background:#3b82f6"></div><span class="bar-label">27.9%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:98.9%;background:#10b981"></div><span class="bar-label">98.9%</span></div></td>
+        <td><strong>76.9%</strong> <span class="badge bmid">#4</span></td>
+        <td class="num">8</td>
+    </tr>
+    <tr>
+        <td><strong> Trịnh Văn Quang</strong><br><small style="color:#6b7280">Miền Trung – Quảng Trị / Đà Nẵng</small></td>
+        <td class="num">10,226</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:98.9%;background:#6366f1"></div><span class="bar-label">98.9%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:25.6%;background:#3b82f6"></div><span class="bar-label">25.6%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:93.1%;background:#10b981"></div><span class="bar-label">93.1%</span></div></td>
+        <td><strong>74.0%</strong> <span class="badge bmid">#5</span></td>
+        <td class="num">5</td>
+    </tr>
+    <tr>
+        <td><strong> Phan Thị Hồng Gấm</strong><br><small style="color:#6b7280">Hà Nội – Hoàng Mai / Đống Đa / Thanh Xuân / Tây Hồ</small></td>
+        <td class="num">15,830</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:58.9%;background:#6366f1"></div><span class="bar-label">58.9%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:24.7%;background:#3b82f6"></div><span class="bar-label">24.7%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:90.3%;background:#10b981"></div><span class="bar-label">90.3%</span></div></td>
+        <td><strong>72.8%</strong> <span class="badge bmid">#6</span></td>
+        <td class="num">8</td>
+    </tr>
+    <tr>
+        <td><strong> Nguyễn Thị Huệ</strong><br><small style="color:#6b7280">Bắc Trung Bộ – Thanh Hóa / Nghệ An</small></td>
+        <td class="num">6,557</td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:70.6%;background:#6366f1"></div><span class="bar-label">70.6%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:20.3%;background:#3b82f6"></div><span class="bar-label">20.3%</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-fill" style="width:89.8%;background:#10b981"></div><span class="bar-label">89.8%</span></div></td>
+        <td><strong>67.7%</strong> <span class="badge blow">⚠️ #7</span></td>
+        <td class="num">6</td>
+    </tr></tbody>
+  </table>
+</div>
+<h2 class="section-title" id="segment">📦 Phân tích theo Segment – Toàn hệ thống</h2>
+<div class="seg-card">
+  <table>
+    <thead><tr><th>Segment</th><th>Mục tiêu</th><th>Đã đến</th><th>Tỷ lệ hoàn thành</th></tr></thead>
+    <tbody><tr><td><strong>Khách 12 tuần</strong> <small>(C12W)</small></td><td class="num">8,068</td><td class="num">8,495</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#10b981"></div><span class="bar-label">105.3%</span></div></td></tr><tr><td><strong>Lần 2 BQ</strong> <small>(F2BQ)</small></td><td class="num">635</td><td class="num">176</td><td><div class="bar-wrap"><div class="bar-fill" style="width:27.7%;background:#ef4444"></div><span class="bar-label">27.7%</span></div></td></tr><tr><td><strong>Lần 2 TT</strong> <small>(F2TT)</small></td><td class="num">960</td><td class="num">783</td><td><div class="bar-wrap"><div class="bar-fill" style="width:81.6%;background:#10b981"></div><span class="bar-label">81.6%</span></div></td></tr><tr><td><strong>Khuyến mãi</strong> <small>(KM)</small></td><td class="num">6,655</td><td class="num">4,548</td><td><div class="bar-wrap"><div class="bar-fill" style="width:68.3%;background:#f59e0b"></div><span class="bar-label">68.3%</span></div></td></tr><tr><td><strong>Mới quay BQ</strong> <small>(MQBQ)</small></td><td class="num">4,011</td><td class="num">437</td><td><div class="bar-wrap"><div class="bar-fill" style="width:10.9%;background:#ef4444"></div><span class="bar-label">10.9%</span></div></td></tr><tr><td><strong>Mới quay TT</strong> <small>(MQTT)</small></td><td class="num">4,270</td><td class="num">2,154</td><td><div class="bar-wrap"><div class="bar-fill" style="width:50.4%;background:#f59e0b"></div><span class="bar-label">50.4%</span></div></td></tr><tr><td><strong>Quay BQ</strong> <small>(QBQ)</small></td><td class="num">4,067</td><td class="num">3,220</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79.2%;background:#10b981"></div><span class="bar-label">79.2%</span></div></td></tr><tr><td><strong>Quay TT</strong> <small>(QTT)</small></td><td class="num">43,988</td><td class="num">35,350</td><td><div class="bar-wrap"><div class="bar-fill" style="width:80.4%;background:#10b981"></div><span class="bar-label">80.4%</span></div></td></tr></tbody>
+  </table>
+</div>
+<h2 class="section-title" id="regions">🗺️ Chi tiết từng vùng</h2>
+
+    <section class="region-card" id="region-Trịnh_Văn_Quang">
+        <div class="region-header" style="border-left:5px solid #10b981">
+            <div class="region-title">
+                <span class="region-icon">🟢</span>
+                <div>
+                    <h2>Trịnh Văn Quang <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">Miền Trung – Quảng Trị / Đà Nẵng</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">10,226</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#10b981">98.9%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">25.6%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#10b981"><strong>74.0%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">5</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>Vẫn dẫn đầu hệ thống về xử lý (98.9%) ngày thứ 2 liên tiếp. Đột phá lớn: 12 LDT tăng xl từ 91.4% lên 99.1% (+7.7 điểm %). MT 74.0% giảm nhẹ từ 75.0% (18.5) – hiệu ứng tự nhiên khi mục tiêu tháng tăng dần. 483 TN dẫn đầu vùng MT (79.2%).</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>98.9% xl – dẫn đầu hệ thống, nhất quán từ kỳ trước. Gần như không có data bị bỏ sót</li><li>12 LDT đột phá: xl từ 91.4% lên 99.1% (+7.7 điểm %) – cải thiện lớn nhất vùng trong kỳ này</li><li>483 TN dẫn đầu MT (79.2%), book rate 26.6%. 1180 QT book cao nhất (28.2%)</li><li>Book rate toàn vùng 25.6% – tăng từ 24.5% (18.5). Xu hướng đi lên tốt</li><li>MT 74.0% giảm nhẹ (từ 75.0%) – bình thường khi mục tiêu tháng tăng dần theo ngày</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 76 PVH:</strong> Xl 91.4% – thấp nhất vùng. MT 71.4% – thấp nhì. Book 23.7% thấp hơn benchmark vùng (28.2% của 1180 QT). Cần cải thiện bước chốt lịch sau kết nối.</div><div class="alert-box alert-danger"><strong>🔥 12 LDT:</strong> Dù xl tăng mạnh lên 99.1%, MT chỉ 71.2% – thấp nhất vùng. Book 25.6% ổn nhưng cần push thêm để bắt kịp top vùng (79.2% của 483 TN).</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 483 TN:</strong> MT 79.2% – cao nhất vùng. Xl 97.5%, book 26.6%. Vận hành toàn diện nhất vùng – đây là chuẩn mực cho các salon khác noi theo.</div><div class="alert-box alert-success"><strong>⭐ 1180 QT:</strong> Book rate 28.2% – cao nhất vùng. Xl 104.7% – tiếp tục vượt pool. MT 73.9% ổn định.</div><div class="alert-box alert-success"><strong>⭐ 12 LDT:</strong> Xl từ 91.4% lên 99.1% trong 1 ngày – cải thiện vận hành rõ rệt và đáng được ghi nhận.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr>
+            <td><strong>483 TN</strong></td>
+            <td class="num">2,442</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:97.5%;background:#10b981"></div><span class="bar-label">97.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:98.7%;background:#8b5cf6"></div><span class="bar-label">98.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:26.6%;background:#3b82f6"></div><span class="bar-label">26.6%</span></div></td>
+            <td>98.7%</td>
+            <td><strong>79.2%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>32 NAT</strong></td>
+            <td class="num">1,390</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#10b981"></div><span class="bar-label">102.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:89.6%;background:#8b5cf6"></div><span class="bar-label">89.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:22.2%;background:#3b82f6"></div><span class="bar-label">22.2%</span></div></td>
+            <td>98.9%</td>
+            <td><strong>76.3%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>1180 QT</strong></td>
+            <td class="num">2,020</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#10b981"></div><span class="bar-label">104.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:89.3%;background:#8b5cf6"></div><span class="bar-label">89.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:28.2%;background:#3b82f6"></div><span class="bar-label">28.2%</span></div></td>
+            <td>97.7%</td>
+            <td><strong>73.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>76 PVH</strong></td>
+            <td class="num">1,855</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:91.4%;background:#10b981"></div><span class="bar-label">91.4%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:97.3%;background:#8b5cf6"></div><span class="bar-label">97.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:23.7%;background:#3b82f6"></div><span class="bar-label">23.7%</span></div></td>
+            <td>98.2%</td>
+            <td><strong>71.4%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>12 LDT</strong></td>
+            <td class="num">2,519</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.1%;background:#10b981"></div><span class="bar-label">99.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:90.1%;background:#8b5cf6"></div><span class="bar-label">90.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:25.6%;background:#3b82f6"></div><span class="bar-label">25.6%</span></div></td>
+            <td>96.7%</td>
+            <td><strong>71.2%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>Showcase TVQ tại review toàn hệ thống lần 2: 98.9% xl ngày thứ 2 liên tiếp là bằng chứng bền vững, không phải ngẫu nhiên</li><li>Ghi nhận 12 LDT cải thiện xl +7.7 điểm % – chia sẻ quy trình thay đổi với các salon đang xl thấp</li><li>Theo dõi MT tuần cuối: 74.0% cần tăng lên 76%+ để về đích tháng tốt</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>76 PVH: training kịch bản book rate từ 1180 QT (28.2%) và 483 TN (26.6%) – mục tiêu đạt 26%+ book</li><li>12 LDT: duy trì đà xl và tập trung cải thiện MT lên 74%+ trong tuần tới</li><li>1180 QT: nhân rộng kịch bản chốt lịch cho toàn vùng – book 28.2% từ pool lớn là bài học thực tế</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T3 (Khen) + T5 (Hành trình)</strong></div>
+                <p>Ghi nhận 12 LDT cải thiện xl đột phá (+7.7 điểm %). T5 chia sẻ hành trình vùng TVQ duy trì 98.9% xl liên tiếp 2 kỳ – làm gương cho toàn hệ thống, đặc biệt cho các vùng xl thấp như PTHG (58.9%) và NTS (59.0%).</p>
+            </div>
+        </div>
+    </section>
+    <section class="region-card" id="region-Tống_Xuân_Quyền">
+        <div class="region-header" style="border-left:5px solid #3b82f6">
+            <div class="region-title">
+                <span class="region-icon">🔵</span>
+                <div>
+                    <h2>Tống Xuân Quyền <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">Nam Bộ – TP.HCM / Long An / An Giang / Đồng Tháp</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">21,743</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#10b981">89.5%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">26.3%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#3b82f6"><strong>77.6%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">8</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>MT 77.6% – #3 hệ thống. 236 DBT cải thiện xl từ 24.9% lên 30.7% (+5.8 điểm %) – đúng hướng nhưng vẫn rất thấp. 25 TD xl tăng từ 38.6% lên 49.2% (+10.6 điểm %) – cải thiện tốt nhất vùng. 420 HTP tiếp tục dẫn đầu book rate (34.6%). 113 THD AG đứng đầu MT vùng (82.4%).</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>236 DBT: xl từ 24.9% lên 30.7% (+5.8 điểm %) – cải thiện nhưng vẫn rất thấp với pool 2,824</li><li>25 TD: xl từ 38.6% lên 49.2% (+10.6 điểm %) – cải thiện tốt nhất vùng. Book rate 31.0% vẫn xuất sắc</li><li>420 HTP: xl=164.6%, book=34.6%, MT=81.1% – salon xuất sắc nhất hệ thống về book rate</li><li>113 THD AG: MT 82.4% – cao nhất vùng với pool nhỏ (1,262). Hiệu quả vận hành rất cao</li><li>MT 77.6% đang cạnh tranh sát nút #2 với NVC (77.7%) – chỉ cách 0.1 điểm %</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 236 DBT:</strong> Xl 30.7% – tuy cải thiện nhưng vẫn CỰC THẤP. Pool 2,824 khách. Với tốc độ tăng hiện tại (~6%/ngày), cần thêm 3-4 ngày nữa mới đạt 50%. Cần hành động mạnh hơn.</div><div class="alert-box alert-danger"><strong>🔥 25 TD:</strong> Xl 49.2% – đang trên đà tốt (+10.6 điểm %). Book 31.0% xuất sắc. Cần push xl lên 65%+ để tận dụng hết tiềm năng của salon này.</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 420 HTP:</strong> Xl 164.6%, book 34.6%, MT 81.1% – salon xuất sắc nhất hệ thống. Đang xử lý gấp 1.6x pool được phân phối.</div><div class="alert-box alert-success"><strong>⭐ 113 THD AG:</strong> MT 82.4% – cao nhất vùng. Pool nhỏ (1,262) vận hành siêu hiệu quả. Tỷ lệ kết quả/effort tốt nhất vùng.</div><div class="alert-box alert-success"><strong>⭐ 25 TD:</strong> Xl tăng +10.6 điểm % trong 1 ngày – cải thiện tốt nhất vùng. Book 31.0% cho thấy kịch bản chốt lịch rất tốt.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr>
+            <td><strong>113 THD AG</strong></td>
+            <td class="num">1,262</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.1%;background:#10b981"></div><span class="bar-label">99.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:96.3%;background:#8b5cf6"></div><span class="bar-label">96.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:15.2%;background:#3b82f6"></div><span class="bar-label">15.2%</span></div></td>
+            <td>94.5%</td>
+            <td><strong>82.4%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>420 HTP</strong></td>
+            <td class="num">4,003</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#10b981"></div><span class="bar-label">164.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27.7%;background:#8b5cf6"></div><span class="bar-label">27.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:34.6%;background:#3b82f6"></div><span class="bar-label">34.6%</span></div></td>
+            <td>98.4%</td>
+            <td><strong>81.1%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>7 DTP LA</strong></td>
+            <td class="num">1,347</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:96.1%;background:#10b981"></div><span class="bar-label">96.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:57.8%;background:#8b5cf6"></div><span class="bar-label">57.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:17.4%;background:#3b82f6"></div><span class="bar-label">17.4%</span></div></td>
+            <td>96.9%</td>
+            <td><strong>79.6%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>236 DBT</strong></td>
+            <td class="num">2,824</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:30.7%;background:#ef4444"></div><span class="bar-label">30.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:73.8%;background:#8b5cf6"></div><span class="bar-label">73.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27.7%;background:#3b82f6"></div><span class="bar-label">27.7%</span></div></td>
+            <td>96.6%</td>
+            <td><strong>78.0%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>237 NTT</strong></td>
+            <td class="num">4,917</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:89.0%;background:#10b981"></div><span class="bar-label">89.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:25.3%;background:#3b82f6"></div><span class="bar-label">25.3%</span></div></td>
+            <td>96.8%</td>
+            <td><strong>77.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>341 XVNT</strong></td>
+            <td class="num">1,495</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:93.2%;background:#10b981"></div><span class="bar-label">93.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:23.1%;background:#3b82f6"></div><span class="bar-label">23.1%</span></div></td>
+            <td>97.2%</td>
+            <td><strong>77.0%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>186 DTH</strong></td>
+            <td class="num">2,794</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:77.5%;background:#f59e0b"></div><span class="bar-label">77.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:86.6%;background:#8b5cf6"></div><span class="bar-label">86.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:29.2%;background:#3b82f6"></div><span class="bar-label">29.2%</span></div></td>
+            <td>96.2%</td>
+            <td><strong>76.3%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>25 TD</strong></td>
+            <td class="num">3,101</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:49.2%;background:#ef4444"></div><span class="bar-label">49.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:31.0%;background:#3b82f6"></div><span class="bar-label">31.0%</span></div></td>
+            <td>96.6%</td>
+            <td><strong>74.4%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>236 DBT: theo dõi hàng ngày. Sau 2 ngày nếu xl không đạt 40%+, cần escalate và hỗ trợ nhân lực trực tiếp</li><li>Kịch bản từ 420 HTP (book 34.6%) và 25 TD (book 31.0%) cần được chia sẻ toàn hệ thống – đây là 2 salon book rate cao nhất hệ thống hiện tại</li><li>NVC (77.7%) đang #2, TXQ (77.6%) đang #3 – chỉ cách 0.1%. Nếu 236 DBT và 25 TD cải thiện, TXQ có thể lên #1 MT</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>236 DBT: đặt KPI cứng 50% xl cuối tuần này. GĐKV theo dõi hàng ngày</li><li>25 TD: target xl 65%+ tuần tới. Kịch bản book đang xuất sắc, chỉ cần thêm data</li><li>186 DTH: xl 77.5%, book 29.2% – đang vận hành tốt, cần duy trì và đặt target MT 78%+</li><li>Nhân rộng kịch bản từ 420 HTP cho 7 DTP LA (xl 96.1% nhưng book chỉ 17.4%)</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T2 (Số liệu) + T1 (Kịch bản)</strong></div>
+                <p>T2 để hiển thị tiến bộ của 236 DBT và 25 TD – tạo động lực tiếp tục. T1 để phổ biến kịch bản của 420 HTP (book 34.6%) và 25 TD (book 31.0%) cho các salon chưa đạt 25% book rate trong vùng.</p>
+            </div>
+        </div>
+    </section>
+    <section class="region-card" id="region-Nguyễn_Như_Quỳnh">
+        <div class="region-header" style="border-left:5px solid #8b5cf6">
+            <div class="region-title">
+                <span class="region-icon">🟣</span>
+                <div>
+                    <h2>Nguyễn Như Quỳnh <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">Miền Bắc – Bắc Ninh / Thái Nguyên</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">11,827</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#f59e0b">77.8%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">25.1%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#8b5cf6"><strong>78.6%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">6</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>MT 78.6% – DẪN ĐẦU HỆ THỐNG ngày thứ 2 liên tiếp. 362 NGT BN cải thiện xl mạnh từ 66.1% lên 72.4% (+6.3 điểm %). 168 NVC book rate tiếp tục tăng lên 31.3% (từ 29.9%). 10 TP vận hành xuất sắc (xl 92.0%, MT 80.5%). Vùng đang ở trạng thái tốt nhất toàn hệ thống.</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>MT 78.6% – #1 hệ thống lần thứ 2. Khoảng cách với #8 (NTH 67.7%) là 10.9 điểm %</li><li>362 NGT BN: xl từ 66.1% lên 72.4% (+6.3 điểm %) – cải thiện quan trọng nhất vùng</li><li>168 NVC: book rate 31.3% (từ 29.9%) – tiếp tục xu hướng cải thiện liên tục</li><li>10 TP: xl 92.0%, MT 80.5% – vận hành xuất sắc với pool tốt (2,393)</li><li>Vùng đồng đều: tất cả 6 salon đều trên 73% MT – không có salon nào dưới ngưỡng cảnh báo</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 11 PKT:</strong> MT 73.6% – thấp nhất vùng. Xl 74.6%, book 23.1% – đều thấp nhất hoặc nhì vùng. Cần hỗ trợ tổng thể từ cả xl đến book.</div><div class="alert-box alert-danger"><strong>🔥 186 QT:</strong> MT 74.9% – thấp nhì vùng. Book rate 21.5% – thấp nhất vùng. Xl 78.8% khá tốt nhưng book không chuyển đổi được.</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 168 NVC:</strong> Book rate 31.3%, MT 80.9% – cao nhất vùng. Cải thiện book liên tục 2 kỳ: 20.7% → 29.9% → 31.3%. Đây là case study về cải thiện bền vững.</div><div class="alert-box alert-success"><strong>⭐ 10 TP:</strong> Xl 92.0%, MT 80.5% – top 2 vùng. Salon đang vận hành ổn định và đồng đều ở mức cao.</div><div class="alert-box alert-success"><strong>⭐ 362 NGT BN:</strong> Xl tăng +6.3 điểm % trong 1 ngày – tiến bộ đáng kể nhất vùng. Pool lớn nhất (3,028) đang được khai thác tốt hơn.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr>
+            <td><strong>168 NVC</strong></td>
+            <td class="num">3,446</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:69.6%;background:#f59e0b"></div><span class="bar-label">69.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.8%;background:#8b5cf6"></div><span class="bar-label">99.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:31.3%;background:#3b82f6"></div><span class="bar-label">31.3%</span></div></td>
+            <td>97.5%</td>
+            <td><strong>80.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>10 TP</strong></td>
+            <td class="num">2,393</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:92.0%;background:#10b981"></div><span class="bar-label">92.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:84.3%;background:#8b5cf6"></div><span class="bar-label">84.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:26.5%;background:#3b82f6"></div><span class="bar-label">26.5%</span></div></td>
+            <td>96.7%</td>
+            <td><strong>80.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>362 NGT BN</strong></td>
+            <td class="num">3,028</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:72.4%;background:#f59e0b"></div><span class="bar-label">72.4%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:94.5%;background:#8b5cf6"></div><span class="bar-label">94.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:21.1%;background:#3b82f6"></div><span class="bar-label">21.1%</span></div></td>
+            <td>96.1%</td>
+            <td><strong>78.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>4 LQD BN</strong></td>
+            <td class="num">789</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:96.3%;background:#10b981"></div><span class="bar-label">96.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:96.7%;background:#8b5cf6"></div><span class="bar-label">96.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:18.4%;background:#3b82f6"></div><span class="bar-label">18.4%</span></div></td>
+            <td>99.3%</td>
+            <td><strong>77.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>186 QT</strong></td>
+            <td class="num">784</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:78.8%;background:#f59e0b"></div><span class="bar-label">78.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.4%;background:#8b5cf6"></div><span class="bar-label">99.4%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:21.5%;background:#3b82f6"></div><span class="bar-label">21.5%</span></div></td>
+            <td>96.2%</td>
+            <td><strong>74.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>11 PKT</strong></td>
+            <td class="num">1,387</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:74.6%;background:#f59e0b"></div><span class="bar-label">74.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:23.1%;background:#3b82f6"></div><span class="bar-label">23.1%</span></div></td>
+            <td>97.5%</td>
+            <td><strong>73.6%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>Showcase NNQ: dẫn đầu MT 2 kỳ liên tiếp và không có salon nào dưới 73% MT – đây là vùng "đồng đều nhất và hiệu quả nhất" toàn hệ thống</li><li>Mời GĐKV NNQ chia sẻ quy trình quản lý vùng tại họp toàn hệ thống, đặc biệt cách duy trì không có salon nào bị rơi</li><li>Lấy case study 168 NVC (book tăng 3 kỳ liên tiếp) để phổ biến phương pháp cải thiện có hệ thống</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>11 PKT: training toàn diện từ xl đến book. Ưu tiên học kịch bản từ 168 NVC</li><li>186 QT: tập trung cải thiện book rate (21.5% → 25%+). Kết nối đã tốt nhưng chưa chốt được lịch</li><li>362 NGT BN: duy trì đà, target xl 75%+ tuần tới. Pool lớn nhất vùng cần được khai thác triệt để</li><li>Toàn vùng: đặt target MT 80%+ cuối tháng – hoàn toàn khả thi với runrate hiện tại</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T3 (Khen) + T1 (Kịch bản)</strong></div>
+                <p>Vùng dẫn đầu MT lần 2 liên tiếp – ghi nhận để duy trì động lực. Đặc biệt khen 168 NVC (book tăng liên tục 3 kỳ) và 362 NGT BN (+6.3% xl). T1 phổ biến kịch bản book của 168 NVC cho 11 PKT và 186 QT – 2 salon book thấp nhất vùng.</p>
+            </div>
+        </div>
+    </section>
+    <section class="region-card" id="region-Nguyễn_Thị_Huệ">
+        <div class="region-header" style="border-left:5px solid #ef4444">
+            <div class="region-title">
+                <span class="region-icon">🔴</span>
+                <div>
+                    <h2>Nguyễn Thị Huệ <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">Bắc Trung Bộ – Thanh Hóa / Nghệ An</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">6,557</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#f59e0b">70.6%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">20.3%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#ef4444"><strong>67.7%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">6</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>MT 67.7% – THẤP NHẤT HỆ THỐNG ngày thứ 2 liên tiếp. 68 LN NA cải thiện từ 10.5% lên 12.3% (+1.8 điểm %) – quá chậm. 80 TP TH có nghịch lý: xl 93.6% (cao nhất vùng) nhưng MT chỉ 63.4% (thấp nhất vùng). 304 NT TH là điểm sáng duy nhất (xl 85.8%, MT 76.5%).</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>MT 67.7% – thấp nhất hệ thống lần 2. Khoảng cách với #1 NNQ là 10.9 điểm %</li><li>68 LN NA: xl từ 10.5% lên 12.3% (+1.8 điểm %) – cải thiện quá chậm. Với tốc độ này không thể hoàn thành tháng</li><li>304 NT TH: xl 85.8%, book 27.5%, MT 76.5% – beacon của vùng và đang cải thiện mạnh</li><li>80 TP TH: nghịch lý xl 93.6% (cao nhất vùng) nhưng MT 63.4% (thấp nhất!). Vấn đề nằm ở book/quality chăm sóc</li><li>Xl toàn vùng 70.6% (từ 68.4%) – cải thiện +2.2 điểm % nhưng vẫn cần tăng mạnh hơn</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 68 LN NA:</strong> Xl 12.3% – cải thiện từ 10.5% nhưng CỰC CHẬM. Pool 1,020 khách bị bỏ. Sau 5+ ngày chỉ tăng 1.8 điểm % – cần escalate ngay, không thể chờ thêm.</div><div class="alert-box alert-danger"><strong>🔥 80 TP TH:</strong> NGHỊCH LÝ: xl 93.6% – cao nhất vùng, nhưng MT 63.4% – thấp nhất vùng! Book rate 19.6% rất thấp so với xl tốt. Cần điều tra ngay: có phải target quá cao hay quy trình book đang bị bỏ qua?</div><div class="alert-box alert-danger"><strong>🔥 595 BT TH:</strong> Xl 58.5%, MT 64.5% – thấp nhì vùng. Cần hỗ trợ tập trung về cả xử lý và bước chốt lịch.</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 304 NT TH:</strong> Xl 85.8%, book 27.5%, MT 76.5% – vận hành xuất sắc nhất vùng. Đây là beacon của NTH và cần được nhân rộng.</div><div class="alert-box alert-success"><strong>⭐ 58 NVC NA:</strong> Xl 75.5%, MT 72.4% – thấp nhì vùng nhưng đang cải thiện đều đặn. Cần tiếp tục push.</div><div class="alert-box alert-success"><strong>⭐ Toàn vùng xl:</strong> Tăng +2.2 điểm % so với 18.5 (70.6% vs 68.4%) – xu hướng đúng hướng, cần tăng tốc hơn.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr>
+            <td><strong>304 NT TH</strong></td>
+            <td class="num">954</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:85.8%;background:#10b981"></div><span class="bar-label">85.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:44.3%;background:#8b5cf6"></div><span class="bar-label">44.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27.5%;background:#3b82f6"></div><span class="bar-label">27.5%</span></div></td>
+            <td>99.0%</td>
+            <td><strong>76.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>58 NVC NA</strong></td>
+            <td class="num">1,320</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:75.5%;background:#f59e0b"></div><span class="bar-label">75.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.6%;background:#8b5cf6"></div><span class="bar-label">99.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:15.1%;background:#3b82f6"></div><span class="bar-label">15.1%</span></div></td>
+            <td>93.3%</td>
+            <td><strong>72.4%</strong></td>
+        </tr>
+        <tr style="background:#fef2f2">
+            <td><strong>68 LN NA</strong></td>
+            <td class="num">1,020</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:12.3%;background:#ef4444"></div><span class="bar-label">12.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:11.2%;background:#3b82f6"></div><span class="bar-label">11.2%</span></div></td>
+            <td>92.9%</td>
+            <td><strong>69.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>290 QT TH</strong></td>
+            <td class="num">1,005</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:89.3%;background:#10b981"></div><span class="bar-label">89.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.9%;background:#8b5cf6"></div><span class="bar-label">99.9%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:21.0%;background:#3b82f6"></div><span class="bar-label">21.0%</span></div></td>
+            <td>97.3%</td>
+            <td><strong>64.7%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>595 BT TH</strong></td>
+            <td class="num">919</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:58.5%;background:#f59e0b"></div><span class="bar-label">58.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:98.3%;background:#8b5cf6"></div><span class="bar-label">98.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27.4%;background:#3b82f6"></div><span class="bar-label">27.4%</span></div></td>
+            <td>96.6%</td>
+            <td><strong>64.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>80 TP TH</strong></td>
+            <td class="num">1,339</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:93.6%;background:#10b981"></div><span class="bar-label">93.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.7%;background:#8b5cf6"></div><span class="bar-label">99.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:19.6%;background:#3b82f6"></div><span class="bar-label">19.6%</span></div></td>
+            <td>95.1%</td>
+            <td><strong>63.4%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>68 LN NA: sau 5+ ngày vẫn chỉ 12.3% xl – đây là vấn đề cần quyết định nhân sự ở cấp cao hơn GĐKV. Đặt deadline cụ thể: tuần tới phải đạt 35% xl</li><li>80 TP TH: điều tra ngay nghịch lý xl 93.6% nhưng MT 63.4%. Có thể là: (1) target sai, (2) quy trình book bị skip, (3) khách book nhưng không đến</li><li>Vùng NTH cần hỗ trợ kịch bản book từ bên ngoài – book rate 20.3% thấp nhất hệ thống, cần benchmark từ các vùng đang book 25%+</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>68 LN NA: quyết định rõ ràng trong 48h – có nhân sự hay không? Nếu không, điều người từ salon khác sang</li><li>80 TP TH: họp ngay trong tuần này để tìm nguyên nhân MT thấp. Ưu tiên cải thiện book rate lên 25%+</li><li>304 NT TH: ghi lại quy trình vận hành và chia sẻ toàn vùng – đây là salon duy nhất đang vận hành đúng chiều</li><li>Toàn vùng: đặt target cứng xl 75% và MT 70%+ cuối tuần này</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T4 (Phân tích) + T1 (Kịch bản)</strong></div>
+                <p>T4 để GĐKV phân tích nghịch lý của 80 TP TH: tại sao xl 93.6% mà MT chỉ 63.4%? Và tại sao 68 LN NA không cải thiện được sau 5+ ngày? T1 để cung cấp kịch bản từ 304 NT TH (book 27.5%) cho các salon đang book thấp như 80 TP TH (19.6%).</p>
+            </div>
+        </div>
+    </section>
+    <section class="region-card" id="region-Đoàn_Trung_Đức">
+        <div class="region-header" style="border-left:5px solid #f59e0b">
+            <div class="region-title">
+                <span class="region-icon">🟡</span>
+                <div>
+                    <h2>Đoàn Trung Đức <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">TP.HCM nội thành – Bình Thạnh / Gò Vấp / Phú Nhuận</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">18,008</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#f59e0b">73.3%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">27.9%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#f59e0b"><strong>76.9%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">8</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>MT 76.9% – #4 hệ thống. 151 CG VẪN 0% xl sau 5+ ngày – tuyệt đối không thay đổi. 90 NH cải thiện rất chậm (18.6% → 19.8%). 6 salon còn lại vận hành tốt với 116 TK dẫn đầu book rate (32.7%). 109 TQH top MT vùng (80.6%).</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>151 CG: 0% xl sau 5+ ngày – TUYỆT ĐỐI KHÔNG THAY ĐỔI. Đây là trường hợp khẩn cấp cần quyết định nhân sự</li><li>90 NH: xl từ 18.6% lên 19.8% (+1.2 điểm %) – cải thiện cực chậm. Pool 1,721 gần như bị bỏ hoàn toàn</li><li>116 TK: book rate 32.7% – cao nhất vùng và top hệ thống. Xl 88.9%, MT 79.2%</li><li>6 salon vận hành tốt: avg MT 78.3% (trừ 2 salon đang đóng băng)</li><li>Xl toàn vùng 73.3% (từ 71.3%) – cải thiện nhờ 6 salon tốt, bị kéo bởi 2 salon trống</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 151 CG:</strong> 0% xl sau 5+ NGÀY – KHÔNG CÓ BẤT KỲ THAY ĐỔI NÀO. Pool 882 khách bị bỏ hoàn toàn. Đây không còn là vấn đề quy trình – đây là vấn đề nhân sự cần giải quyết hôm nay.</div><div class="alert-box alert-danger"><strong>🔥 90 NH:</strong> Xl 19.8% – tăng cực chậm (+1.2 điểm %/ngày). Nếu tiếp tục tốc độ này, kết thúc tháng chỉ đạt 40% xl – mất 1,000+ lượt book tiềm năng. Cần hành động mạnh ngay tuần này.</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 116 TK:</strong> Book rate 32.7%, MT 79.2%, xl 88.9% – top toàn diện của vùng. Salon lớn (pool 3,740) vận hành xuất sắc.</div><div class="alert-box alert-success"><strong>⭐ 109 TQH:</strong> MT 80.6% – cao nhất vùng. Xl 76.0%, book 25.8% – vận hành hiệu quả và đồng đều.</div><div class="alert-box alert-success"><strong>⭐ 382 NT:</strong> Xl 86.3%, book 27.7%, MT 79.5% – salon lớn (pool 4,090) đang vận hành rất tốt. Cần được ghi nhận.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr>
+            <td><strong>109 TQH</strong></td>
+            <td class="num">3,230</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:76.0%;background:#f59e0b"></div><span class="bar-label">76.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.9%;background:#8b5cf6"></div><span class="bar-label">99.9%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:25.8%;background:#3b82f6"></div><span class="bar-label">25.8%</span></div></td>
+            <td>96.4%</td>
+            <td><strong>80.6%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>382 NT</strong></td>
+            <td class="num">4,090</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:86.3%;background:#10b981"></div><span class="bar-label">86.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.0%;background:#8b5cf6"></div><span class="bar-label">99.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27.7%;background:#3b82f6"></div><span class="bar-label">27.7%</span></div></td>
+            <td>97.5%</td>
+            <td><strong>79.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>116 TK</strong></td>
+            <td class="num">3,740</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:88.9%;background:#10b981"></div><span class="bar-label">88.9%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:97.7%;background:#8b5cf6"></div><span class="bar-label">97.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:32.7%;background:#3b82f6"></div><span class="bar-label">32.7%</span></div></td>
+            <td>95.1%</td>
+            <td><strong>79.2%</strong></td>
+        </tr>
+        <tr style="background:#fef2f2">
+            <td><strong>90 NH</strong></td>
+            <td class="num">1,721</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:19.8%;background:#ef4444"></div><span class="bar-label">19.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:92.6%;background:#8b5cf6"></div><span class="bar-label">92.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:11.1%;background:#3b82f6"></div><span class="bar-label">11.1%</span></div></td>
+            <td>100.0%</td>
+            <td><strong>76.3%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>55A NVL</strong></td>
+            <td class="num">1,723</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:84.1%;background:#f59e0b"></div><span class="bar-label">84.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:28.0%;background:#3b82f6"></div><span class="bar-label">28.0%</span></div></td>
+            <td>91.6%</td>
+            <td><strong>74.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>65 CD</strong></td>
+            <td class="num">1,291</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:93.1%;background:#10b981"></div><span class="bar-label">93.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:24.0%;background:#3b82f6"></div><span class="bar-label">24.0%</span></div></td>
+            <td>97.6%</td>
+            <td><strong>70.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>62 LH</strong></td>
+            <td class="num">1,331</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:68.1%;background:#f59e0b"></div><span class="bar-label">68.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:28.1%;background:#3b82f6"></div><span class="bar-label">28.1%</span></div></td>
+            <td>94.9%</td>
+            <td><strong>69.8%</strong></td>
+        </tr>
+        <tr style="background:#fef2f2">
+            <td><strong>151 CG</strong></td>
+            <td class="num">882</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:0.0%;background:#ef4444"></div><span class="bar-label">0.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:nan%;background:#8b5cf6"></div><span class="bar-label">nan%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:0.0%;background:#3b82f6"></div><span class="bar-label">0.0%</span></div></td>
+            <td>0.0%</td>
+            <td><strong>0.0%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>151 CG: đây là lần cuối có thể chờ. Quyết định nhân sự cụ thể trong 24h – có hay không có nhân sự vận hành salon này?</li><li>90 NH: đặt KPI cứng 40% xl cuối tuần này và theo dõi hàng ngày từ cấp TNKH tổng công ty</li><li>Ghi nhận 116 TK và 382 NT – 2 salon lớn vận hành xuất sắc cần được showcase tại review toàn hệ thống</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>151 CG: cuộc họp khẩn hôm nay. Nếu không có nhân sự, điều ngay từ salon khác vào hỗ trợ</li><li>90 NH: GĐKV theo dõi hàng ngày. Target cứng: 40% xl cuối tuần, 55% xl sau 2 tuần</li><li>62 LH: xl 68.1%, MT 69.8% – thấp nhất vùng (trừ 2 salon đóng băng). Cần hỗ trợ cải thiện</li><li>116 TK: nhân rộng kịch bản book rate (32.7%) cho 62 LH và 65 CD – 2 salon đang book thấp hơn</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T6 (Góp ý) + T3 (Khen)</strong></div>
+                <p>T6 cho GĐKV tự phản ánh: tại sao 151 CG 0% xl sau 5+ ngày mà chưa có quyết định nhân sự? T3 để ghi nhận 116 TK, 109 TQH, 382 NT – 3 salon đang gánh kết quả cho cả vùng.</p>
+            </div>
+        </div>
+    </section>
+    <section class="region-card" id="region-Nguyễn_Việt_Cường">
+        <div class="region-header" style="border-left:5px solid #06b6d4">
+            <div class="region-title">
+                <span class="region-icon">🔵</span>
+                <div>
+                    <h2>Nguyễn Việt Cường <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">Bình Dương / Đồng Nai / TP.HCM ngoại ô</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">21,801</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#f59e0b">65.5%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">22.6%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#06b6d4"><strong>77.7%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">9</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>MT 77.7% – #2 hệ thống (tăng vị trí so với kỳ 18.5). 255 NAN cải thiện xl từ 11.4% lên 18.0% (+6.6 điểm %). 401/1 NDT xl từ 21.6% lên 29.0% (+7.4 điểm %). Nghịch lý target vẫn tồn tại nhưng 2 salon đang cải thiện đúng hướng. 36 N1 BD vẫn thấp nhất MT (62.4%).</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>MT 77.7% – #2 hệ thống, tăng vị trí từ kỳ trước. Chỉ cách #1 NNQ 0.9 điểm %</li><li>255 NAN: xl từ 11.4% lên 18.0% (+6.6 điểm %) – cải thiện đúng hướng dù vẫn rất thấp</li><li>401/1 NDT: xl từ 21.6% lên 29.0% (+7.4 điểm %) – cải thiện nhanh nhất vùng</li><li>103 TN (pool 5,668 – lớn nhất vùng): xl 74.7%, book 29.0%, MT 76.1% – vận hành tốt</li><li>36 N1 BD: xl 89.7% nhưng MT chỉ 62.4% – nghịch lý xl cao nhưng kết quả thấp nhất vùng</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 255 NAN:</strong> Xl 18.0% – cải thiện nhưng vẫn rất thấp. Nghịch lý MT 84.8% với xl 18% chưa được giải thích. Cần xác minh target và tiếp tục push xl lên 40%+.</div><div class="alert-box alert-danger"><strong>🔥 36 N1 BD:</strong> Xl 89.7% nhưng MT 62.4% – thấp nhất vùng dù xl cao nhất. Book 19.4% là vấn đề cốt lõi cần giải quyết. Đây là trường hợp xl tốt nhưng chất lượng chốt lịch kém.</div><div class="alert-box alert-danger"><strong>🔥 1371 PVT:</strong> Xl 51.1% – thấp thứ 2 vùng (trừ 255 NAN/401 NDT). MT 83.2% tốt nhưng cần tăng xl để đảm bảo target tháng.</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 80 PL BD:</strong> MT 83.0%, xl 75.9%, book 20.3% – "vùng cân bằng" nhất: xl tốt và MT tốt. Đây là mô hình vận hành tổng thể đáng học.</div><div class="alert-box alert-success"><strong>⭐ 1146 KVC:</strong> Book rate 27.5% – cao nhất vùng. MT 80.9%. Chất lượng chốt lịch xuất sắc.</div><div class="alert-box alert-success"><strong>⭐ 401/1 NDT:</strong> Xl tăng +7.4 điểm % – cải thiện nhanh nhất vùng. Đang đi đúng hướng.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr style="background:#fef2f2">
+            <td><strong>255 NAN</strong></td>
+            <td class="num">2,843</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:18.0%;background:#ef4444"></div><span class="bar-label">18.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:93.7%;background:#8b5cf6"></div><span class="bar-label">93.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:14.6%;background:#3b82f6"></div><span class="bar-label">14.6%</span></div></td>
+            <td>95.7%</td>
+            <td><strong>84.8%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>1371 PVT</strong></td>
+            <td class="num">1,776</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:51.1%;background:#ef4444"></div><span class="bar-label">51.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:98.6%;background:#8b5cf6"></div><span class="bar-label">98.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:18.7%;background:#3b82f6"></div><span class="bar-label">18.7%</span></div></td>
+            <td>98.2%</td>
+            <td><strong>83.2%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>80 PL BD</strong></td>
+            <td class="num">2,515</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:75.9%;background:#f59e0b"></div><span class="bar-label">75.9%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.4%;background:#8b5cf6"></div><span class="bar-label">99.4%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:20.3%;background:#3b82f6"></div><span class="bar-label">20.3%</span></div></td>
+            <td>97.2%</td>
+            <td><strong>83.0%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>1146 KVC</strong></td>
+            <td class="num">1,577</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:82.1%;background:#f59e0b"></div><span class="bar-label">82.1%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:63.7%;background:#8b5cf6"></div><span class="bar-label">63.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27.5%;background:#3b82f6"></div><span class="bar-label">27.5%</span></div></td>
+            <td>96.5%</td>
+            <td><strong>80.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>401/1 NDT</strong></td>
+            <td class="num">1,674</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:29.0%;background:#ef4444"></div><span class="bar-label">29.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:22.8%;background:#3b82f6"></div><span class="bar-label">22.8%</span></div></td>
+            <td>94.6%</td>
+            <td><strong>79.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>29 HB</strong></td>
+            <td class="num">2,873</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:84.0%;background:#f59e0b"></div><span class="bar-label">84.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:93.6%;background:#8b5cf6"></div><span class="bar-label">93.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:22.9%;background:#3b82f6"></div><span class="bar-label">22.9%</span></div></td>
+            <td>94.4%</td>
+            <td><strong>79.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>103 TN</strong></td>
+            <td class="num">5,668</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:74.7%;background:#f59e0b"></div><span class="bar-label">74.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:95.9%;background:#8b5cf6"></div><span class="bar-label">95.9%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:29.0%;background:#3b82f6"></div><span class="bar-label">29.0%</span></div></td>
+            <td>97.6%</td>
+            <td><strong>76.1%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>451 PVT</strong></td>
+            <td class="num">1,343</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:85.6%;background:#10b981"></div><span class="bar-label">85.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:98.2%;background:#8b5cf6"></div><span class="bar-label">98.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:9.3%;background:#3b82f6"></div><span class="bar-label">9.3%</span></div></td>
+            <td>95.2%</td>
+            <td><strong>68.0%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>36 N1 BD</strong></td>
+            <td class="num">1,532</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:89.7%;background:#10b981"></div><span class="bar-label">89.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:19.4%;background:#3b82f6"></div><span class="bar-label">19.4%</span></div></td>
+            <td>86.5%</td>
+            <td><strong>62.4%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>Xác minh target của 255 NAN: MT 84.8% với xl 18% là bất thường. Nếu target đúng, salon này đang thiếu nhân lực nghiêm trọng</li><li>36 N1 BD: case study "xl cao nhưng MT thấp" – cần training kịch bản chốt lịch, không phải tăng xử lý</li><li>Vùng NVC đang #2 hệ thống – ghi nhận tích cực để duy trì động lực cải thiện</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>255 NAN & 401/1 NDT: đặt target xl 40%+ cuối tuần này. Đang cải thiện – cần duy trì tốc độ</li><li>36 N1 BD: training kịch bản book từ 1146 KVC (27.5%) và 103 TN (29.0%). Mục tiêu: book rate 23%+</li><li>103 TN: duy trì vận hành và chia sẻ kinh nghiệm pool lớn với 255 NAN (pool 2,843)</li><li>1371 PVT: push xl từ 51.1% lên 65%+. MT tốt (83.2%) – chỉ cần thêm data để xử lý</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T4 (Phân tích) + T2 (Số liệu)</strong></div>
+                <p>T4 để phân tích 2 nghịch lý: 255 NAN (xl thấp, MT cao bất thường) và 36 N1 BD (xl cao, MT thấp). T2 để so sánh 36 N1 BD (xl 89.7%, MT 62.4%) với 80 PL BD (xl 75.9%, MT 83.0%) – kích thích tư duy về chất lượng book, không chỉ số lượng xử lý.</p>
+            </div>
+        </div>
+    </section>
+    <section class="region-card" id="region-Phan_Thị_Hồng_Gấm">
+        <div class="region-header" style="border-left:5px solid #ec4899">
+            <div class="region-title">
+                <span class="region-icon">🔴</span>
+                <div>
+                    <h2>Phan Thị Hồng Gấm <span style="font-size:0.7em;color:#6b7280">GDKV</span></h2>
+                    <p class="region-geo">Hà Nội – Hoàng Mai / Đống Đa / Thanh Xuân / Tây Hồ</p>
+                </div>
+            </div>
+            <div class="region-kpis">
+                <div class="kpi-box"><div class="kpi-label">Pool</div><div class="kpi-val">15,830</div></div>
+                <div class="kpi-box"><div class="kpi-label">Xử lý</div><div class="kpi-val" style="color:#f59e0b">58.9%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Book</div><div class="kpi-val">24.7%</div></div>
+                <div class="kpi-box"><div class="kpi-label">% Đạt MT</div><div class="kpi-val" style="color:#ec4899"><strong>72.8%</strong></div></div>
+                <div class="kpi-box"><div class="kpi-label">Salon</div><div class="kpi-val">8</div></div>
+            </div>
+        </div>
+        <div class="region-body">
+            <div class="section-block"><h3>📊 Hiện trạng</h3><p>Xl 58.9% (từ 56.0%) – cải thiện +2.9 điểm %. MT 72.8% – #6 hệ thống. 173 TN vẫn ở 32.7% xl – KHÔNG CÓ CẢI THIỆN sau 2 ngày theo dõi. 363 LNQ TN có book rate cực thấp (12.4%). 39 HBT tiếp tục là benchmark vùng (xl 93.2%, book 31.1%).</p></div>
+            <div class="section-block"><h3>💡 Insight</h3><ul><li>Xl 58.9% (từ 56.0%) – cải thiện +2.9 điểm %. Xu hướng tốt nhưng vẫn cần tăng tốc</li><li>173 TN: xl 32.7% – KHÔNG ĐỔI so với 18.5. Không có cải thiện sau 2 ngày. Đây là dấu hiệu đáng lo</li><li>202 DC: book rate tăng lên 30.3% – cao nhì vùng. MT 76.4%. Điểm sáng mới của vùng</li><li>363 LNQ TN: book rate 12.4% – cực thấp nhất vùng. Xl 60.0% trung bình – vấn đề ở bước chốt lịch</li><li>MT 72.8% – #6 hệ thống. Khoảng cách với top (78.6%) là 5.8 điểm % – có thể rút ngắn</li></ul></div>
+            <div class="two-col">
+                <div><h3>🔥 Điểm nóng</h3><div class="alert-box alert-danger"><strong>🔥 173 TN:</strong> Xl 32.7% – KHÔNG CẢI THIỆN sau 2 ngày theo dõi. Pool 2,017 gần như bị bỏ. Đây là salon cần quyết định hành động ngay, không thể tiếp tục theo dõi thụ động.</div><div class="alert-box alert-danger"><strong>🔥 363 LNQ TN:</strong> Book rate 12.4% – thấp nhất vùng và thuộc hàng thấp nhất hệ thống. Xl 60.0% tạm ổn nhưng không chuyển đổi được thành lịch book. Training kịch bản là ưu tiên số 1.</div><div class="alert-box alert-danger"><strong>🔥 148 TD:</strong> Xl 85.0% – cao nhì vùng nhưng MT 68.5% thấp nhất vùng. Book 21.8% chưa đủ tốt so với xl cao. Đây là pattern giống 80 TP TH (xl cao, MT thấp).</div></div>
+                <div><h3>⭐ Điểm nổi bật</h3><div class="alert-box alert-success"><strong>⭐ 39 HBT:</strong> Xl 93.2%, book 31.1%, MT 75.1% – CHUẨN MỰC của toàn vùng lần thứ 2 liên tiếp. Benchmark không thay đổi.</div><div class="alert-box alert-success"><strong>⭐ 202 DC:</strong> Book rate 30.3% – tăng mạnh, cao nhì vùng. MT 76.4%. Đây là điểm sáng mới cần được ghi nhận và nhân rộng.</div><div class="alert-box alert-success"><strong>⭐ 346 KT:</strong> MT 76.5% – cao nhất vùng dù xl chỉ 55.0%. Cần kiểm tra: nếu target thấp, cần điều chỉnh để phản ánh đúng năng lực.</div></div>
+            </div>
+            <div class="section-block">
+                <h3>📋 Chi tiết theo salon</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Salon</th><th>Pool</th><th>% Xử lý</th><th>% Kết nối</th><th>% Book</th><th>% Đến</th><th>% Đạt MT</th></tr></thead>
+                        <tbody>
+        <tr>
+            <td><strong>346 KT</strong></td>
+            <td class="num">1,736</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:55.0%;background:#ef4444"></div><span class="bar-label">55.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:91.8%;background:#8b5cf6"></div><span class="bar-label">91.8%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:22.9%;background:#3b82f6"></div><span class="bar-label">22.9%</span></div></td>
+            <td>95.0%</td>
+            <td><strong>76.5%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>202 DC</strong></td>
+            <td class="num">2,314</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:41.7%;background:#ef4444"></div><span class="bar-label">41.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:99.3%;background:#8b5cf6"></div><span class="bar-label">99.3%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:30.3%;background:#3b82f6"></div><span class="bar-label">30.3%</span></div></td>
+            <td>95.2%</td>
+            <td><strong>76.4%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>39 HBT</strong></td>
+            <td class="num">1,919</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:93.2%;background:#10b981"></div><span class="bar-label">93.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100.0%;background:#8b5cf6"></div><span class="bar-label">100.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:31.1%;background:#3b82f6"></div><span class="bar-label">31.1%</span></div></td>
+            <td>97.5%</td>
+            <td><strong>75.1%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>264 LLQ</strong></td>
+            <td class="num">2,059</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:68.5%;background:#f59e0b"></div><span class="bar-label">68.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:89.2%;background:#8b5cf6"></div><span class="bar-label">89.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:25.2%;background:#3b82f6"></div><span class="bar-label">25.2%</span></div></td>
+            <td>96.2%</td>
+            <td><strong>74.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>50BT4 NPC LD</strong></td>
+            <td class="num">2,791</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:50.5%;background:#ef4444"></div><span class="bar-label">50.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:73.6%;background:#8b5cf6"></div><span class="bar-label">73.6%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:23.0%;background:#3b82f6"></div><span class="bar-label">23.0%</span></div></td>
+            <td>95.8%</td>
+            <td><strong>73.7%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>363 LNQ TN</strong></td>
+            <td class="num">1,623</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:60.0%;background:#f59e0b"></div><span class="bar-label">60.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:98.5%;background:#8b5cf6"></div><span class="bar-label">98.5%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:12.4%;background:#3b82f6"></div><span class="bar-label">12.4%</span></div></td>
+            <td>99.2%</td>
+            <td><strong>69.9%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>173 TN</strong></td>
+            <td class="num">2,017</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:32.7%;background:#ef4444"></div><span class="bar-label">32.7%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:61.2%;background:#8b5cf6"></div><span class="bar-label">61.2%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:28.0%;background:#3b82f6"></div><span class="bar-label">28.0%</span></div></td>
+            <td>95.6%</td>
+            <td><strong>69.0%</strong></td>
+        </tr>
+        <tr>
+            <td><strong>148 TD</strong></td>
+            <td class="num">1,371</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:85.0%;background:#f59e0b"></div><span class="bar-label">85.0%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:98.4%;background:#8b5cf6"></div><span class="bar-label">98.4%</span></div></td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:21.8%;background:#3b82f6"></div><span class="bar-label">21.8%</span></div></td>
+            <td>97.6%</td>
+            <td><strong>68.5%</strong></td>
+        </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-block action-tnkh"><h3>🎯 Gợi ý – TNKH Tổng Công Ty</h3><ul><li>173 TN: không cải thiện sau 2 ngày – cần hành động cụ thể từ TNKH. Đặt deadline: 50% xl cuối tuần này</li><li>Hỗ trợ 363 LNQ TN về kịch bản book rate: 12.4% là cực thấp, cần training trực tiếp hoặc đưa người hỗ trợ</li><li>Ghi nhận 202 DC cải thiện book rate – chia sẻ phương pháp với các salon Hà Nội đang book thấp</li></ul></div>
+                <div class="action-block action-region"><h3>📌 Gợi ý – GĐKV & Vùng</h3><ul><li>173 TN: quyết định hành động cụ thể ngay – không thể tiếp tục chờ. Có thể cần điều nhân sự từ 39 HBT hỗ trợ</li><li>363 LNQ TN: training kịch bản book từ 39 HBT (31.1%) và 202 DC (30.3%) – đây là 2 benchmark book rate của vùng</li><li>148 TD: điều tra tại sao xl 85.0% nhưng MT thấp (68.5%) – pattern tương tự 80 TP TH cần được hiểu rõ</li><li>Toàn vùng: đặt target xl 65%+ và MT 74%+ cuối tháng – khả thi nếu 173 TN cải thiện</li></ul></div>
+            </div>
+            <div class="tt-rec">
+                <h3>📣 Gợi ý Truyền Thông Nội Bộ</h3>
+                <div class="tt-pill">Tuần này nên làm: <strong>T2 (Số liệu) + T3 (Khen)</strong></div>
+                <p>T2 để hiển thị khoảng cách: 173 TN (xl 32.7%, không cải thiện) vs 39 HBT (xl 93.2%) – tạo áp lực cạnh tranh nội bộ. T3 để ghi nhận 202 DC (book 30.3% tăng mạnh) và 39 HBT (benchmark vùng lần 2). Ghi nhận tiến bộ giúp 202 DC duy trì đà.</p>
+            </div>
+        </div>
+    </section>
+<h2 class="section-title" id="actions">🎯 Hành động ưu tiên – TNKH Tổng Công Ty</h2>
+<div class="sys-actions-grid"><div class="sys-action"><div class="sys-action-title">Khẩn cấp – Salon không hoạt động</div><p>151 CG (0% xl – 5+ ngày tuyệt đối không thay đổi), 68 LN NA (12.3% xl – cải thiện cực chậm), 173 TN (32.7% xl – không đổi sau 2 ngày). Cần quyết định nhân sự và hành động cụ thể trong 24-48h cho từng salon. Đây không còn là vấn đề quy trình.</p></div><div class="sys-action"><div class="sys-action-title">Phổ biến kịch bản top ngay</div><p>8 CVL (book 38.8% – cao nhất hệ thống lần 2), 420 HTP (book 34.6%), 25 TD (book 31.0%), 168 NVC (book 31.3%). Kịch bản chốt lịch của 4 salon này cần được chia sẻ qua T1 cho toàn hệ thống ngay trong tuần này.</p></div><div class="sys-action"><div class="sys-action-title">Điều tra nghịch lý xl cao – MT thấp</div><p>80 TP TH (xl 93.6%, MT 63.4%) và 148 TD (xl 85.0%, MT 68.5%) – hai salon đang xử lý tốt nhưng kết quả thấp bất thường. Cần xác định nguyên nhân: target sai, book bị skip, hay khách không đến sau book?</p></div><div class="sys-action"><div class="sys-action-title">Benchmark & ghi nhận</div><p>Nguyễn Như Quỳnh (78.6% MT – #1 lần 2) và Trịnh Văn Quang (98.9% xl – #1 lần 2). Hai vùng này cần được ghi nhận công khai. Đặc biệt showcase 168 NVC (book tăng 3 kỳ liên tiếp) và 12 LDT (xl tăng +7.7 điểm % trong 1 ngày).</p></div><div class="sys-action"><div class="sys-action-title">Tập trung nâng xl vùng lớn</div><p>Nguyễn Thanh Sang (xl 59.0%, pool 30,682) và Phan Thị Hồng Gấm (xl 58.9%, pool 15,830). Nếu 2 vùng này tăng xl lên 70%, toàn hệ thống tăng thêm ~4,900 lượt chăm sóc – đây là đòn bẩy lớn nhất còn lại trong tháng.</p></div></div>
+</div>
+<footer>Báo cáo R12W · Dữ liệu tích lũy 01–18.05.2026 · Ngày review 19.05.2026<br>Chuỗi: Pool → Xử lý → Kết nối → Book → Đến</footer>
+</body>
+</html>
