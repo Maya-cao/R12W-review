@@ -8,23 +8,17 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #eef1f5;
-    color: #1a1a1a;
-    font-size: 14.5px;
-    line-height: 1.75;
+    background: #eef1f5; color: #1a1a1a;
+    font-size: 14.5px; line-height: 1.75;
 }
 .wrap {
-    max-width: 1080px;
-    margin: 24px auto;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 16px rgba(0,0,0,.10);
-    overflow: hidden;
+    max-width: 1100px; margin: 24px auto;
+    background: #fff; border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0,0,0,.10); overflow: hidden;
 }
 .hdr {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-    color: #fff;
-    padding: 26px 36px 20px;
+    color: #fff; padding: 26px 36px 20px;
 }
 .hdr h1 { font-size: 1.35em; font-weight: 700; margin-bottom: 10px; letter-spacing: .2px; }
 .hdr .meta { font-size: 0.82em; opacity: .72; display: flex; gap: 18px; flex-wrap: wrap; }
@@ -33,11 +27,8 @@ body {
 
 .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 0 0 24px; }
 .card {
-    flex: 1; min-width: 150px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 14px 16px;
-    background: #f8fafc;
+    flex: 1; min-width: 150px; border: 1px solid #e2e8f0;
+    border-radius: 8px; padding: 14px 16px; background: #f8fafc;
 }
 .card .lbl  { font-size: 0.76em; color: #64748b; text-transform: uppercase; letter-spacing: .4px; }
 .card .val  { font-size: 1.55em; font-weight: 700; color: #0f172a; line-height: 1.2; margin-top: 3px; }
@@ -54,17 +45,11 @@ body {
     padding-left: 11px; margin-bottom: 10px;
 }
 .note { font-size: 0.81em; color: #94a3b8; font-style: italic; margin-bottom: 9px; }
-
 .narrative {
-    background: #f8fafc;
-    border-left: 3px solid #3b82f6;
-    padding: 12px 16px;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 14px;
-    font-size: 0.93em;
-    line-height: 1.9;
+    background: #f8fafc; border-left: 3px solid #3b82f6;
+    padding: 12px 16px; border-radius: 0 8px 8px 0;
+    margin-bottom: 14px; font-size: 0.93em; line-height: 1.9;
 }
-
 hr { border: none; border-top: 1px solid #e5e7eb; margin: 26px 0; }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.87em; margin: 8px 0 12px; }
@@ -74,48 +59,22 @@ tr:hover td { background: #f8fafc; }
 tr:last-child td { border-bottom: none; }
 
 .grp-row td {
-    background: #f1f5f9 !important;
-    font-weight: 700; color: #374151;
-    font-size: 0.85em; padding: 6px 12px;
-    border-bottom: 1px solid #e2e8f0;
+    background: #f1f5f9 !important; font-weight: 700; color: #374151;
+    font-size: 0.85em; padding: 6px 12px; border-bottom: 1px solid #e2e8f0;
 }
-
-.tblock {
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    margin: 9px 0;
-    overflow: hidden;
-}
-.thdr {
-    background: #f1f5f9;
-    padding: 10px 15px;
-    display: flex; align-items: center; gap: 10px;
-    font-weight: 700; font-size: 0.93em;
-    flex-wrap: wrap;
-}
-.tbadge {
-    font-size: 0.79em; padding: 2px 9px;
-    border-radius: 12px; font-weight: 600;
-    background: #dbeafe; color: #1d4ed8;
-}
-.tbody { padding: 10px 15px; font-size: 0.91em; line-height: 1.8; }
+.row-nq > td { background: #fafbff !important; }
+.row-nq > td:first-child { color: #6366f1; font-style: italic; }
+.row-cty > td:first-child { color: #0f172a; }
 
 .ne-box {
-    border: 1px dashed #cbd5e1;
-    border-radius: 8px;
-    padding: 13px 16px;
-    background: #f9fafb;
-    margin-top: 16px;
-    font-size: 0.88em;
-    color: #6b7280;
-    line-height: 1.8;
+    border: 1px dashed #cbd5e1; border-radius: 8px;
+    padding: 13px 16px; background: #f9fafb;
+    margin-top: 16px; font-size: 0.88em; color: #6b7280; line-height: 1.8;
 }
 .ne-box strong { color: #374151; }
-
 .up { color: #dc2626; font-weight: 600; }
 .dn { color: #16a34a; font-weight: 600; }
 .st { color: #6b7280; }
-
 footer { text-align: center; color: #9ca3af; font-size: 0.8em; padding: 16px; border-top: 1px solid #f1f5f9; }
 
 .case-card { border: 1px solid #e2e8f0; border-radius: 8px; margin: 10px 0; overflow: hidden; }
@@ -134,6 +93,34 @@ footer { text-align: center; color: #9ca3af; font-size: 0.8em; padding: 16px; bo
     border-left: 3px solid #fbbf24; background: #fffbeb;
     border-radius: 0 6px 6px 0; font-style: italic;
 }
+
+/* Interactive filter bar */
+.filter-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    padding: 11px 14px; background: #f0f6ff; border-radius: 8px;
+    border: 1px solid #bfdbfe; margin-bottom: 14px;
+}
+.filter-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.filter-sep { width: 1px; height: 24px; background: #bfdbfe; margin: 0 4px; }
+.filter-label { font-size: 0.8em; color: #3b82f6; font-weight: 700; white-space: nowrap; }
+.filter-btn {
+    padding: 4px 13px; border-radius: 20px; border: 1px solid #93c5fd;
+    background: #fff; cursor: pointer; font-size: 0.81em; color: #374151;
+    font-family: inherit; transition: all 0.15s;
+}
+.filter-btn:hover { background: #dbeafe; border-color: #3b82f6; }
+.filter-btn.active { background: #3b82f6; color: #fff; border-color: #3b82f6; font-weight: 600; }
+.filter-select {
+    padding: 4px 10px; border-radius: 6px; border: 1px solid #93c5fd;
+    font-size: 0.81em; color: #374151; background: #fff;
+    cursor: pointer; font-family: inherit;
+}
+.tag-search-wrap { margin-bottom: 10px; }
+.tag-search {
+    padding: 6px 12px; border: 1px solid #cbd5e1; border-radius: 6px;
+    font-size: 0.85em; color: #374151; font-family: inherit; width: 260px;
+}
+.tag-search:focus { outline: none; border-color: #3b82f6; }
 </style>
 </head>
 <body>
@@ -144,6 +131,7 @@ footer { text-align: center; color: #9ca3af; font-size: 0.8em; padding: 16px; bo
     <span>Kỳ báo cáo: 15-21/6/2026</span>
     <span>So sánh: tuần 08-14/6/2026</span>
     <span>Xu hướng 3 kỳ: 01-07/6 → 08-14/6 → 15-21/6</span>
+    <span>Ngày tạo: 22/06/2026</span>
   </div>
 </div>
 <div class="body">
@@ -152,148 +140,186 @@ footer { text-align: center; color: #9ca3af; font-size: 0.8em; padding: 16px; bo
 <div class="card alert">
   <div class="lbl">Xu hướng tổng thể</div>
   <div class="val">🔴 Giảm chất lượng</div>
-  <div class="sub">252 bill lỗi (+358% so tuần 08-14/6)</div>
+  <div class="sub">83 bill lỗi (+51% so tuần 08-14/6)</div>
 </div>
 <div class="card">
   <div class="lbl">Tỷ lệ lỗi hệ thống</div>
   <div class="val">0.49%</div>
-  <div class="sub">Trên 105,830 bill phục vụ</div>
+  <div class="sub">Trên 34,149 bill phục vụ</div>
 </div>
 <div class="card">
   <div class="lbl">Salon công ty</div>
-  <div class="val">147 bill</div>
-  <div class="sub"><span class="up">↑ +407%</span> so tuần 08-14/6 (29 bill)</div>
+  <div class="val">51 bill</div>
+  <div class="sub"><span class="up">↑ +76%</span> so tuần 08-14/6 (29 bill)</div>
 </div>
 <div class="card">
   <div class="lbl">Salon nhượng quyền</div>
-  <div class="val">105 bill</div>
-  <div class="sub"><span class="up">↑ +304%</span> so tuần 08-14/6 (26 bill)</div>
+  <div class="val">32 bill</div>
+  <div class="sub"><span class="up">↑ +23%</span> so tuần 08-14/6 (26 bill)</div>
 </div>
 </div>
 <hr>
 <div class="section">
 <div class="sec-title">PHẦN 1: TỔNG QUAN TAG LỖI</div>
-<div class="narrative">Tuần này toàn hệ thống ghi nhận <strong>252 bill lỗi</strong>, tăng 358% so với tuần 08-14/6 (55 bill). Vấn đề phổ biến nhất tuần này: <em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> (87 bill), <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> (35 bill), <em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> (27 bill). Đáng chú ý: <em>Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</em> (tăng 900%), <em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> (tăng 800%) tăng đột biến so với tuần 08-14/6.</div>
+<div class="narrative">Tuần này toàn hệ thống ghi nhận <strong>83 bill lỗi</strong>, tăng 51% so với tuần 08-14/6 (55 bill). Vấn đề phổ biến nhất tuần này: <em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> (27 bill), <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> (17 bill), <em>Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</em> (9 bill). Đáng chú ý: <em>Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</em> (tăng 350%), <em>CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</em> (tăng 300%) tăng đột biến so với tuần 08-14/6.</div>
 <table><thead><tr><th>Tag lỗi</th><th>Số bill kỳ này</th><th>Tuần 08-14/6</th><th>Thay đổi</th></tr></thead><tbody>
-<tr><td>🔴 Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</td><td>87</td><td>24</td><td><span class="up">↑ +262%</span></td></tr>
-<tr><td>🔴 SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</td><td>35</td><td>5</td><td><span class="up">↑ +600%</span></td></tr>
-<tr><td>🔴 Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</td><td>27</td><td>3</td><td><span class="up">↑ +800%</span></td></tr>
-<tr><td>🔴 STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td>22</td><td>4</td><td><span class="up">↑ +450%</span></td></tr>
-<tr><td>🔴 Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</td><td>20</td><td>2</td><td><span class="up">↑ +900%</span></td></tr>
-<tr><td>🔴 LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td>13</td><td>4</td><td><span class="up">↑ +225%</span></td></tr>
-<tr><td>🔴 CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>9</td><td>1</td><td><span class="up">↑ +800%</span></td></tr>
-<tr><td>🔴 STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>9</td><td>1</td><td><span class="up">↑ +800%</span></td></tr>
-<tr><td>🔴 CSVC hỏng: Giường gội/ ghế/ điều hòa hỏng, không có nước nóng,...</td><td>8</td><td>3</td><td><span class="up">↑ +167%</span></td></tr>
-<tr><td>🔴 SKN_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>7</td><td>2</td><td><span class="up">↑ +250%</span></td></tr>
-<tr><td>🔴 Không sắp xếp được định mức nhân sự phục vụ trước 7 ngày</td><td>6</td><td>2</td><td><span class="up">↑ +200%</span></td></tr>
-<tr><td>🔴 STL_Lờ đi/quên cạo mặt, cạo râu, vuốt sáp (trừ trường hợp KH nói rõ không cần)</td><td>6</td><td>4</td><td><span class="up">↑ +50%</span></td></tr>
-<tr><td>🔴 Lấy ráy tai đau rát, gây chảy máu, viêm tai...</td><td>5</td><td>1</td><td><span class="up">↑ +400%</span></td></tr>
-<tr><td>🟡 Bảo vệ thiếu nhiệt tình, thân thiện</td><td>4</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 SK_Tư vấn nhiều, chèo kéo</td><td>4</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🔴 CI_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td>4</td><td>3</td><td><span class="up">↑ +33%</span></td></tr>
-<tr><td>🔴 Salon bẩn, bừa bộn; khăn hôi</td><td>4</td><td>2</td><td><span class="up">↑ +100%</span></td></tr>
-<tr><td>🔴 SKN_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>4</td><td>1</td><td><span class="up">↑ +300%</span></td></tr>
-<tr><td>🔴 STL_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>4</td><td>1</td><td><span class="up">↑ +300%</span></td></tr>
-<tr><td>🟡 Salon không mời nước/ không mở cửa</td><td>3</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 STL_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td>2</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 Gian lận doanh thu: Cố tình không tạo bill; thanh toán sai tiền; tạo sai hoặc thiếu Dịch vụ/ sản phẩm;; app dụng campaign sai quy định; gian lận xin rating Khách hàng;...</td><td>2</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🔴 ST_Tư vấn nhiều, chèo kéo</td><td>2</td><td>1</td><td><span class="up">↑ +100%</span></td></tr>
-<tr><td>🟡 SALON_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>2</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 Không đúng thợ đã đặt lịch, Stylist/ Skinner được Khách hàng book nghỉ không gọi báo Khách trước khi tới salon</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 CI_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 CI_Tư vấn nhiều, chèo kéo</td><td>1</td><td>1</td><td><span class="st">→ +0%</span></td></tr>
-<tr><td>🟡 CO_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
+<tr><td>🟡 Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</td><td>27</td><td>24</td><td><span class="up">↑ +12%</span></td></tr>
+<tr><td>🔴 SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</td><td>17</td><td>5</td><td><span class="up">↑ +240%</span></td></tr>
+<tr><td>🔴 Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</td><td>9</td><td>2</td><td><span class="up">↑ +350%</span></td></tr>
+<tr><td>🔴 STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td>7</td><td>4</td><td><span class="up">↑ +75%</span></td></tr>
+<tr><td>🔴 Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</td><td>7</td><td>3</td><td><span class="up">↑ +133%</span></td></tr>
+<tr><td>🔴 LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td>5</td><td>4</td><td><span class="up">↑ +25%</span></td></tr>
+<tr><td>🔴 CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>4</td><td>1</td><td><span class="up">↑ +300%</span></td></tr>
+<tr><td>🔴 SKN_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>3</td><td>1</td><td><span class="up">↑ +200%</span></td></tr>
+<tr><td>🟢 CSVC hỏng: Giường gội/ ghế/ điều hòa hỏng, không có nước nóng,...</td><td>2</td><td>3</td><td><span class="dn">↓ -33%</span></td></tr>
+<tr><td>🟡 Bảo vệ thiếu nhiệt tình, thân thiện</td><td>2</td><td>0</td><td><span class="st">—</span></td></tr>
+<tr><td>🟡 SK_Tư vấn nhiều, chèo kéo</td><td>2</td><td>0</td><td><span class="st">—</span></td></tr>
+<tr><td>🔴 Lấy ráy tai đau rát, gây chảy máu, viêm tai...</td><td>2</td><td>1</td><td><span class="up">↑ +100%</span></td></tr>
 <tr><td>🟡 CI_Nhìn thấy/ đứng gần/ đi qua... Khách trong khoảng cách 3 mét không chào/ tươi cười/ cúi đầu/... thậm chí ngó lơ Khách hàng, coi như không thấy, không phải Khách của mình</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 STL_Không tư vấn kiểu tóc cho KH tối thiểu 2-3 phút trước khi cắt, không xác nhận soi gương gáy, mai sau cắt</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 So sánh quy trình/ CSVC giữa 2 lần dùng dịch vụ với nhau</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
-<tr><td>🟡 Thanh toán sai tiền, sai dịch vụ, không được áp dụng khuyến mại; không in bill</td><td>1</td><td>1</td><td><span class="st">→ +0%</span></td></tr>
+<tr><td>🟢 CI_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td>1</td><td>3</td><td><span class="dn">↓ -67%</span></td></tr>
+<tr><td>🟢 SKN_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>1</td><td>2</td><td><span class="dn">↓ -50%</span></td></tr>
+<tr><td>🟡 SALON_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
+<tr><td>🟢 Không sắp xếp được định mức nhân sự phục vụ trước 7 ngày</td><td>1</td><td>2</td><td><span class="dn">↓ -50%</span></td></tr>
+<tr><td>🟡 Không đúng thợ đã đặt lịch, Stylist/ Skinner được Khách hàng book nghỉ không gọi báo Khách trước khi tới salon</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
+<tr><td>🟡 STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td>1</td><td>1</td><td><span class="st">→ +0%</span></td></tr>
+<tr><td>🟡 STL_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td>1</td><td>1</td><td><span class="st">→ +0%</span></td></tr>
+<tr><td>🟡 STL_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td>1</td><td>0</td><td><span class="st">—</span></td></tr>
+<tr><td>🟢 Salon bẩn, bừa bộn; khăn hôi</td><td>1</td><td>2</td><td><span class="dn">↓ -50%</span></td></tr>
 </tbody></table>
 </div><hr>
 <div class="section">
 <div class="sec-title">PHẦN 2: PHÂN TÍCH THEO VÙNG</div>
-<div class="narrative" style="margin-bottom:12px"><strong>Đoàn Trung Đức GDKV</strong> tăng mạnh nhất (<span class="up">+480%</span>)</div>
+<div class="narrative" style="margin-bottom:12px">Vùng <strong>GĐKV Đức</strong> tăng mạnh nhất (<span class="up">+100%</span>) · Vùng <strong>GĐKV Cường</strong> cải thiện mạnh nhất (<span class="dn">−13%</span>)</div>
+<div class="filter-bar">
+  <div class="filter-group"><span class="filter-label">Xem:</span><button class="filter-btn active" onclick="setTypeFilter('all',this)">Cty + NQ</button><button class="filter-btn" onclick="setTypeFilter('cty',this)">Chỉ Công ty</button><button class="filter-btn" onclick="setTypeFilter('nq',this)">Chỉ Nhượng quyền</button></div>
+  <div class="filter-sep"></div>
+  <div class="filter-group"><span class="filter-label">Vùng:</span><select class="filter-select" id="gdkv-select" onchange="setGDKVFilter(this.value)"><option value="all">Tất cả vùng</option>
+<option value="Sang">GĐKV Sang</option>
+<option value="Quyền">GĐKV Quyền</option>
+<option value="Cường">GĐKV Cường</option>
+<option value="Gấm">GĐKV Gấm</option>
+<option value="Đức">GĐKV Đức</option>
+<option value="Quang">GĐKV Quang</option>
+<option value="Quỳnh">GĐKV Quỳnh</option>
+<option value="Huệ">GĐKV Huệ</option>
+  </select></div>
+</div>
 <table><thead><tr><th>Vùng</th><th style="text-align:center">Tỷ lệ lỗi</th><th style="text-align:center">01-07/6</th><th style="text-align:center">08-14/6</th><th style="text-align:center">15-21/6</th><th>Thay đổi</th><th>Xu hướng</th><th>Vấn đề chính</th></tr></thead><tbody>
-<tr class="grp-row"><td colspan="8">🔴 Cần hành động ngay — Tăng liên tiếp 3 kỳ</td></tr>
-<tr><td><strong>Nguyễn Việt Cường GDKV</strong></td><td style="text-align:center;font-weight:600">0.63%</td><td style="text-align:center">13</td><td style="text-align:center">15</td><td style="text-align:center"><strong>48</strong></td><td><span class="up">↑ +220%</span></td><td style="letter-spacing:.5px">↑↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 11 bill, tăng 120% so tuần 08-14/6. <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 7 bill, tăng 600% so tuần 08-14/6.</td></tr>
 <tr class="grp-row"><td colspan="8">🟠 Cần theo dõi — Tăng so kỳ trước</td></tr>
-<tr><td><strong>Tống Xuân Quyền GDKV</strong></td><td style="text-align:center;font-weight:600">0.55%</td><td style="text-align:center">16</td><td style="text-align:center">9</td><td style="text-align:center"><strong>41</strong></td><td><span class="up">↑ +356%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 15 bill, tăng 275% so tuần 08-14/6, tập trung tại <strong>237 NTT</strong> (6 bill). <em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> ghi nhận 7 bill, tăng 250% so tuần 08-14/6, tập trung tại <strong>7 DTP LA</strong> (2 bill).</td></tr>
-<tr><td><strong>Phan Thị Hồng Gấm GDKV</strong></td><td style="text-align:center;font-weight:600">0.53%</td><td style="text-align:center">10</td><td style="text-align:center">6</td><td style="text-align:center"><strong>32</strong></td><td><span class="up">↑ +433%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 15 bill, tăng 275% so tuần 08-14/6, tập trung tại <strong>39 HBT</strong> (3 bill). <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 5 bill, tập trung tại <strong>264 LLQ</strong> (3 bill).</td></tr>
-<tr><td><strong>Nguyễn Thanh Sang GDKV</strong></td><td style="text-align:center;font-weight:600">0.50%</td><td style="text-align:center">15</td><td style="text-align:center">10</td><td style="text-align:center"><strong>44</strong></td><td><span class="up">↑ +340%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 13 bill, tăng 333% so tuần 08-14/6, tập trung tại <strong>99 TSN</strong> (3 bill). <em>LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</em> ghi nhận 4 bill, tăng 300% so tuần 08-14/6.</td></tr>
-<tr><td><strong>Nguyễn Như Quỳnh GDKV</strong></td><td style="text-align:center;font-weight:600">0.45%</td><td style="text-align:center">6</td><td style="text-align:center">3</td><td style="text-align:center"><strong>17</strong></td><td><span class="up">↑ +467%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 9 bill, tăng 200% so tuần 08-14/6, tập trung tại <strong>168 NVC</strong> (4 bill). <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 3 bill, tập trung tại <strong>362 NGT BN</strong> (2 bill).</td></tr>
-<tr><td><strong>Đoàn Trung Đức GDKV</strong></td><td style="text-align:center;font-weight:600">0.37%</td><td style="text-align:center">12</td><td style="text-align:center">5</td><td style="text-align:center"><strong>29</strong></td><td><span class="up">↑ +480%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 14 bill, tăng 250% so tuần 08-14/6, tập trung tại <strong>116 TK</strong> (3 bill). <em>STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</em> ghi nhận 4 bill.</td></tr>
+<tr class="row-cty" data-person="Sang" data-type="cty"><td>GĐKV Sang (cty)</td><td style="text-align:center;font-weight:600">0.53%</td><td style="text-align:center">9</td><td style="text-align:center">9</td><td style="text-align:center"><strong>11</strong></td><td><span class="up">↑ +22%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 4 bill, tăng 100% so tuần 08-14/6, tập trung tại <strong>99 TSN</strong> (2 bill). <em>Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</em> ghi nhận 2 bill.</td></tr><tr class="row-nq" data-person="Sang" data-type="nq"><td>GĐKV Sang (NQ)</td><td style="text-align:center;font-weight:600">1.07%</td><td style="text-align:center">8</td><td style="text-align:center">2</td><td style="text-align:center"><strong>9</strong></td><td><span class="up">↑ +350%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 3 bill, tăng 200% so tuần 08-14/6. <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 3 bill, tập trung tại <strong>77 PVC</strong> (2 bill).</td></tr>
+<tr class="row-cty" data-person="Gấm" data-type="cty"><td>GĐKV Gấm (cty)</td><td style="text-align:center;font-weight:600">0.44%</td><td style="text-align:center">7</td><td style="text-align:center">4</td><td style="text-align:center"><strong>8</strong></td><td><span class="up">↑ +100%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 3 bill. <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 3 bill, tập trung tại <strong>50BT4 NPC LD</strong> (2 bill).</td></tr><tr class="row-nq" data-person="Gấm" data-type="nq"><td>GĐKV Gấm (NQ)</td><td style="text-align:center;font-weight:600">1.21%</td><td style="text-align:center">3</td><td style="text-align:center">2</td><td style="text-align:center"><strong>2</strong></td><td><span class="st">→ +0%</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 1 bill. <em>Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</em> ghi nhận 1 bill.</td></tr>
+<tr class="row-cty" data-person="Quyền" data-type="cty"><td>GĐKV Quyền (cty)</td><td style="text-align:center;font-weight:600">0.42%</td><td style="text-align:center">12</td><td style="text-align:center">7</td><td style="text-align:center"><strong>11</strong></td><td><span class="up">↑ +57%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 4 bill, tăng 33% so tuần 08-14/6, tập trung tại <strong>237 NTT</strong> (2 bill). <em>LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</em> ghi nhận 2 bill.</td></tr><tr class="row-nq" data-person="Quyền" data-type="nq"><td>GĐKV Quyền (NQ)</td><td style="text-align:center;font-weight:600">0.70%</td><td style="text-align:center">6</td><td style="text-align:center">3</td><td style="text-align:center"><strong>2</strong></td><td><span class="dn">↓ -33%</span></td><td style="letter-spacing:.5px">↓↓</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 1 bill. <em>LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</em> ghi nhận 1 bill.</td></tr>
+<tr class="row-cty" data-person="Quỳnh" data-type="cty"><td>GĐKV Quỳnh (cty)</td><td style="text-align:center;font-weight:600">0.28%</td><td style="text-align:center">6</td><td style="text-align:center">3</td><td style="text-align:center"><strong>5</strong></td><td><span class="up">↑ +67%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 2 bill, giảm 33% so tuần 08-14/6, tập trung tại <strong>168 NVC</strong> (2 bill). <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 2 bill.</td></tr><tr class="row-nq" data-person="Quỳnh" data-type="nq"><td>GĐKV Quỳnh (NQ)</td><td style="text-align:center;font-weight:600">—</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>0</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151">Không ghi nhận lỗi trong kỳ.</td></tr>
+<tr class="row-cty" data-person="Đức" data-type="cty"><td>GĐKV Đức (cty)</td><td style="text-align:center;font-weight:600">0.27%</td><td style="text-align:center">4</td><td style="text-align:center">2</td><td style="text-align:center"><strong>6</strong></td><td><span class="up">↑ +200%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 4 bill, tăng 100% so tuần 08-14/6. <em>CSVC hỏng: Giường gội/ ghế/ điều hòa hỏng, không có nước nóng,...</em> ghi nhận 1 bill.</td></tr><tr class="row-nq" data-person="Đức" data-type="nq"><td>GĐKV Đức (NQ)</td><td style="text-align:center;font-weight:600">0.53%</td><td style="text-align:center">8</td><td style="text-align:center">3</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +33%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> ghi nhận 1 bill. <em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 1 bill, giảm 50% so tuần 08-14/6.</td></tr>
+<tr class="row-cty" data-person="Quang" data-type="cty"><td>GĐKV Quang (cty)</td><td style="text-align:center;font-weight:600">0.16%</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><em>LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</em> ghi nhận 1 bill.</td></tr><tr class="row-nq" data-person="Quang" data-type="nq"><td>GĐKV Quang (NQ)</td><td style="text-align:center;font-weight:600">0.83%</td><td style="text-align:center">4</td><td style="text-align:center">5</td><td style="text-align:center"><strong>7</strong></td><td><span class="up">↑ +40%</span></td><td style="letter-spacing:.5px">↑↑</td><td style="font-size:0.84em;color:#374151"><em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 3 bill, tăng 200% so tuần 08-14/6, tập trung tại <strong>359 LQD</strong> (2 bill). <em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 2 bill, tăng 100% so tuần 08-14/6.</td></tr>
 <tr class="grp-row"><td colspan="8">🟡 Ổn định</td></tr>
-<tr><td><strong>Nguyễn Thị Huệ GDKV</strong></td><td style="text-align:center;font-weight:600">0.42%</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>5</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> ghi nhận 2 bill. <em>CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</em> ghi nhận 1 bill.</td></tr>
-<tr><td><strong>Trịnh Văn Quang GDKV</strong></td><td style="text-align:center;font-weight:600">0.28%</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>4</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> ghi nhận 1 bill. <em>Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</em> ghi nhận 1 bill.</td></tr>
+<tr class="row-cty" data-person="Huệ" data-type="cty"><td>GĐKV Huệ (cty)</td><td style="text-align:center;font-weight:600">0.60%</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>4</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> ghi nhận 2 bill. <em>CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</em> ghi nhận 1 bill.</td></tr><tr class="row-nq" data-person="Huệ" data-type="nq"><td>GĐKV Huệ (NQ)</td><td style="text-align:center;font-weight:600">—</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>0</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151">Không ghi nhận lỗi trong kỳ.</td></tr>
+<tr class="row-cty" data-person="Cường" data-type="cty"><td>GĐKV Cường (cty)</td><td style="text-align:center;font-weight:600">0.24%</td><td style="text-align:center">9</td><td style="text-align:center">4</td><td style="text-align:center"><strong>5</strong></td><td><span class="up">↑ +25%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><em>Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</em> ghi nhận 2 bill. <em>CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</em> ghi nhận 1 bill.</td></tr><tr class="row-nq" data-person="Cường" data-type="nq"><td>GĐKV Cường (NQ)</td><td style="text-align:center;font-weight:600">1.25%</td><td style="text-align:center">4</td><td style="text-align:center">11</td><td style="text-align:center"><strong>8</strong></td><td><span class="dn">↓ -27%</span></td><td style="letter-spacing:.5px">↑↓</td><td style="font-size:0.84em;color:#374151"><em>Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</em> ghi nhận 3 bill, tăng 200% so tuần 08-14/6. <em>SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</em> ghi nhận 3 bill, tăng 200% so tuần 08-14/6.</td></tr>
 </tbody></table>
 </div><hr>
 <div class="section">
 <div class="sec-title">PHẦN 3: PHÂN TÍCH THEO TAG LỖI</div>
-<p class="note">Tất cả tag lỗi ghi nhận trong kỳ, sắp xếp từ cao xuống thấp</p>
+<div class="tag-search-wrap"><input class="tag-search" id="tag-search-input" type="text" placeholder="🔍 Tìm tag lỗi..." oninput="filterTagRows(this.value)"></div>
 <table><thead><tr><th>Tag lỗi</th><th style="text-align:center">01-07/6</th><th style="text-align:center">08-14/6</th><th style="text-align:center">15-21/6</th><th>Thay đổi</th><th>Xu hướng</th><th>Vùng/Salon nổi trội</th></tr></thead><tbody>
-<tr><td>🔴 Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</td><td style="text-align:center">27</td><td style="text-align:center">24</td><td style="text-align:center"><strong>87</strong></td><td><span class="up">↑ +262%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Tống Xuân Quyền GDKV</strong> (15 bill), tại 237 NTT (6 bill)</td></tr>
-<tr><td>🔴 SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</td><td style="text-align:center">10</td><td style="text-align:center">5</td><td style="text-align:center"><strong>35</strong></td><td><span class="up">↑ +600%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Việt Cường GDKV</strong> (7 bill)</td></tr>
-<tr><td>🔴 Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</td><td style="text-align:center">9</td><td style="text-align:center">3</td><td style="text-align:center"><strong>27</strong></td><td><span class="up">↑ +800%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Tống Xuân Quyền GDKV</strong> (7 bill), tại 7 DTP LA (2 bill)</td></tr>
-<tr><td>🔴 STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td style="text-align:center">8</td><td style="text-align:center">4</td><td style="text-align:center"><strong>22</strong></td><td><span class="up">↑ +450%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Việt Cường GDKV</strong> (7 bill)</td></tr>
-<tr><td>🔴 Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</td><td style="text-align:center">7</td><td style="text-align:center">2</td><td style="text-align:center"><strong>20</strong></td><td><span class="up">↑ +900%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Việt Cường GDKV</strong> (6 bill)</td></tr>
-<tr><td>🔴 LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td style="text-align:center">3</td><td style="text-align:center">4</td><td style="text-align:center"><strong>13</strong></td><td><span class="up">↑ +225%</span></td><td style="letter-spacing:.5px">↑↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (4 bill)</td></tr>
-<tr><td>🔴 CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">4</td><td style="text-align:center">1</td><td style="text-align:center"><strong>9</strong></td><td><span class="up">↑ +800%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Đoàn Trung Đức GDKV</strong> (2 bill)</td></tr>
-<tr><td>🔴 STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">3</td><td style="text-align:center">1</td><td style="text-align:center"><strong>9</strong></td><td><span class="up">↑ +800%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (2 bill), tại 730 TL10 (2 bill)</td></tr>
-<tr><td>🔴 CSVC hỏng: Giường gội/ ghế/ điều hòa hỏng, không có nước nóng,...</td><td style="text-align:center">3</td><td style="text-align:center">3</td><td style="text-align:center"><strong>8</strong></td><td><span class="up">↑ +167%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Việt Cường GDKV</strong> (2 bill)</td></tr>
-<tr><td>🔴 SKN_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">2</td><td style="text-align:center">2</td><td style="text-align:center"><strong>7</strong></td><td><span class="up">↑ +250%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Việt Cường GDKV</strong> (2 bill)</td></tr>
-<tr><td>🔴 Không sắp xếp được định mức nhân sự phục vụ trước 7 ngày</td><td style="text-align:center">2</td><td style="text-align:center">2</td><td style="text-align:center"><strong>6</strong></td><td><span class="up">↑ +200%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (2 bill)</td></tr>
-<tr><td>🔴 STL_Lờ đi/quên cạo mặt, cạo râu, vuốt sáp (trừ trường hợp KH nói rõ không cần)</td><td style="text-align:center">1</td><td style="text-align:center">4</td><td style="text-align:center"><strong>6</strong></td><td><span class="up">↑ +50%</span></td><td style="letter-spacing:.5px">↑↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Việt Cường GDKV</strong> (5 bill)</td></tr>
-<tr><td>🔴 Lấy ráy tai đau rát, gây chảy máu, viêm tai...</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td style="text-align:center"><strong>5</strong></td><td><span class="up">↑ +400%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (2 bill)</td></tr>
-<tr><td>🟡 Bảo vệ thiếu nhiệt tình, thân thiện</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>4</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Tống Xuân Quyền GDKV</strong> (2 bill)</td></tr>
-<tr><td>🟡 SK_Tư vấn nhiều, chèo kéo</td><td style="text-align:center">2</td><td style="text-align:center">0</td><td style="text-align:center"><strong>4</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Đoàn Trung Đức GDKV</strong> (2 bill)</td></tr>
-<tr><td>🔴 CI_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td style="text-align:center">0</td><td style="text-align:center">3</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +33%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Như Quỳnh GDKV</strong> (1 bill)</td></tr>
-<tr><td>🔴 Salon bẩn, bừa bộn; khăn hôi</td><td style="text-align:center">1</td><td style="text-align:center">2</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +100%</span></td><td style="letter-spacing:.5px">↑↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (1 bill)</td></tr>
-<tr><td>🔴 SKN_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +300%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>Tống Xuân Quyền GDKV</strong> (2 bill)</td></tr>
-<tr><td>🔴 STL_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +300%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>Đoàn Trung Đức GDKV</strong> (2 bill)</td></tr>
-<tr><td>🟡 Salon không mời nước/ không mở cửa</td><td style="text-align:center">2</td><td style="text-align:center">0</td><td style="text-align:center"><strong>3</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Phan Thị Hồng Gấm GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 STL_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>2</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 Gian lận doanh thu: Cố tình không tạo bill; thanh toán sai tiền; tạo sai hoặc thiếu Dịch vụ/ sản phẩm;; app dụng campaign sai quy định; gian lận xin rating Khách hàng;...</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>2</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (1 bill)</td></tr>
-<tr><td>🔴 ST_Tư vấn nhiều, chèo kéo</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center"><strong>2</strong></td><td><span class="up">↑ +100%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 SALON_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>2</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Như Quỳnh GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 Không đúng thợ đã đặt lịch, Stylist/ Skinner được Khách hàng book nghỉ không gọi báo Khách trước khi tới salon</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 CI_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Đoàn Trung Đức GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 CI_Tư vấn nhiều, chèo kéo</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">→ +0%</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thanh Sang GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 CO_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151">—</td></tr>
-<tr><td>🟡 CI_Nhìn thấy/ đứng gần/ đi qua... Khách trong khoảng cách 3 mét không chào/ tươi cười/ cúi đầu/... thậm chí ngó lơ Khách hàng, coi như không thấy, không phải Khách của mình</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Thị Huệ GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 STL_Không tư vấn kiểu tóc cho KH tối thiểu 2-3 phút trước khi cắt, không xác nhận soi gương gáy, mai sau cắt</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Tống Xuân Quyền GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 So sánh quy trình/ CSVC giữa 2 lần dùng dịch vụ với nhau</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Như Quỳnh GDKV</strong> (1 bill)</td></tr>
-<tr><td>🟡 Thanh toán sai tiền, sai dịch vụ, không được áp dụng khuyến mại; không in bill</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">→ +0%</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151"><strong>Nguyễn Như Quỳnh GDKV</strong> (1 bill)</td></tr>
+<tr data-tag="cắt/ uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con...."><td>🟡 Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</td><td style="text-align:center">27</td><td style="text-align:center">24</td><td style="text-align:center"><strong>27</strong></td><td><span class="up">↑ +12%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (7 bill), tại 99 TSN (2 bill)</td></tr>
+<tr data-tag="skn_gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...."><td>🔴 SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</td><td style="text-align:center">10</td><td style="text-align:center">5</td><td style="text-align:center"><strong>17</strong></td><td><span class="up">↑ +240%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (3 bill), tại 77 PVC (2 bill)</td></tr>
+<tr data-tag="gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;..."><td>🔴 Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</td><td style="text-align:center">7</td><td style="text-align:center">2</td><td style="text-align:center"><strong>9</strong></td><td><span class="up">↑ +350%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Cường</strong> (3 bill)</td></tr>
+<tr data-tag="stl_cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn..."><td>🔴 STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td style="text-align:center">8</td><td style="text-align:center">4</td><td style="text-align:center"><strong>7</strong></td><td><span class="up">↑ +75%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Cường</strong> (2 bill)</td></tr>
+<tr data-tag="chờ cắt tóc/ chờ gội/ chờ sấy/ chờ lấy ráy tai/... trên 10 phút"><td>🔴 Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</td><td style="text-align:center">9</td><td style="text-align:center">3</td><td style="text-align:center"><strong>7</strong></td><td><span class="up">↑ +133%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Huệ</strong> (2 bill)</td></tr>
+<tr data-tag="lrt_lrt sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn..."><td>🔴 LRT_LRT sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</td><td style="text-align:center">3</td><td style="text-align:center">4</td><td style="text-align:center"><strong>5</strong></td><td><span class="up">↑ +25%</span></td><td style="letter-spacing:.5px">↑↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Quyền</strong> (3 bill)</td></tr>
+<tr data-tag="ci_có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn..."><td>🔴 CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">4</td><td style="text-align:center">1</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +300%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Huệ</strong> (1 bill)</td></tr>
+<tr data-tag="skn_làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ kh hoặc gián tiếp ảnh hưởng kh khác"><td>🔴 SKN_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center"><strong>3</strong></td><td><span class="up">↑ +200%</span></td><td style="letter-spacing:.5px">→↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Quỳnh</strong> (1 bill)</td></tr>
+<tr data-tag="csvc hỏng: giường gội/ ghế/ điều hòa hỏng, không có nước nóng,..."><td>🟢 CSVC hỏng: Giường gội/ ghế/ điều hòa hỏng, không có nước nóng,...</td><td style="text-align:center">3</td><td style="text-align:center">3</td><td style="text-align:center"><strong>2</strong></td><td><span class="dn">↓ -33%</span></td><td style="letter-spacing:.5px">→↓</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Quyền</strong> (1 bill)</td></tr>
+<tr data-tag="bảo vệ thiếu nhiệt tình, thân thiện"><td>🟡 Bảo vệ thiếu nhiệt tình, thân thiện</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>2</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="sk_tư vấn nhiều, chèo kéo"><td>🟡 SK_Tư vấn nhiều, chèo kéo</td><td style="text-align:center">2</td><td style="text-align:center">0</td><td style="text-align:center"><strong>2</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="lấy ráy tai đau rát, gây chảy máu, viêm tai..."><td>🔴 Lấy ráy tai đau rát, gây chảy máu, viêm tai...</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td style="text-align:center"><strong>2</strong></td><td><span class="up">↑ +100%</span></td><td style="letter-spacing:.5px">↓↑</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Gấm</strong> (1 bill)</td></tr>
+<tr data-tag="ci_nhìn thấy/ đứng gần/ đi qua... khách trong khoảng cách 3 mét không chào/ tươi cười/ cúi đầu/... thậm chí ngó lơ khách hàng, coi như không thấy, không phải khách của mình"><td>🟡 CI_Nhìn thấy/ đứng gần/ đi qua... Khách trong khoảng cách 3 mét không chào/ tươi cười/ cúi đầu/... thậm chí ngó lơ Khách hàng, coi như không thấy, không phải Khách của mình</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Huệ</strong> (1 bill)</td></tr>
+<tr data-tag="ci_tư vấn, báo giá dịch vụ không rõ ràng"><td>🟢 CI_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td style="text-align:center">0</td><td style="text-align:center">3</td><td style="text-align:center"><strong>1</strong></td><td><span class="dn">↓ -67%</span></td><td style="letter-spacing:.5px">→↓</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Huệ</strong> (1 bill)</td></tr>
+<tr data-tag="skn_có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn..."><td>🟢 SKN_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">2</td><td style="text-align:center">2</td><td style="text-align:center"><strong>1</strong></td><td><span class="dn">↓ -50%</span></td><td style="letter-spacing:.5px">→↓</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="salon_làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ kh hoặc gián tiếp ảnh hưởng kh khác"><td>🟡 SALON_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Huệ</strong> (1 bill)</td></tr>
+<tr data-tag="không sắp xếp được định mức nhân sự phục vụ trước 7 ngày"><td>🟢 Không sắp xếp được định mức nhân sự phục vụ trước 7 ngày</td><td style="text-align:center">2</td><td style="text-align:center">2</td><td style="text-align:center"><strong>1</strong></td><td><span class="dn">↓ -50%</span></td><td style="letter-spacing:.5px">→↓</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="không đúng thợ đã đặt lịch, stylist/ skinner được khách hàng book nghỉ không gọi báo khách trước khi tới salon"><td>🟡 Không đúng thợ đã đặt lịch, Stylist/ Skinner được Khách hàng book nghỉ không gọi báo Khách trước khi tới salon</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">→→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="stl_có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn..."><td>🟡 STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</td><td style="text-align:center">3</td><td style="text-align:center">1</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">→ +0%</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="stl_làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ kh hoặc gián tiếp ảnh hưởng kh khác"><td>🟡 STL_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">→ +0%</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Đức</strong> (1 bill)</td></tr>
+<tr data-tag="stl_tư vấn, báo giá dịch vụ không rõ ràng"><td>🟡 STL_Tư vấn, báo giá Dịch vụ không rõ ràng</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td><td><span class="st">—</span></td><td style="letter-spacing:.5px">↓→</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Sang</strong> (1 bill)</td></tr>
+<tr data-tag="salon bẩn, bừa bộn; khăn hôi"><td>🟢 Salon bẩn, bừa bộn; khăn hôi</td><td style="text-align:center">1</td><td style="text-align:center">2</td><td style="text-align:center"><strong>1</strong></td><td><span class="dn">↓ -50%</span></td><td style="letter-spacing:.5px">↑↓</td><td style="font-size:0.84em;color:#374151"><strong>GĐKV Quyền</strong> (1 bill)</td></tr>
 </tbody></table>
-<div class="ne-box"><strong>Tham khảo — Phân loại không tính lỗi salon (256 bill):</strong> <em>CSKH chưa add được tag</em> (106 bill), <em>Đánh giá nhầm/ Tìm đồ</em> (105 bill), <em>Góp ý quy trình dịch vụ/CSVC (thay đổi từ công ty - Không tính lỗi salon)</em> (45 bill). Các trường hợp này không ảnh hưởng đến chỉ số lỗi của salon.</div>
+<div class="ne-box"><strong>Tham khảo — Phân loại không tính lỗi salon (77 bill):</strong> <em>CSKH chưa add được tag</em> (40 bill), <em>Đánh giá nhầm/ Tìm đồ</em> (24 bill), <em>Góp ý quy trình dịch vụ/CSVC (thay đổi từ công ty - Không tính lỗi salon)</em> (13 bill). Các trường hợp này không ảnh hưởng đến chỉ số lỗi của salon.</div>
 </div><hr>
 <div class="section">
 <div class="sec-title">PHẦN 4: TOP 10 VẤN ĐỀ NỔI BẬT</div>
-<p class="note">Các case đáng chú ý từ bill phạt đích danh — ưu tiên sức khỏe khách, thái độ/cãi nhau, khách phản ánh bức xúc nặng. Trích lời khách từ cột có nhiều thông tin hơn (Feedback trực tiếp hoặc ghi nhận qua điện thoại).</p>
-<div class="case-card"><div class="case-hdr">🟠 <strong>1.</strong>&nbsp;730 TL10&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thanh Sang GDKV</span>&nbsp;&nbsp;<span class="case-tag">STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</span></div><div class="case-quote">thợ cắt tóc bố láo. Chửi khách hàng còn cầm kéo doạ khách hàng. về dậy lại nhân viên đi</div></div>
-<div class="case-card"><div class="case-hdr">🔴 <strong>2.</strong>&nbsp;255 NAN&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Việt Cường GDKV</span>&nbsp;&nbsp;<span class="case-tag">SKN_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</span></div><div class="case-quote">b cứ hỏi nvien , đọc phản hồi là biết ok ( nhân viên để keo dán chuột ngay bàn gội đầu, bước xuống bị dính keo ngay chân, hỏi nhân viên gội đầu có cồn hay gì để rửa keo không thì thái độ cười cợt không quan tâm thợ cắt nhiệt tình, cắt đúng mẫu, đẹp. đi tìm xà bông cho mình để rửa keo. thợ gội 1* thợ cắt 5* dịch vụ ok )</div></div>
-<div class="case-card"><div class="case-hdr">🔴 <strong>3.</strong>&nbsp;29 HB&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Việt Cường GDKV</span>&nbsp;&nbsp;<span class="case-tag">Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</span></div><div class="case-quote">gội đầu chảy máu , sau khi gội Ra còn nói vs a là vết bỏng nữa thì a không muốn tranh cãi vs các bạn làm gì m a chả rảnh để đi cãi vs phụ nữ mà còn là mấy bạn làm trong salon của bên em A đã nói bạn nhẹ tay nhưng hình như bạn bận nhiều chuyện vs các bạn kế bên</div></div>
-<div class="case-card"><div class="case-hdr">🔴 <strong>4.</strong>&nbsp;152 NO&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">An NQ</span>&nbsp;&nbsp;<span class="case-tag">ST_Tư vấn nhiều, chèo kéo</span></div><div class="case-quote">Mình là khách hàng thân thiết của 30Shine từ trước đến nay. Tuy nhiên, sau trải nghiệm hôm nay, có lẽ đây sẽ là lần cuối cùng mình sử dụng dịch vụ tại đây. Điều khiến mình không hài lòng nhất không phải nằm ở chất lượng cắt tóc, mà là cách nhân viên/thợ cắt tư vấn dịch vụ quá nhiều và thiếu tinh tế. Mỗi lần đến cắt, mình đều được mời uốn, ép side hoặc làm thêm các dịch vụ khác. Trước đây mình chỉ cần từ chối là xong, nhưng hôm nay việc mời chào lặp lại tới 3–4 lần khiến mình thật sự rất khó chịu…</div></div>
-<div class="case-card"><div class="case-hdr">🟠 <strong>5.</strong>&nbsp;90 TDH&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Đoàn Trung Đức GDKV</span>&nbsp;&nbsp;<span class="case-tag">Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</span> <span class="case-tag">STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</span></div><div class="case-quote">c đặt lịch 14h mà tới salon chờ tới 14h20p k thấy cắt cho bé chị có hỏi thì có b stl tên Tú k trực tiếp cắt cho 2 bé nhà chị nhưng b ý có nói là k thấy đông khách à hay sao mà phải hỏi ??? cái thái độ nch với khách hàng rất là bố láo ,sau đó b ý gọi 1b thợ đang đi ăn về cắt cho bé thì b thợ đó nói ăn chưa chưa kịp nuốt trôi đã phải về k hiểu c bỏ tiền ra đi cắt mà các e lại có thái độ như v với khách hàng à ,mỗi b stl cắt cho bé lớn nahf chị là oke thôi nha em</div></div>
-<div class="case-card"><div class="case-hdr">🔴 <strong>6.</strong>&nbsp;F33 HV PT&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thanh Sang GDKV</span>&nbsp;&nbsp;<span class="case-tag">Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</span></div><div class="case-quote">cạo râu đau chảy máu với bị rát, gội đầu sơ sài</div></div>
-<div class="case-card"><div class="case-hdr">🔴 <strong>7.</strong>&nbsp;103 TN&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Việt Cường GDKV</span>&nbsp;&nbsp;<span class="case-tag">SKN_Gội, massage,...sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn....</span></div><div class="case-quote">Cắt tóc thì ưng ý nhưng khâu gội đầu thấy ko đc thoải mái. Nhân viên áo đen gội đầu còn thua cả nhân viên áo trắng. Gãi đầu thì ko hỏi khách ngứa chỗ nào, lực vừa chưa. Bảo gãi đầu thì nhân viên gội bảo sao a ko dùng combo 2. Khách đã chọn combo1 đã ấn định lại còn hỏi. Ok mình đổi xem thành combo2 xem thái độ thế nào. Thì lúc đó mới tốt hơn. Nói chung gội đầu làm lâu năm như vậy là quá tệ</div></div>
-<div class="case-card"><div class="case-hdr">🟠 <strong>8.</strong>&nbsp;595 BT TH&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thị Huệ GDKV</span>&nbsp;&nbsp;<span class="case-tag">Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</span> <span class="case-tag">CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</span> <span class="case-tag">SALON_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</span></div><div class="case-quote">lễ tân nhận thông tin không đúng, điều phối người lấy ráy tai sai, nhưng không nhận lỗi để khách chờ rồi lấy lý do không hợp lý. nhân viên cãi nhau to để khách nghe thấy. lễ tân tác phong không chuyên nghiệp, đi dép lẹt bẹt, vuốt tóc liên tục dịch vụ chưa tốt nhưng yêu cầu khách chọn đánh giá rất hài lòng nên cải thiện để khách còn muốn quay lại còn stylist và nhân viên lấy ráy tai thì ok.</div></div>
-<div class="case-card"><div class="case-hdr">🟠 <strong>9.</strong>&nbsp;168 NVC&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Như Quỳnh GDKV</span>&nbsp;&nbsp;<span class="case-tag">Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</span> <span class="case-tag">CI_Tư vấn, báo giá Dịch vụ không rõ ràng</span> <span class="case-tag">Thanh toán sai tiền, sai dịch vụ, không được áp dụng khuyến mại; không in bill</span></div><div class="case-quote">Lễ Tân : mặc dù khách hỏi đi hỏi lại rất nhiều lần về việc có thợ nào cắt đc Form tóc Trung Hàn không vẫn rất thản nhiên trả lời có và tư vấn cho khách rồi book cho khách thợ không đủ tay nghề cắt Thợ : cắt không đúng yêu cầu, ép side tóc + uốn nhưng tóc bung chỉa ra hỏng cả form tóc cũ, còn bung chỉa nhiều hơn trc khi cắt và ép Giá thành : bill thì tính sai mặc dù có nhắn tin xin lỗi và báo vào lần cắt sau nếu ép side sẽ k tính thêm tiền do lần này tính nhầm chứ k hoàn lại phần tiền tính sai Qu…</div></div>
-<div class="case-card"><div class="case-hdr">🔴 <strong>10.</strong>&nbsp;1371 PVT&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Việt Cường GDKV</span>&nbsp;&nbsp;<span class="case-tag">STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</span></div><div class="case-quote">Stylist: hớt tóc xong k phủi sạch tóc trên cổ, khi xã tóc vẫn còn dính cổ và gây ra rất ngứa. khi kiểm tra mái tóc mình có yêu cầu cắt ngắn lại thì hình như bạn khó chịu. Về nhà kiểm tra thì 2 bên mai tóc bên dài bên ngắn. Phần nữ gội đầu: Thì mình thấy rửa mặt và gội đâu mình xong còn thêm bước cuối như do mình bận nên nói thôi gội đầu xong xuống hớt. bạn nữ trả lời mình &quot;Đi Xuống hớt&quot; với giọng mình mất cảm tình. Mình từ làm leader Trainer nên mình k ưng với những thái độ vậy.</div></div>
+<p class="note">Các case đáng chú ý từ bill phạt đích danh — ưu tiên sức khỏe khách, thái độ/cãi nhau, khách phản ánh bức xúc nặng.</p>
+<div class="case-card"><div class="case-hdr">🟠 <strong>1.</strong>&nbsp;595 BT TH&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thị Huệ GDKV</span>&nbsp;&nbsp;<span class="case-tag">Chờ cắt tóc/ Chờ gội/ Chờ sấy/ Chờ lấy ráy tai/... trên 10 phút</span> <span class="case-tag">CI_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</span> <span class="case-tag">SALON_Làm việc riêng/nói chuyện riêng/dùng điện thoại/ làm ồn... khi đang phục vụ KH hoặc gián tiếp ảnh hưởng KH khác</span></div><div class="case-quote">lễ tân nhận thông tin không đúng, điều phối người lấy ráy tai sai, nhưng không nhận lỗi để khách chờ rồi lấy lý do không hợp lý. nhân viên cãi nhau to để khách nghe thấy. lễ tân tác phong không chuyên nghiệp, đi dép lẹt bẹt, vuốt tóc liên tục dịch vụ chưa tốt nhưng yêu cầu khách chọn đánh giá rất hài lòng nên cải thiện để khách còn muốn quay lại còn stylist và nhân viên lấy ráy tai thì ok.</div></div>
+<div class="case-card"><div class="case-hdr">🔴 <strong>2.</strong>&nbsp;1371 PVT&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Việt Cường GDKV</span>&nbsp;&nbsp;<span class="case-tag">STL_Cắt, xả, sấy,... sơ sài/ thiếu bước/ ăn bớt thời gian so với chỉ dẫn...</span></div><div class="case-quote">Stylist: hớt tóc xong k phủi sạch tóc trên cổ, khi xã tóc vẫn còn dính cổ và gây ra rất ngứa. khi kiểm tra mái tóc mình có yêu cầu cắt ngắn lại thì hình như bạn khó chịu. Về nhà kiểm tra thì 2 bên mai tóc bên dài bên ngắn. Phần nữ gội đầu: Thì mình thấy rửa mặt và gội đâu mình xong còn thêm bước cuối như do mình bận nên nói thôi gội đầu xong xuống hớt. bạn nữ trả lời mình &quot;Đi Xuống hớt&quot; với giọng mình mất cảm tình. Mình từ làm leader Trainer nên mình k ưng với những thái độ vậy.</div></div>
+<div class="case-card"><div class="case-hdr">🟠 <strong>3.</strong>&nbsp;99 TSN&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thanh Sang GDKV</span>&nbsp;&nbsp;<span class="case-tag">Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</span></div><div class="case-quote">726k chỉ để nhận lại một quả đầu còn xấu hơn lúc chưa cắt . trước đây nghe giới thiệu về 30 shine rất nhiều nhưng mới lần đầu trải nghiệm đã rất không hài lòng. tôi chỉ muốn cắt cao lên nhưng thợ cắt lúc nào cũng chào mời gói lớn hơn cắt xấu thì kêu ,em thấy anh hợp với kiểu tóc này hơn. tôi không hiểu sao có thể để khách hàng trải nghiệm như z được</div></div>
+<div class="case-card"><div class="case-hdr">🟡 <strong>4.</strong>&nbsp;F33 HV PT&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thanh Sang GDKV</span>&nbsp;&nbsp;<span class="case-tag">Không sắp xếp được định mức nhân sự phục vụ trước 7 ngày</span></div><div class="case-quote">knm,đã ntin zl(Anh chỉ nói là nếu như tụi em không làm được dịch vụ thì đừng có mở ra cho khách đặt dịch vụ trên app. Khi anh đặt dịch vụ trên app xong, không có thông báo là sẽ không làm kịp, không làm được. Đến khi anh đến mới thông báo thì anh phải vào trong đó ngồi chờ năm 10 phút ra nói chuyện xong anh phải quay về Chỉ vì lý do là thợ không làm được vì muộn rồi sợ về tối. Anh đồng ý nhưng khi anh đặt dịch vụ thì phải thông báo, tránh việc anh phải mất thời gian đến cửa hàng xong ngồi chờ 10…</div></div>
+<div class="case-card"><div class="case-hdr">🟡 <strong>5.</strong>&nbsp;130 XVNT DN&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Việt Cường GDKV</span>&nbsp;&nbsp;<span class="case-tag">Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</span></div><div class="case-quote">Thợ cắt tóc tôi đánh giá tệ hại tay chân luống cuống cắt kiểu gì mà kéo cứ đâm vào đâu tôi mấy lần đã thế còn cắt tông đơ trúng tai tôi chảy cả máu. Mà tóc cắt xong cũng chẳng khác gì lúc chưa cắt cả mà còn xấu hơn tính ra trước khi cắt tóc tôi có độ layer nhìn ổn thợ này cắt xong tự nhiên mái tôi bị hụt ngắn một đoạn ở giữa. Làm tôi phải đi quán khác để sửa. Đã thế lúc đăng ký gửi form ảnh mẫu để xem mà hình như ko xem thì phải tôi ko biết thể bắt tôi gửi ảnh mẩu để làm gì. Còn những dịch vụ kh…</div></div>
+<div class="case-card"><div class="case-hdr">🟡 <strong>6.</strong>&nbsp;8 CVL&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thanh Sang GDKV</span>&nbsp;&nbsp;<span class="case-tag">Gội đầu đau rát; gội ướt áo; móng tay sắc nhọn;...</span></div><div class="case-quote">Trải nghiệm gội đầu không tốt lắm. Động tác gội không như các lần trước trải nghiệm. Các phần như sau gáy hay óc đầu rất ít khi quào tới. Không có lau tay và động tác đấm vai như mọi lần hay làm. Cảm giác bạn này mới vào làm và 30s nên rà soát và training cho các bạn để khách có trải nghiệm tốt hơn,thêm nữa là mình có được tặng detox mà bạn lễ tân nói trong gói có nhưng lúc gội ko thấy có. Nhưng mà động tác gội chán quá nên mình không nhắc luôn. Trả lời Trần Đức Thiện thêm nữa là mình có được tặ…</div></div>
+<div class="case-card"><div class="case-hdr">🟠 <strong>7.</strong>&nbsp;730 TL10&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thanh Sang GDKV</span>&nbsp;&nbsp;<span class="case-tag">STL_Có lời nói, hành động thiếu chuẩn mực hoặc phân biệt/ đùn đẩy/ cố tình chọn/ thoái thác/ tỏ thái độ tiêu cực với Khách hàng khó/ dễ, ít/ nhiều, quen/ không quen, thích/ không thích, giờ sớm/ giờ muộn...</span></div><div class="case-quote">Thợ cắt cho khách thái độ không vui vẻ, kêu khách lần sau đừng book bạn đó nữa, thiếu tôn trọng khách hàng. Thợ hôm nay cắt không vui vẻ và tỏ thái độ khi khách book mình cắt, kêu khách lần sau book bạn khác đi đừng book bạn đó nữa, trãi nghiệm quá tệ</div></div>
+<div class="case-card"><div class="case-hdr">🔴 <strong>8.</strong>&nbsp;7 DTP LA&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Tống Xuân Quyền GDKV</span>&nbsp;&nbsp;<span class="case-tag">Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</span></div><div class="case-quote">cạo mặt trầy bị rát</div></div>
+<div class="case-card"><div class="case-hdr">🟡 <strong>9.</strong>&nbsp;A6 NAT&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">An NQ</span>&nbsp;&nbsp;<span class="case-tag">Cắt/ Uốn/ nhuộm không đúng mẫu/ đúng màu; cạo đau rát; xả tóc còn tóc con....</span></div><div class="case-quote">Cắt xong đầu tóc e không biết nói sao luônn..e nói cắt như củ nhưng mà chị cứ xem như củ của e lúc trước vs đầu mới cắt xong như thằng trại mới ra :)))..e giờ k dám ra đường luônn rồi.bạn đó có thật sự biết cắt tóc không nữa.tóc đã ít còn cắt hết của người ta...sợ thiệt.bạn gội đầu cho e thì bình thường...</div></div>
+<div class="case-card"><div class="case-hdr">🟡 <strong>10.</strong>&nbsp;595 BT TH&nbsp;<span style="font-weight:400;color:#6b7280;font-size:0.87em">Nguyễn Thị Huệ GDKV</span>&nbsp;&nbsp;<span class="case-tag">CI_Tư vấn, báo giá Dịch vụ không rõ ràng</span></div><div class="case-quote">Khách có nhu cầu sử dụng gói dịch vụ gội đầu chủ yếu massage đầu. nhân viên lễ tân tư vấn gói gội đầu 475k, nêu chung chung massage cổ, vai, gáy trong khoảng 1 tiếng. Khách ok. Đến khi thanh toán mới phát hiện hoá đơn ghi thanh toán 02 gói gồm: Gói gội đầu 2 giá 175.000 và gói gội đầu 4 giá 300.000, không phải 01 gói 475.000 như tư vấn. Yêu cầu rút kinh nghiệm trong việc tư vấn cho khách, không mập mờ lạm dụng như vậy</div></div>
 </div><hr>
 <div class="section">
 <div class="sec-title">PHỤ LỤC: Top 10 Salon có nhiều bill lỗi nhất</div>
 <p class="note">Nguồn: file 1.2 | Tổng bill lỗi bao gồm bill 1-2-3 sao và bill vi phạm 6 điều cấm</p>
 <table><thead><tr><th>Salon</th><th>Số bill phục vụ</th><th style="text-align:center">Lỗi 08-14/6</th><th style="text-align:center">Lỗi 15-21/6</th><th>Thay đổi</th><th>Xu hướng</th><th>Tỷ lệ lỗi</th><th>Vi phạm 6 điều cấm</th></tr></thead><tbody>
-<tr style="background:#fef9c3"><td>237 NTT</td><td>2,530</td><td style="text-align:center">6</td><td style="text-align:center"><strong>18</strong></td><td><span class="up">↑ +200%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.55%</td><td style="text-align:center">2</td></tr>
-<tr><td>362 NGT BN</td><td>1,863</td><td style="text-align:center">6</td><td style="text-align:center"><strong>17</strong></td><td><span class="up">↑ +183%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.64%</td><td style="text-align:center">3</td></tr>
-<tr><td>345 NVL DN</td><td>1,170</td><td style="text-align:center">5</td><td style="text-align:center"><strong>15</strong></td><td><span class="up">↑ +200%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.94%</td><td style="text-align:center">5</td></tr>
-<tr><td>420 HTP</td><td>2,046</td><td style="text-align:center">1</td><td style="text-align:center"><strong>12</strong></td><td><span class="up">↑ +1100%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.44%</td><td style="text-align:center">5</td></tr>
-<tr><td>99 TSN</td><td>2,161</td><td style="text-align:center">2</td><td style="text-align:center"><strong>11</strong></td><td><span class="up">↑ +450%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.42%</td><td style="text-align:center">1</td></tr>
-<tr><td>359 LQD</td><td>1,285</td><td style="text-align:center">3</td><td style="text-align:center"><strong>10</strong></td><td><span class="up">↑ +233%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.62%</td><td style="text-align:center">3</td></tr>
-<tr><td>575 AC</td><td>1,455</td><td style="text-align:center">2</td><td style="text-align:center"><strong>10</strong></td><td><span class="up">↑ +400%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.55%</td><td style="text-align:center">1</td></tr>
-<tr><td>730 TL10</td><td>1,838</td><td style="text-align:center">3</td><td style="text-align:center"><strong>10</strong></td><td><span class="up">↑ +233%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.22%</td><td style="text-align:center">2</td></tr>
-<tr><td>8 CVL</td><td>1,723</td><td style="text-align:center">3</td><td style="text-align:center"><strong>10</strong></td><td><span class="up">↑ +233%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.29%</td><td style="text-align:center">1</td></tr>
-<tr><td>13 BH2</td><td>368</td><td style="text-align:center">4</td><td style="text-align:center"><strong>10</strong></td><td><span class="up">↑ +150%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>2.72%</td><td style="text-align:center">4</td></tr>
+<tr style="background:#fef9c3"><td>420 HTP</td><td>671</td><td style="text-align:center">1</td><td style="text-align:center"><strong>7</strong></td><td><span class="up">↑ +600%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.89%</td><td style="text-align:center">4</td></tr>
+<tr><td>99 TSN</td><td>655</td><td style="text-align:center">2</td><td style="text-align:center"><strong>5</strong></td><td><span class="up">↑ +150%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.61%</td><td style="text-align:center">1</td></tr>
+<tr><td>575 AC</td><td>500</td><td style="text-align:center">2</td><td style="text-align:center"><strong>5</strong></td><td><span class="up">↑ +150%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.80%</td><td style="text-align:center">—</td></tr>
+<tr><td>237 NTT</td><td>811</td><td style="text-align:center">6</td><td style="text-align:center"><strong>5</strong></td><td><span class="dn">↓ -17%</span></td><td style="text-align:center;letter-spacing:.5px">↓</td><td>0.62%</td><td style="text-align:center">—</td></tr>
+<tr><td>345 NVL DN</td><td>405</td><td style="text-align:center">5</td><td style="text-align:center"><strong>4</strong></td><td><span class="dn">↓ -20%</span></td><td style="text-align:center;letter-spacing:.5px">↓</td><td>0.49%</td><td style="text-align:center">1</td></tr>
+<tr><td>145 THT</td><td>785</td><td style="text-align:center">3</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +33%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.25%</td><td style="text-align:center">—</td></tr>
+<tr><td>205 30T4 CT</td><td>451</td><td style="text-align:center">2</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +100%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.89%</td><td style="text-align:center">—</td></tr>
+<tr><td>135 LD</td><td>117</td><td style="text-align:center">1</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +300%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>1.71%</td><td style="text-align:center">1</td></tr>
+<tr><td>50BT4 NPC LD</td><td>501</td><td style="text-align:center">2</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +100%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.80%</td><td style="text-align:center">2</td></tr>
+<tr><td>359 LQD</td><td>425</td><td style="text-align:center">3</td><td style="text-align:center"><strong>4</strong></td><td><span class="up">↑ +33%</span></td><td style="text-align:center;letter-spacing:.5px">↑</td><td>0.71%</td><td style="text-align:center">2</td></tr>
 </tbody></table>
 </div>
-<footer>Báo cáo được tạo tự động từ dữ liệu hệ thống &nbsp;|&nbsp; Ngày tạo: 22/06/2026</footer>
+<footer>Báo cáo tự động &nbsp;|&nbsp; Ngày tạo: 22/06/2026 &nbsp;|&nbsp; <a href="https://maya-cao.github.io/R12W-review/R12W_Review_15062026.html" style="color:#94a3b8">https://maya-cao.github.io/R12W-review/R12W_Review_15062026.html</a></footer>
+
+<script>
+var _typeFilter = 'all';
+var _gdkvFilter = 'all';
+
+function setTypeFilter(t, btn) {
+    _typeFilter = t;
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.remove('active');
+    });
+    if (btn) btn.classList.add('active');
+    _applyP2();
+}
+
+function setGDKVFilter(v) {
+    _gdkvFilter = v;
+    _applyP2();
+}
+
+function _applyP2() {
+    document.querySelectorAll('tr[data-type]').forEach(function(tr) {
+        var typeOk   = (_typeFilter === 'all') || (tr.dataset.type === _typeFilter);
+        var personOk = (_gdkvFilter === 'all') || (tr.dataset.person === _gdkvFilter);
+        tr.style.display = (typeOk && personOk) ? '' : 'none';
+    });
+    // Show/hide group-row separators: hide if all rows in that group are hidden
+    document.querySelectorAll('.grp-row').forEach(function(grp) {
+        var next = grp.nextElementSibling;
+        var hasVisible = false;
+        while (next && !next.classList.contains('grp-row')) {
+            if (next.dataset.type && next.style.display !== 'none') hasVisible = true;
+            next = next.nextElementSibling;
+        }
+        grp.style.display = hasVisible ? '' : 'none';
+    });
+}
+
+function filterTagRows(q) {
+    q = q.toLowerCase().trim();
+    document.querySelectorAll('tr[data-tag]').forEach(function(tr) {
+        tr.style.display = (!q || tr.dataset.tag.indexOf(q) >= 0) ? '' : 'none';
+    });
+}
+</script>
+
 </div></div></body></html>
