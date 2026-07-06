@@ -1,4 +1,4 @@
-<title>Phân tích độ trễ booking — R12W Pool T4 & T5 | 30Shine</title>
+<title>Phân tích độ trễ booking — R12W Pool T4, T5 & T6 | 30Shine</title>
 <style>
 :root{
   --bg:#E9EDF5;--surface:#fff;--border:#D2D9E8;
@@ -99,9 +99,9 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 
 <header class="ph">
   <div class="wrap">
-    <div class="eyebrow">R12W · 30Shine · 30/06/2026</div>
+    <div class="eyebrow">R12W · 30Shine · 06/07/2026</div>
     <h1>Phân tích độ trễ booking</h1>
-    <div class="sub">Pool T4 &amp; T5/2026 · 7 / 14 / 30 / 40 / 60 ngày và sau 60 ngày · theo nhóm khách, GĐKV, hành trình</div>
+    <div class="sub">Pool T4, T5 &amp; T6/2026 · So sánh cửa sổ 7 / 14 / 25 ngày · theo nhóm khách, GĐKV · T6 as of 06/07/2026 (chưa đầy đủ)</div>
   </div>
 </header>
 
@@ -109,7 +109,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   <div class="snav-i">
     <a href="#kpi">Tổng quan</a>
     <a href="#phanphoi">Phân phối thời gian T4</a>
-    <a href="#ss">So sánh T4→T5</a>
+    <a href="#ss">So sánh T4/T5/T6</a>
     <a href="#gdkv">Theo GĐKV</a>
     <a href="#hanh-trinh">Hành trình 1-2-3</a>
     <a href="#nguong">Ngưỡng &amp; Hành động</a>
@@ -121,7 +121,9 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <div class="notice">
   <strong>⚠ Lưu ý dữ liệu —</strong>
   <strong>T3/2026:</strong> Không có trong bảng Pool. &nbsp;
-  <strong>T5/2026:</strong> Tính đến 30/6, khách kết nối đầu tháng 5 đã qua ~60 ngày, cuối tháng 5 chỉ ~30 ngày — b_over60 = 0 hoàn toàn, dữ liệu T5 chưa phản ánh đủ dài hạn. So sánh T4→T5 chỉ dùng mốc ≤7, ≤14, ≤25 ngày để đảm bảo công bằng. &nbsp;<strong>Logic đúng:</strong> ngày chăm = ngày kết nối được (Pool_Callday_StatusHis), ngày book = CreatedDate trong view_Booking.
+  <strong>T5/2026:</strong> Tính đến 30/6, b_over60 = 0 hoàn toàn; so sánh chỉ dùng mốc ≤7, ≤14, ≤25 ngày. &nbsp;
+  <strong>T6/2026 (as of 06/07):</strong> Cửa sổ lag tối đa 35 ngày (call 01/06 → 06/07), tối thiểu 6 ngày (call 30/06). Mốc ≤7n công bằng cho cả tháng 6. Mốc ≤14n chỉ công bằng với KH gọi trước 22/06. Mốc ≤25n chỉ công bằng với KH gọi trước 11/06. Cột T6 đánh dấu <strong>*</strong> là chưa đủ cửa sổ. &nbsp;
+  <strong>Logic:</strong> ngày chăm = MAX(call_date) kết nối được, ngày book = CreatedDate trong view_Booking.
 </div>
 
 <!-- ===== 1. KPI ===== -->
@@ -130,7 +132,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   <div class="kpi-row" id="kpi-row"></div>
   <div class="yd">
     <div class="yd-title">Ý đồ phần này</div>
-    Pool T4 có <strong>186.174 KH</strong>, T5 tăng lên <strong>197.865 KH</strong> (+6%). Kết nối được T4: <strong>114.108 KH</strong> (61,3% pool). Trong số đã kết nối, <strong>59,3%</strong> (67.697 KH) đã book lại — avg lag <strong>23 ngày</strong> tính từ ngày kết nối đến ngày tạo lịch. Còn <strong>46.411 KH</strong> đã được kết nối nhưng chưa book — đây là dư địa cần theo dõi tiếp. T5 đang tiến tốt: 116.410 KH kết nối được, 54,5% đã book (trong cửa sổ 30–60 ngày).
+    Pool T4 có <strong>186.174 KH</strong>, T5 tăng lên <strong>197.865 KH</strong> (+6%), T6 là <strong>180.554 KH</strong>. Kết nối được T4: <strong>114.108 KH</strong> (61,3%), trong số kết nối có <strong>59,3%</strong> đã book. T5: <strong>116.410 KH</strong> kết nối (58,8%), 54,5% đã book. T6: <strong>117.006 KH</strong> kết nối (64,8%) — 45,3% đã book tính đến 06/07 (cửa sổ chưa đóng). Avg lag T4 = 23 ngày; T6 đang ở ~12 ngày nhưng sẽ tiếp tục tăng khi tháng 7 đủ dữ liệu.
   </div>
 </section>
 
@@ -174,11 +176,11 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   </div>
 </section>
 
-<!-- ===== 3. SO SÁNH T4 vs T5 ===== -->
+<!-- ===== 3. SO SÁNH T4/T5/T6 ===== -->
 <section id="ss">
   <div class="sh">
-    <h2>So sánh T4 → T5 tại mốc 7 / 14 / 25 ngày</h2>
-    <p>Chỉ dùng mốc ≤25 ngày để so T5 (tháng 5 đã qua 30–60 ngày từ đầu tháng). QBQ/MQBQ số quá nhỏ tại mốc 25 ngày — không so được, bỏ qua.</p>
+    <h2>So sánh T4 → T5 → T6 tại mốc 7 / 14 / 25 ngày</h2>
+    <p>QTT &amp; MQTT (QBQ/MQBQ bỏ qua vì số nhỏ). % tính trên pool (khách kết nối / pool). Cột T6 (*) as of 06/07 — chưa đủ cửa sổ 25 ngày cho KH gọi sau 11/06.</p>
   </div>
   <div class="card">
     <div class="tw">
@@ -186,16 +188,19 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
         <thead><tr>
           <th>Nhóm</th>
           <th class="num">Pool T4</th><th class="num">≤7n T4</th><th class="num">≤14n T4</th><th class="num">≤25n T4</th>
-          <th style="width:8px"></th>
+          <th style="width:6px"></th>
           <th class="num">Pool T5</th><th class="num">≤7n T5</th><th class="num">≤14n T5</th><th class="num">≤25n T5</th>
-          <th class="num">Δ 25n</th>
+          <th class="num">Δ T4→T5</th>
+          <th style="width:6px"></th>
+          <th class="num">Pool T6</th><th class="num">≤7n T6</th><th class="num">≤14n T6*</th><th class="num">≤25n T6*</th>
+          <th class="num">Δ T5→T6*</th>
         </tr></thead>
         <tbody id="ss-tbody"></tbody>
       </table>
     </div>
     <div class="yd">
       <div class="yd-title">Ý đồ phần này</div>
-      <strong>T5 không yếu hơn T4 — thực ra đang nhỉnh hơn.</strong> Trong cùng cửa sổ 25 ngày, QTT Thân thiết T5 đạt 32,5% vs T4 là 31,3% (+1,2pp). MQTT Thân thiết T5 = 12,0% vs T4 = 10,7% (+1,3pp). MQTT Lơ là T5 = 17,7% vs T4 = 10,7% (+7,0pp). <strong>Tín hiệu sớm: khách tháng 5 book nhanh hơn tháng 4</strong> trong cùng cửa sổ — không phải chậm hơn. Dữ liệu T5 chưa đầy đủ, kết luận chính thức vào tháng 8–9.
+      <strong>Xu hướng cải thiện rõ qua 3 tháng.</strong> QTT Thân thiết: T4=31,3% → T5=32,5% → T6=34,6% tại mốc ≤25n. MQTT Thân thiết: T4=10,7% → T5=12,0% → T6=12,8%. <strong>T6 đang tốt hơn T5 ở hầu hết nhóm ngay cả khi cửa sổ chưa đóng.</strong> Con số T6 sẽ còn tăng khi đủ dữ liệu tháng 7. Kết luận chính thức cho T6 vào tháng 8.
     </div>
   </div>
 </section>
@@ -234,14 +239,15 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
     </div>
   </div>
   <div class="card" style="margin-top:14px">
-    <div class="sh" style="margin-bottom:10px"><h2>So sánh T4 → T5 (cửa sổ ≤ 25 ngày)</h2></div>
+    <div class="sh" style="margin-bottom:10px"><h2>So sánh T4 → T5 → T6 (cửa sổ ≤ 25 ngày · T6* chưa đầy đủ)</h2></div>
     <div class="tw">
       <table>
         <thead><tr>
           <th>GĐKV</th>
-          <th class="num">Pool T4</th><th class="num">Pool T5</th>
-          <th class="num">T4 ≤25n</th><th class="num">T5 ≤25n</th><th class="num">Thay đổi</th>
-          <th class="num">T4 median</th><th class="num">T5 median</th><th class="num">Median Δ</th>
+          <th class="num">Pool T4</th><th class="num">Pool T5</th><th class="num">Pool T6</th>
+          <th class="num">T4 ≤25n</th><th class="num">T5 ≤25n</th><th class="num">T6 ≤25n*</th>
+          <th class="num">Δ T4→T5</th><th class="num">Δ T5→T6*</th>
+          <th class="num">T4 med</th><th class="num">T5 med</th><th class="num">T6 med*</th>
         </tr></thead>
         <tbody id="gdkv-cmp-tbody"></tbody>
       </table>
@@ -249,9 +255,9 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   </div>
   <div class="yd" style="margin-top:14px">
     <div class="yd-title">Ý đồ phần này</div>
-    <strong>Chênh lệch giữa GĐKV nhỏ hơn dự tính:</strong> Nguyễn Như Quỳnh nhanh nhất (avg 21n, med 15n), Trịnh Văn Quang chậm nhất (avg 25n, med 20n) — chênh chỉ 4–5 ngày. Không phải nguyên nhân lớn về chất lượng chăm; có thể do cơ cấu khách QTT/MQTT khác nhau giữa vùng.
+    <strong>Chênh lệch giữa GĐKV nhỏ hơn dự tính:</strong> Nguyễn Như Quỳnh nhanh nhất (T4 med 15n), Trịnh Văn Quang chậm nhất (T4 med 20n) — chênh chỉ 5 ngày. Không phải nguyên nhân lớn; có thể do cơ cấu khách QTT/MQTT khác nhau giữa vùng.
     <br><br>
-    <strong>Tốp nhanh T5:</strong> Đoàn Trung Đức, Phan Thị Hồng Gấm cải thiện tốt nhất (+5,7pp, +5,0pp). <strong>Cần theo dõi — Nguyễn Thị Huệ:</strong> kết nối được 71,4% pool nhưng chỉ 33,9% kết nối được → book — chất lượng call cần xem xét. <strong>Nguyễn Việt Cường:</strong> Pool lớn nhất (~33k) nhưng % book chỉ 29,4% pool — ~24k KH chưa book là dư địa lớn nhất.
+    <strong>T6 (as of 06/07 — chưa đủ cửa sổ):</strong> Hầu hết GĐKV cải thiện T5→T6 tại ≤25n. Đoàn Trung Đức +5,7pp, Nguyễn Thị Huệ +8,8pp, Tống Xuân Quyền +5,5pp. <strong>Nguyễn Việt Cường</strong> vẫn thấp nhất (T5=20,4% → T6=23,9%) dù pool lớn nhất (~30k). Median T6 đều 10–13n do cửa sổ ngắn — sẽ tăng lên 14–18n khi đủ dữ liệu tháng 7.
   </div>
 </section>
 
@@ -289,10 +295,10 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   <div class="sum">
     <h2>Tổng kết — 4 insight hành động</h2>
     <ul>
-      <li data-i="🔑"><strong>Cửa sổ call ngắn hơn rất nhiều so với tưởng.</strong> Avg lag thực từ ngày kết nối → ngày tạo lịch chỉ 22–32 ngày (không phải 44–97 ngày như tính cũ). Cơ hội hành động nằm trong 2–3 tuần đầu, không phải 2–3 tháng.</li>
-      <li data-i="📈"><strong>T5 đang tốt hơn T4 trong giai đoạn sớm.</strong> Tại mốc 25 ngày, QTT Thân thiết T5 đạt 32,5% vs T4 là 31,3%. MQTT Lơ là T5 tăng +7pp. Kết luận chính thức vào tháng 8–9 khi T5 đủ lag.</li>
-      <li data-i="🎯"><strong>Lần book đầu là điểm then chốt.</strong> Delta từ lần 1→2 là +22–28 ngày, nhưng lần 2→3 chỉ +6–12 ngày — khách đã vào chu kỳ thì tự duy trì. Dồn 100% vào cú push đầu trong cửa sổ 14–30 ngày.</li>
-      <li data-i="⚡"><strong>Cửa sổ call theo nhóm:</strong> QTT ngày 14–25, MQTT ngày 18–30, QBQ ngày 20–35. MQBQ: book rate 14–27% — cân nhắc lại ROI trước khi tiếp tục chăm với tần suất hiện tại.</li>
+      <li data-i="🔑"><strong>Cửa sổ call ngắn hơn rất nhiều so với tưởng.</strong> Avg lag T4 = 22–32 ngày (không phải 44–97 ngày như tính cũ). Cơ hội hành động nằm trong 2–3 tuần đầu, không phải 2–3 tháng.</li>
+      <li data-i="📈"><strong>Xu hướng 3 tháng tích cực.</strong> Tại mốc ≤25n: QTT Thân thiết T4=31,3% → T5=32,5% → T6=34,6%. MQTT Thân thiết T4=10,7% → T5=12,0% → T6=12,8%. T6 dù cửa sổ chưa đóng đã cao hơn T5 ở hầu hết nhóm — tín hiệu tốt. Kết luận chính thức T6 vào tháng 8.</li>
+      <li data-i="🎯"><strong>Lần book đầu là điểm then chốt.</strong> Delta lần 1→2 là +22–28 ngày, lần 2→3 chỉ +6–12 ngày. Dồn 100% nguồn lực vào cú push đầu trong cửa sổ 14–30 ngày.</li>
+      <li data-i="⚡"><strong>Cửa sổ call theo nhóm:</strong> QTT ngày 14–25, MQTT ngày 18–30, QBQ ngày 20–35. MQBQ: book rate 14–27% — cân nhắc ROI. T6 cho thấy tỷ lệ kết nối 64,8% (cao nhất 3 tháng) — lực chăm đang tốt.</li>
     </ul>
   </div>
   <div class="yd" style="margin-top:14px">
@@ -313,10 +319,12 @@ const pctCls = v => v>=65?'ph-c':v>=45?'pm-c':'pl-c';
 const kpis=[
   {l:'Pool T4',v:'186.174',s:'khách trong pool T4/2026',c:'var(--accent)'},
   {l:'Pool T5',v:'197.865',s:'khách trong pool T5/2026',c:'var(--accent)'},
-  {l:'Kết nối được T4',v:'114.108',s:'61,3% pool — đã có cuộc gọi kết nối',c:'var(--good)'},
-  {l:'% Book (kết nối được) T4',v:'59,3%',s:'67.697 / 114.108 KH đã kết nối',c:'var(--good)'},
+  {l:'Pool T6',v:'180.554',s:'khách trong pool T6/2026',c:'var(--accent)'},
+  {l:'Kết nối được T4',v:'114.108',s:'61,3% pool — 59,3% đã book',c:'var(--good)'},
+  {l:'Kết nối được T5',v:'116.410',s:'58,8% pool — 54,5% đã book',c:'var(--good)'},
+  {l:'Kết nối được T6',v:'117.006',s:'64,8% pool — 45,3% đã book (cửa sổ chưa đầy đủ)',c:'var(--warn)'},
   {l:'Avg lag T4',v:'~23 ngày',s:'ngày kết nối → ngày tạo lịch',c:'var(--t1)'},
-  {l:'Kết nối được T5',v:'116.410',s:'58,8% pool — 54,5% đã book',c:'var(--accent)'},
+  {l:'Avg lag T6 (tạm)',v:'~12 ngày',s:'sẽ tăng khi dữ liệu đủ tháng',c:'var(--warn)'},
 ];
 const kr=document.getElementById('kpi-row');
 kpis.forEach(k=>{
@@ -407,7 +415,8 @@ const grand=aggRows(distT4);
 grand.seg=null; grand.nh=null;
 dtb.appendChild(distRow(grand,false,true));
 
-// ---- SO SÁNH T4→T5 at 7/14/25 ----
+// ---- SO SÁNH T4→T5→T6 at 7/14/25 ----
+// t = pool count (base for % calculation, consistent across T4/T5/T6)
 const ssT4={
   'QTT|Thân thiết':{t:112257,b7:11732,b14:23128,b25:35151},
   'QTT|Lơ là':    {t:5174,  b7:633,  b14:1103, b25:1527},
@@ -428,17 +437,30 @@ const ssT5={
   'MQTT|Bỏ quên': {t:523,   b7:26,   b14:40,   b25:66},
   'MQTT|Vô tâm':  {t:5996,  b7:119,  b14:215,  b25:357},
 };
+// T6: t = pool (Q0 T6), b7/b14/b25 = booking counts from kết nối customers (Q1 T6)
+const ssT6={
+  'QTT|Thân thiết':{t:112694,b7:14393,b14:26656,b25:39046},
+  'QTT|Lơ là':    {t:5750,  b7:1201, b14:1742, b25:2177},
+  'QTT|Bỏ quên':  {t:2449,  b7:418,  b14:620,  b25:804},
+  'QTT|Vô tâm':   {t:6555,  b7:509,  b14:826,  b25:1168},
+  'MQTT|Thân thiết':{t:16130,b7:738,  b14:1407, b25:2068},
+  'MQTT|Lơ là':   {t:735,   b7:59,   b14:84,   b25:120},
+  'MQTT|Bỏ quên': {t:454,   b7:36,   b14:48,   b25:74},
+  'MQTT|Vô tâm':  {t:5449,  b7:138,  b14:250,  b25:371},
+};
 const ssGroups=[
   {label:'QTT', keys:['QTT|Thân thiết','QTT|Lơ là','QTT|Bỏ quên','QTT|Vô tâm']},
   {label:'MQTT',keys:['MQTT|Thân thiết','MQTT|Lơ là','MQTT|Bỏ quên','MQTT|Vô tâm']},
 ];
 const stb=document.getElementById('ss-tbody');
 
-function ssRow(seg,nh,a,b,isSub,isTotal){
-  const p4=a.b25/a.t*100, p5=b.b25/b.t*100;
-  const diff=(p5-p4).toFixed(1);
-  const dc=+diff>0.2?'dpos':+diff<-0.2?'dneg':'dflat';
-  const di=+diff>0.2?'▲':+diff<-0.2?'▼':'→';
+function ssRow(seg,nh,a,b,c,isSub,isTotal){
+  const p4=a.b25/a.t*100, p5=b.b25/b.t*100, p6=c.b25/c.t*100;
+  const diff45=(p5-p4).toFixed(1), diff56=(p6-p5).toFixed(1);
+  const dc45=+diff45>0.2?'dpos':+diff45<-0.2?'dneg':'dflat';
+  const di45=+diff45>0.2?'▲':+diff45<-0.2?'▼':'→';
+  const dc56=+diff56>0.2?'dpos':+diff56<-0.2?'dneg':'dflat';
+  const di56=+diff56>0.2?'▲':+diff56<-0.2?'▼':'→';
   const label=isTotal?'<strong>TỔNG CHUNG</strong>':
                isSub ?`<span class="seg s${seg}">${seg}</span> <em>Tổng nhóm</em>`:
                        `<span class="seg s${seg}">${seg}</span> ${nh}`;
@@ -448,15 +470,21 @@ function ssRow(seg,nh,a,b,isSub,isTotal){
   tr.innerHTML=`
     <td>${label}</td>
     <td class="num">${fmt(a.t)}</td>
-    <td class="num">${(a.b7/a.t*100).toFixed(2)}%</td>
-    <td class="num">${(a.b14/a.t*100).toFixed(2)}%</td>
+    <td class="num">${(a.b7/a.t*100).toFixed(1)}%</td>
+    <td class="num">${(a.b14/a.t*100).toFixed(1)}%</td>
     <td class="num"><strong>${p4.toFixed(1)}%</strong></td>
     <td></td>
     <td class="num">${fmt(b.t)}</td>
-    <td class="num">${(b.b7/b.t*100).toFixed(2)}%</td>
-    <td class="num">${(b.b14/b.t*100).toFixed(2)}%</td>
+    <td class="num">${(b.b7/b.t*100).toFixed(1)}%</td>
+    <td class="num">${(b.b14/b.t*100).toFixed(1)}%</td>
     <td class="num"><strong>${p5.toFixed(1)}%</strong></td>
-    <td class="num"><span class="${dc}">${di} ${Math.abs(diff)}pp</span></td>`;
+    <td class="num"><span class="${dc45}">${di45} ${Math.abs(diff45)}pp</span></td>
+    <td></td>
+    <td class="num">${fmt(c.t)}</td>
+    <td class="num">${(c.b7/c.t*100).toFixed(1)}%</td>
+    <td class="num">${(c.b14/c.t*100).toFixed(1)}%</td>
+    <td class="num"><strong>${p6.toFixed(1)}%</strong></td>
+    <td class="num"><span class="${dc56}">${di56} ${Math.abs(diff56)}pp</span></td>`;
   return tr;
 }
 
@@ -464,18 +492,20 @@ function ssRow(seg,nh,a,b,isSub,isTotal){
 ssGroups.forEach(g=>{
   g.keys.forEach(key=>{
     const [seg,nh]=key.split('|');
-    stb.appendChild(ssRow(seg,nh,ssT4[key],ssT5[key],false,false));
+    stb.appendChild(ssRow(seg,nh,ssT4[key],ssT5[key],ssT6[key],false,false));
   });
   // subtotal
   const a4={t:g.keys.reduce((s,k)=>s+ssT4[k].t,0), b7:g.keys.reduce((s,k)=>s+ssT4[k].b7,0), b14:g.keys.reduce((s,k)=>s+ssT4[k].b14,0), b25:g.keys.reduce((s,k)=>s+ssT4[k].b25,0)};
   const a5={t:g.keys.reduce((s,k)=>s+ssT5[k].t,0), b7:g.keys.reduce((s,k)=>s+ssT5[k].b7,0), b14:g.keys.reduce((s,k)=>s+ssT5[k].b14,0), b25:g.keys.reduce((s,k)=>s+ssT5[k].b25,0)};
-  stb.appendChild(ssRow(g.label,'',a4,a5,true,false));
+  const a6={t:g.keys.reduce((s,k)=>s+ssT6[k].t,0), b7:g.keys.reduce((s,k)=>s+ssT6[k].b7,0), b14:g.keys.reduce((s,k)=>s+ssT6[k].b14,0), b25:g.keys.reduce((s,k)=>s+ssT6[k].b25,0)};
+  stb.appendChild(ssRow(g.label,'',a4,a5,a6,true,false));
 });
 // grand total
 const allKeys=ssGroups.flatMap(g=>g.keys);
 const gt4={t:allKeys.reduce((s,k)=>s+ssT4[k].t,0), b7:allKeys.reduce((s,k)=>s+ssT4[k].b7,0), b14:allKeys.reduce((s,k)=>s+ssT4[k].b14,0), b25:allKeys.reduce((s,k)=>s+ssT4[k].b25,0)};
 const gt5={t:allKeys.reduce((s,k)=>s+ssT5[k].t,0), b7:allKeys.reduce((s,k)=>s+ssT5[k].b7,0), b14:allKeys.reduce((s,k)=>s+ssT5[k].b14,0), b25:allKeys.reduce((s,k)=>s+ssT5[k].b25,0)};
-stb.appendChild(ssRow('','',gt4,gt5,false,true));
+const gt6={t:allKeys.reduce((s,k)=>s+ssT6[k].t,0), b7:allKeys.reduce((s,k)=>s+ssT6[k].b7,0), b14:allKeys.reduce((s,k)=>s+ssT6[k].b14,0), b25:allKeys.reduce((s,k)=>s+ssT6[k].b25,0)};
+stb.appendChild(ssRow('','',gt4,gt5,gt6,false,true));
 
 // ---- GĐKV ----
 // Sorted by avg lag ascending. da_book counts from ketnoi customers only.
@@ -498,6 +528,17 @@ const gdkvT5=[
   {name:'Nguyễn Thanh Sang',total:33727,da_book:13568,b25:10493,med:13},
   {name:'Nguyễn Việt Cường',total:33801,da_book:9274, b25:6903,med:15},
   {name:'Trịnh Văn Quang',  total:11332,da_book:5855, b25:4062,med:16},
+];
+// T6: total=Q4 pool, b25/da_book từ Q2a agg (kết nối customers), med = median lag
+const gdkvT6=[
+  {name:'Nguyễn Như Quỳnh', total:11479,da_book:4226, b25:4092,med:10},
+  {name:'Đoàn Trung Đức',    total:23084,da_book:8619, b25:7946,med:11},
+  {name:'Phan Thị Hồng Gấm',total:19278,da_book:5501, b25:5117,med:10},
+  {name:'Nguyễn Thị Huệ',   total:5953, da_book:2047, b25:1913,med:11},
+  {name:'Tống Xuân Quyền',  total:23704,da_book:8091, b25:7577,med:10},
+  {name:'Nguyễn Thanh Sang',total:31081,da_book:10352,b25:9755,med:10},
+  {name:'Nguyễn Việt Cường',total:30362,da_book:7700, b25:7261,med:10},
+  {name:'Trịnh Văn Quang',  total:10420,da_book:4323, b25:3816,med:13},
 ];
 const medCol=m=>m<=15?'var(--good)':m<=18?'var(--warn)':'var(--danger)';
 const bkCol=v=>v>=48?'var(--good)':v>=38?'var(--warn)':'var(--danger)';
@@ -553,25 +594,33 @@ const gT4=gdkvT4.reduce((a,d)=>({total:a.total+d.total,da_book:a.da_book+d.da_bo
     <td class="num">${p(T-gT4.da_book,T)}%</td>`;
   gdkvTb.appendChild(tr);
 })();
-// compare T4 vs T5
+// compare T4 vs T5 vs T6
 const m5g={};gdkvT5.forEach(d=>m5g[d.name]=d);
+const m6g={};gdkvT6.forEach(d=>m6g[d.name]=d);
 const cmpRows=gdkvT4.map(d=>{
   const d5=m5g[d.name];if(!d5)return null;
-  return{name:d.name,t4t:d.total,t5t:d5.total,p4:d.b25/d.total*100,p5:d5.b25/d5.total*100,m4:d.med,m5n:d5.med};
+  const d6=m6g[d.name];if(!d6)return null;
+  return{name:d.name,t4t:d.total,t5t:d5.total,t6t:d6.total,
+    p4:d.b25/d.total*100,p5:d5.b25/d5.total*100,p6:d6.b25/d6.total*100,
+    m4:d.med,m5n:d5.med,m6n:d6.med};
 }).filter(Boolean).sort((a,b)=>b.p5-a.p5);
 const cmpTb=document.getElementById('gdkv-cmp-tbody');
 cmpRows.forEach(d=>{
-  const dp=d.p5-d.p4,dm=d.m5n-d.m4;
-  const dpc=dp>=0?'dpos':'dneg',di=dp>=0?'▲':'▼';
-  const dmc=dm<=0?'dpos':'dneg',dmi=dm<0?'▲ ':dm>0?'▼ +':'→ ';
+  const dp45=d.p5-d.p4, dp56=d.p6-d.p5;
+  const dm56=d.m6n-d.m5n;
+  const dpc45=dp45>=0?'dpos':'dneg', di45=dp45>=0?'▲':'▼';
+  const dpc56=dp56>=0?'dpos':'dneg', di56=dp56>=0?'▲':'▼';
+  const dmc56=dm56<=0?'dpos':'dneg', dmi56=dm56<0?'▲ ':dm56>0?'▼ +':'→ ';
   const tr=document.createElement('tr');
   tr.innerHTML=`<td>${d.name}</td>
-    <td class="num">${fmt(d.t4t)}</td><td class="num">${fmt(d.t5t)}</td>
+    <td class="num">${fmt(d.t4t)}</td><td class="num">${fmt(d.t5t)}</td><td class="num">${fmt(d.t6t)}</td>
     <td class="num">${d.p4.toFixed(1)}%</td>
     <td class="num"><strong>${d.p5.toFixed(1)}%</strong></td>
-    <td class="num"><span class="${dpc}">${di} ${Math.abs(dp).toFixed(1)}pp</span></td>
+    <td class="num">${d.p6.toFixed(1)}%*</td>
+    <td class="num"><span class="${dpc45}">${di45} ${Math.abs(dp45).toFixed(1)}pp</span></td>
+    <td class="num"><span class="${dpc56}">${di56} ${Math.abs(dp56).toFixed(1)}pp</span></td>
     <td class="num">${d.m4}n</td><td class="num">${d.m5n}n</td>
-    <td class="num"><span class="${dmc}">${dmi}${Math.abs(dm)}n</span></td>`;
+    <td class="num">${d.m6n}n*</td>`;
   cmpTb.appendChild(tr);
 });
 
