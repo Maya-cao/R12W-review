@@ -808,6 +808,10 @@ function buildTab4(){
     }
   }
 
+  // Distribution chart canvas
+  html += '<div class="section-title">📊 Phân bổ NV theo dải Book Rate</div>';
+  html += '<canvas id="nv-dist-ch" width="760" height="210" style="width:100%;max-width:760px;display:block;margin-bottom:20px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+
   // Position breakdown
   const posOrder = ['Trưởng salon (SM)', 'Chuyên viên tư vấn', 'Stylist', 'Skinner'];
   html += '<div class="section-title">👔 Book rate theo vị trí</div>';
@@ -824,6 +828,10 @@ function buildTab4(){
       + '</div>';
   });
   html += '</div>';
+
+  // Scatter chart canvas
+  html += '<div class="section-title">🔵 Số cuộc gọi vs Book Rate (từng NV)</div>';
+  html += '<canvas id="nv-scatter-ch" width="760" height="300" style="width:100%;max-width:760px;display:block;margin-bottom:20px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
 
   // Ranking table
   const showGDKV = sel === 'all';
@@ -855,6 +863,180 @@ function buildTab4(){
 
   html += '</tbody></table>';
   c.innerHTML = html;
+  drawDistChart(document.getElementById('nv-dist-ch'), nvs);
+  drawScatterChart(document.getElementById('nv-scatter-ch'), nvs);
+}
+
+// ══════════════════════════════════════════════════════
+//  CHARTS — NV Tab
+// ══════════════════════════════════════════════════════
+function drawDistChart(canvas, nvs){
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {top:28, right:20, bottom:46, left:44};
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,W,H);
+
+  const buckets = [
+    {label:'Chưa gọi
+/ 0%',  color:'#ef4444', fn: n => n.called===0 || n.booked===0},
+    {label:'1–10%',            color:'#f97316', fn: n => n.rate!=null && n.rate>0    && n.rate<0.10},
+    {label:'10–15%',           color:'#f59e0b', fn: n => n.rate!=null && n.rate>=0.10 && n.rate<0.15},
+    {label:'15–20%',           color:'#eab308', fn: n => n.rate!=null && n.rate>=0.15 && n.rate<0.20},
+    {label:'20–25%',           color:'#84cc16', fn: n => n.rate!=null && n.rate>=0.20 && n.rate<0.25},
+    {label:'25–30%',           color:'#22c55e', fn: n => n.rate!=null && n.rate>=0.25 && n.rate<0.30},
+    {label:'>30%',             color:'#16a34a', fn: n => n.rate!=null && n.rate>=0.30},
+  ];
+  buckets.forEach(b => { b.count = nvs.filter(b.fn).length; });
+
+  const maxCount = Math.max(...buckets.map(b=>b.count), 1);
+  const barW = chartW / buckets.length;
+
+  // Gridlines + Y labels
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 1;
+  for(let i=1; i<=4; i++){
+    const y = pad.top + chartH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+chartW, y); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxCount*i/4), pad.left-5, y+4);
+  }
+
+  // X axis base
+  ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(pad.left, pad.top+chartH); ctx.lineTo(pad.left+chartW, pad.top+chartH); ctx.stroke();
+
+  // Bars
+  buckets.forEach((b,i) => {
+    const x  = pad.left + i*barW + barW*0.12;
+    const bw = barW * 0.76;
+    const bh = b.count > 0 ? (b.count/maxCount)*chartH : 0;
+    const y  = pad.top + chartH - bh;
+    ctx.fillStyle = b.color;
+    ctx.fillRect(x, y, bw, bh);
+    // Count label
+    if(b.count > 0){
+      ctx.fillStyle = '#1e293b'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(b.count, x+bw/2, y-6);
+    }
+    // X label (multi-line)
+    ctx.fillStyle = '#64748b'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    b.label.split('\n').forEach((line,li) => {
+      ctx.fillText(line, x+bw/2, pad.top+chartH+15+li*13);
+    });
+  });
+
+  // Y axis label
+  ctx.save();
+  ctx.translate(12, pad.top+chartH/2);
+  ctx.rotate(-Math.PI/2);
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Số NV', 0, 0);
+  ctx.restore();
+}
+
+function drawScatterChart(canvas, nvs){
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {top:24, right:110, bottom:46, left:50};
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,W,H);
+
+  const valid = nvs.filter(n => n.called > 0 && n.rate != null);
+  if(!valid.length){
+    ctx.fillStyle = '#94a3b8'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Không có dữ liệu', W/2, H/2); return;
+  }
+
+  const maxCalled = Math.max(...valid.map(n=>n.called));
+  const rawMaxR   = Math.max(...valid.map(n=>n.rate));
+  const yMax      = Math.min(Math.ceil(rawMaxR*20)/20 + 0.05, 0.80);
+
+  const toX = c2 => pad.left + (c2/maxCalled)*chartW;
+  const toY = r2 => pad.top  + (1 - r2/yMax)*chartH;
+
+  const POS_COLOR2 = {'Trưởng salon (SM)':'#22c55e','Chuyên viên tư vấn':'#f59e0b','Stylist':'#06b6d4','Skinner':'#8b5cf6'};
+
+  // Background
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(pad.left, pad.top, chartW, chartH);
+
+  // Grid
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+  const xTicks = 5;
+  for(let i=0; i<=xTicks; i++){
+    const x = pad.left + (i/xTicks)*chartW;
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top+chartH); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(Math.round(maxCalled*i/xTicks).toLocaleString('vi'), x, pad.top+chartH+14);
+  }
+  for(let i=0; i<=4; i++){
+    const y = pad.top + (i/4)*chartH;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+chartW, y); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(pct(yMax*(4-i)/4,0), pad.left-4, y+4);
+  }
+
+  // Target line 25%
+  const ty = toY(0.25);
+  if(ty >= pad.top && ty <= pad.top+chartH){
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 1.5; ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ty); ctx.lineTo(pad.left+chartW, ty); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#22c55e'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('25%', pad.left+chartW+4, ty+4);
+  }
+
+  // Dots
+  valid.forEach(n => {
+    const x = toX(n.called), y = toY(n.rate);
+    const col = POS_COLOR2[n.pos] || '#888';
+    ctx.fillStyle = col + 'aa';
+    ctx.strokeStyle = col; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(x, y, 4.5, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  });
+
+  // Label top 5 by rate
+  const top5 = [...valid].sort((a,b)=>b.rate-a.rate).slice(0,5);
+  ctx.font = 'bold 9px system-ui';
+  top5.forEach(n => {
+    const x = toX(n.called), y = toY(n.rate);
+    const shortName = n.name.split(' ').pop();
+    const align = x > pad.left + chartW*0.75 ? 'right' : 'left';
+    ctx.fillStyle = '#1e293b'; ctx.textAlign = align;
+    ctx.fillText(shortName, x + (align==='left'?7:-7), y-8);
+  });
+
+  // Legend
+  const posOrder2 = ['Trưởng salon (SM)','Chuyên viên tư vấn','Stylist','Skinner'];
+  let ly = pad.top + 10;
+  ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  posOrder2.forEach(pos => {
+    const col = POS_COLOR2[pos] || '#888';
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(pad.left+chartW+18, ly, 4, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#475569';
+    ctx.fillText(pos.split(' ').pop(), pad.left+chartW+26, ly+4);
+    ly += 18;
+  });
+
+  // Axis labels
+  ctx.save();
+  ctx.translate(13, pad.top+chartH/2);
+  ctx.rotate(-Math.PI/2);
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Book Rate', 0, 0);
+  ctx.restore();
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Số cuộc gọi', pad.left+chartW/2, pad.top+chartH+36);
 }
 
 // ══════════════════════════════════════════════════════
