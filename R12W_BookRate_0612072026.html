@@ -940,12 +940,11 @@ function drawScatterChart(canvas, nvs){
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
-  const pad = {top:24, right:110, bottom:46, left:50};
+  const pad = {top:24, right:120, bottom:50, left:50};
   const chartW = W - pad.left - pad.right;
   const chartH = H - pad.top - pad.bottom;
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = '#fff'; ctx.fillRect(0,0,W,H);
 
   const valid = nvs.filter(n => n.called > 0 && n.rate != null);
   if(!valid.length){
@@ -953,27 +952,33 @@ function drawScatterChart(canvas, nvs){
     ctx.fillText('Không có dữ liệu', W/2, H/2); return;
   }
 
-  const maxCalled = Math.max(...valid.map(n=>n.called));
-  const rawMaxR   = Math.max(...valid.map(n=>n.rate));
-  const yMax      = Math.min(Math.ceil(rawMaxR*20)/20 + 0.05, 0.80);
+  const POS_COLOR2 = {'Trưởng salon (SM)':'#22c55e','Chuyên viên tư vấn':'#f59e0b','Stylist':'#06b6d4','Skinner':'#8b5cf6'};
+  const POS_SHORT  = {'Trưởng salon (SM)':'SM','Chuyên viên tư vấn':'Tư vấn','Stylist':'Stylist','Skinner':'Skinner'};
 
-  const toX = c2 => pad.left + (c2/maxCalled)*chartW;
+  // Cap X at 90th percentile to handle outliers
+  const sortedC = [...valid].map(n=>n.called).sort((a,b)=>a-b);
+  const p90 = sortedC[Math.floor(sortedC.length * 0.90)] || sortedC[sortedC.length-1];
+  const xCap = p90;
+  const mainNvs    = valid.filter(n => n.called <= xCap);
+  const outlierNvs = valid.filter(n => n.called >  xCap);
+
+  const rawMaxR = Math.max(...valid.map(n=>n.rate));
+  const yMax    = Math.min(Math.ceil(rawMaxR*20)/20 + 0.05, 0.80);
+
+  const toX = c2 => pad.left + (Math.min(c2, xCap)/xCap)*chartW;
   const toY = r2 => pad.top  + (1 - r2/yMax)*chartH;
 
-  const POS_COLOR2 = {'Trưởng salon (SM)':'#22c55e','Chuyên viên tư vấn':'#f59e0b','Stylist':'#06b6d4','Skinner':'#8b5cf6'};
-
   // Background
-  ctx.fillStyle = '#f8fafc';
-  ctx.fillRect(pad.left, pad.top, chartW, chartH);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(pad.left, pad.top, chartW, chartH);
 
-  // Grid
+  // Grid + axes
   ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
   const xTicks = 5;
   for(let i=0; i<=xTicks; i++){
     const x = pad.left + (i/xTicks)*chartW;
     ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top+chartH); ctx.stroke();
     ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-    ctx.fillText(Math.round(maxCalled*i/xTicks).toLocaleString('vi'), x, pad.top+chartH+14);
+    ctx.fillText(Math.round(xCap*i/xTicks).toLocaleString('vi'), x, pad.top+chartH+15);
   }
   for(let i=0; i<=4; i++){
     const y = pad.top + (i/4)*chartH;
@@ -992,24 +997,54 @@ function drawScatterChart(canvas, nvs){
     ctx.fillText('25%', pad.left+chartW+4, ty+4);
   }
 
-  // Dots
-  valid.forEach(n => {
+  // Dots — main NVs
+  mainNvs.forEach(n => {
     const x = toX(n.called), y = toY(n.rate);
     const col = POS_COLOR2[n.pos] || '#888';
-    ctx.fillStyle = col + 'aa';
-    ctx.strokeStyle = col; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.arc(x, y, 4.5, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = col + 'cc'; ctx.strokeStyle = col; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill(); ctx.stroke();
   });
 
-  // Label top 5 by rate
-  const top5 = [...valid].sort((a,b)=>b.rate-a.rate).slice(0,5);
+  // Outliers — small diamond at right edge + label
+  if(outlierNvs.length){
+    const edgeX = pad.left + chartW - 2;
+    let oy = pad.top + 8;
+    ctx.font = '9px system-ui';
+    outlierNvs.sort((a,b)=>b.rate-a.rate).forEach(n => {
+      const col = POS_COLOR2[n.pos] || '#888';
+      const ey  = toY(n.rate);
+      // Diamond at right edge
+      ctx.fillStyle = col; ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(edgeX, ey-5); ctx.lineTo(edgeX+4, ey);
+      ctx.lineTo(edgeX, ey+5); ctx.lineTo(edgeX-4, ey); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+      // Label in margin
+      ctx.fillStyle = '#475569'; ctx.textAlign = 'left';
+      const shortName = n.name.split(' ').pop();
+      ctx.fillText(shortName + ' (' + n.called.toLocaleString('vi') + ')', pad.left+chartW+8, oy+4);
+      oy += 14;
+    });
+    // Note
+    ctx.fillStyle = '#94a3b8'; ctx.font = 'italic 9px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('◆ ngoài vùng (>' + xCap.toLocaleString('vi') + ' gọi)', pad.left+chartW+8, oy+8);
+  }
+
+  // Labels for top performers with meaningful call counts
+  const minCalls = Math.max(10, Math.round(sortedC[Math.floor(sortedC.length*0.20)]));
+  const candidates = mainNvs.filter(n => n.called >= minCalls).sort((a,b)=>b.rate-a.rate).slice(0,6);
+  const placed = [];
   ctx.font = 'bold 9px system-ui';
-  top5.forEach(n => {
+  candidates.forEach(n => {
     const x = toX(n.called), y = toY(n.rate);
     const shortName = n.name.split(' ').pop();
-    const align = x > pad.left + chartW*0.75 ? 'right' : 'left';
+    // Avoid overlap: check placed labels
+    const tooClose = placed.some(p => Math.abs(p.x-x)<38 && Math.abs(p.y-y)<14);
+    if(tooClose) return;
+    const align = x > pad.left + chartW*0.70 ? 'right' : 'left';
     ctx.fillStyle = '#1e293b'; ctx.textAlign = align;
     ctx.fillText(shortName, x + (align==='left'?7:-7), y-8);
+    placed.push({x, y});
   });
 
   // Legend
@@ -1019,21 +1054,20 @@ function drawScatterChart(canvas, nvs){
   posOrder2.forEach(pos => {
     const col = POS_COLOR2[pos] || '#888';
     ctx.fillStyle = col;
-    ctx.beginPath(); ctx.arc(pad.left+chartW+18, ly, 4, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(pad.left+chartW+18, ly, 4.5, 0, Math.PI*2); ctx.fill();
     ctx.fillStyle = '#475569';
-    ctx.fillText(pos.split(' ').pop(), pad.left+chartW+26, ly+4);
+    ctx.fillText(POS_SHORT[pos] || pos, pad.left+chartW+27, ly+4);
     ly += 18;
   });
 
   // Axis labels
   ctx.save();
-  ctx.translate(13, pad.top+chartH/2);
-  ctx.rotate(-Math.PI/2);
+  ctx.translate(13, pad.top+chartH/2); ctx.rotate(-Math.PI/2);
   ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Book Rate', 0, 0);
   ctx.restore();
   ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
-  ctx.fillText('Số cuộc gọi', pad.left+chartW/2, pad.top+chartH+36);
+  ctx.fillText('Số cuộc gọi', pad.left+chartW/2, pad.top+chartH+38);
 }
 
 // ══════════════════════════════════════════════════════
