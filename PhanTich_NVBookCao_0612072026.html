@@ -466,7 +466,8 @@ footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
   <div class="section-title gray" style="font-size:.9rem">Phương pháp</div>
   <div class="prose-box">
     <p>So sánh đặc điểm khách (theo dữ liệu <code>Pool_Callday_StatusHis</code>, kỳ 6-12/7) mà nhóm NV cao đang gọi (n=2.052 khách, từ 23 NV) với khách của nhóm còn lại (n=44.717 khách, từ ~393 NV). Với mỗi khách chỉ lấy 1 dòng dữ liệu gần nhất trong kỳ.</p>
-    <div class="callout gray" style="margin-top:10px">Dữ liệu hiện có <b>không</b> trả lời được: nhóm dịch vụ sử dụng, giá trị hóa đơn, nguồn khách, độ tuổi, hành vi đặt lịch cụ thể (chủ động/được gọi/nhắn/Skinner giới thiệu) — các trường này không có trong bảng call log đang dùng, cần bảng khách hàng/bill riêng để bổ sung nếu cần đào sâu tiếp.</div>
+    <p>Riêng giá trị hóa đơn & nhóm dịch vụ sử dụng: join sang <code>sl_bill</code> + <code>bi_bill_revenue_service</code> (Temp_30ShineBI), lấy 5-10 bill gần nhất của từng khách trong 2 nhóm.</p>
+    <div class="callout gray" style="margin-top:10px">Dữ liệu hiện có <b>không</b> trả lời được: nguồn khách, độ tuổi, hành vi đặt lịch cụ thể (chủ động/được gọi/nhắn/Skinner giới thiệu) — các trường này không có trong bảng call log hay bảng bill đang dùng, cần bảng khách hàng riêng để bổ sung nếu cần đào sâu tiếp.</div>
   </div>
 
   <div class="section-title amber" style="font-size:.9rem">Kết quả — Chỉ số hành vi quay lại salon</div>
@@ -475,36 +476,46 @@ footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
     <tr><td><b>Số lần khách đã đến salon</b> <span class="def">(trung bình mỗi khách, tính đến hiện tại)</span></td>
         <td style="text-align:right;font-weight:700;color:#166534">43.6 lần</td><td style="text-align:right">31.8 lần</td>
         <td>Khách nhóm cao là khách "quen" lâu năm hơn (+11,8 lần)</td></tr>
-    <tr><td><b>Số ngày kể từ lần khách đến gần nhất</b> <span class="def">(tính đến ngày gọi, trung bình)</span></td>
+    <tr><td><b>Số ngày kể từ lần khách đến gần nhất</b> <span class="def">(khoảng thời gian đã trôi qua từ lần khách ghé salon gần nhất, tính đến ngày NV gọi, trung bình)</span></td>
         <td style="text-align:right;font-weight:700">38.1 ngày</td><td style="text-align:right">34.0 ngày</td>
-        <td>Gần tương đương, chênh lệch nhỏ, không đáng kể</td></tr>
-    <tr><td><b>Khoảng cách trung bình giữa 2 lần khách đến salon</b> <span class="def">(chu kỳ quay lại thông thường của khách, trung bình)</span></td>
+        <td>2 nhóm gần bằng nhau → không phải yếu tố phân biệt</td></tr>
+    <tr><td><b>Khoảng cách trung bình giữa 2 lần khách đến salon</b> <span class="def">(đây là chu kỳ bao nhiêu ngày thì khách quay lại 30Shine 1 lần, tính trung bình trên lịch sử của khách)</span></td>
         <td style="text-align:right;font-weight:700;color:#166534">45.8 ngày</td><td style="text-align:right">72.6 ngày</td>
-        <td>Khách nhóm cao có chu kỳ quay lại nhanh hơn hẳn (-26,8 ngày) → khách trung thành/năng đến hơn</td></tr>
+        <td>Đúng — nhóm NV cao đang chăm nhóm khách có chu kỳ quay lại salon khoảng 45,8 ngày/lần, ngắn hơn nhiều so với 72,6 ngày của nhóm còn lại → khách trung thành/năng đến hơn</td></tr>
   </table></div>
 
-  <div class="section-title amber" style="font-size:.9rem">Kết quả — Mức độ "thân thiết" của khách <span class="def" style="font-size:.85rem">(tag_mucnhiet — phân loại có sẵn dựa trên tần suất & mức độ đều đặn ghé salon)</span></div>
+  <div class="section-title amber" style="font-size:.9rem">Kết quả — Phân nhóm khách quen <span class="def" style="font-size:.85rem">(tag_segment — theo số lần đến × khoảng cách ngày tính từ bill trước, đúng định nghĩa 6 nhóm đã chốt)</span></div>
   <div class="tbl-wrap"><table>
-    <tr><th>Nhóm thân thiết</th><th>Định nghĩa</th><th style="text-align:right">Nhóm NV cao</th><th style="text-align:right">Nhóm còn lại</th></tr>
-    <tr><td><b>Thân thiết</b></td><td class="def">Khách gắn bó, ghé đều đặn</td><td style="text-align:right">65.9%</td><td style="text-align:right;font-weight:700;color:#166534">86.3%</td></tr>
-    <tr><td><b>Lơ là</b></td><td class="def">Khách bắt đầu thưa dần</td><td style="text-align:right;font-weight:700;color:#991b1b">22.5%</td><td style="text-align:right">6.9%</td></tr>
-    <tr><td><b>Vô tâm</b></td><td class="def">Khách ít gắn bó</td><td style="text-align:right">5.6%</td><td style="text-align:right">4.3%</td></tr>
-    <tr><td><b>Bỏ quên</b></td><td class="def">Khách đã lâu không quay lại</td><td style="text-align:right;font-weight:700;color:#991b1b">6.1%</td><td style="text-align:right">2.5%</td></tr>
+    <tr><th>Nhóm</th><th>Định nghĩa</th><th style="text-align:right">Nhóm NV cao</th><th style="text-align:right">Nhóm còn lại</th><th style="text-align:right">Chênh lệch</th></tr>
+    <tr><td><b>QTT</b></td><td class="def">Đến ≥6 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right;font-weight:700">81.7%</td><td style="text-align:right">76.8%</td><td style="text-align:right;font-weight:700;color:#166534">+4.9đ</td></tr>
+    <tr><td><b>MQTT</b></td><td class="def">Đến 3-5 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right">4.9%</td><td style="text-align:right;font-weight:700">10.7%</td><td style="text-align:right;font-weight:700;color:#991b1b">-5.8đ</td></tr>
+    <tr><td><b>F2TT</b></td><td class="def">Đã đến 2 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right">0%</td><td style="text-align:right">0%</td><td style="text-align:right">0đ</td></tr>
+    <tr><td><b>QBQ</b></td><td class="def">Đến ≥6 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right;font-weight:700">10.7%</td><td style="text-align:right">9.2%</td><td style="text-align:right;font-weight:700;color:#166534">+1.5đ</td></tr>
+    <tr><td><b>MQBQ</b></td><td class="def">Đến 3-5 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right">2.7%</td><td style="text-align:right">3.4%</td><td style="text-align:right">-0.7đ</td></tr>
+    <tr><td><b>F2BQ</b></td><td class="def">Đã đến 2 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right">0%</td><td style="text-align:right">0%</td><td style="text-align:right">0đ</td></tr>
   </table></div>
+  <div class="legend">Cách đọc: trong số khách mà nhóm NV cao đang gọi, 81,7% thuộc nhóm QTT; trong số khách của nhóm còn lại, 76,8% thuộc nhóm QTT. F2TT/F2BQ (khách mới đến 2 lần) ra 0% ở cả 2 nhóm — bảng call log đang dùng không có khách thuộc 2 nhóm này, có thể họ nằm ở 1 pool riêng, chưa xác nhận được lý do.</div>
 
-  <div class="section-title amber" style="font-size:.9rem">Kết quả — Phân nhóm khách quen <span class="def" style="font-size:.85rem">(tag_segment — theo số lần đến × khoảng cách ngày tính từ bill trước)</span></div>
+  <div class="section-title amber" style="font-size:.9rem">Kết quả — Giá trị hóa đơn & dịch vụ sử dụng <span class="def" style="font-size:.85rem">(join sl_bill + bi_bill_revenue_service, Temp_30ShineBI)</span></div>
   <div class="tbl-wrap"><table>
-    <tr><th>Nhóm</th><th>Định nghĩa</th><th style="text-align:right">Nhóm NV cao</th><th style="text-align:right">Nhóm còn lại</th></tr>
-    <tr><td><b>QTT</b></td><td class="def">Đến ≥6 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right;font-weight:700">81.7%</td><td style="text-align:right">76.8%</td></tr>
-    <tr><td><b>MQTT</b></td><td class="def">Đến 3-5 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right">4.9%</td><td style="text-align:right;font-weight:700">10.7%</td></tr>
-    <tr><td><b>QBQ</b></td><td class="def">Đến ≥6 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right;font-weight:700">10.7%</td><td style="text-align:right">9.2%</td></tr>
-    <tr><td><b>MQBQ</b></td><td class="def">Đến 3-5 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right">2.7%</td><td style="text-align:right">3.4%</td></tr>
+    <tr><th>Đặc điểm</th><th style="text-align:right">Nhóm NV cao</th><th style="text-align:right">Nhóm còn lại</th><th>Ý nghĩa</th></tr>
+    <tr><td><b>Giá trị hóa đơn trung bình</b> <span class="def">(trung bình 5 bill gần nhất/khách, chỉ tính doanh thu dịch vụ: cắt+uốn+nhuộm+dưỡng+combo, không gồm bán sản phẩm)</span></td>
+        <td style="text-align:right;font-weight:700">160.986đ</td><td style="text-align:right">164.005đ</td>
+        <td>Gần như bằng nhau → giá trị hóa đơn không phải yếu tố phân biệt</td></tr>
+    <tr><td><b>% khách tìm được lịch sử bill</b> <span class="def">(để tính được 2 chỉ số dịch vụ dưới đây)</span></td>
+        <td style="text-align:right">908/2.052 = 44.2%</td><td style="text-align:right">17.016/44.717 = 38.1%</td>
+        <td>Hơn nửa số khách trong cả 2 nhóm không tìm thấy bill nào — hợp lý vì đây là khách đang được gọi lại (nhiều khả năng lâu chưa quay lại), không phải toàn bộ khách đã từng mua</td></tr>
+    <tr><td><b>% lượt đến có dùng dịch vụ cắt tóc</b> <span class="def">(trong 10 bill gần nhất/khách, của các khách tìm được lịch sử)</span></td>
+        <td style="text-align:right;font-weight:700">98.8%</td><td style="text-align:right">99.1%</td>
+        <td>Gần như bằng nhau → không có khác biệt về thói quen dùng dịch vụ</td></tr>
+    <tr><td><b>% lượt đến chỉ dùng dịch vụ khác</b> <span class="def">(gội/massage/lấy ráy tai... không cắt tóc)</span></td>
+        <td style="text-align:right">1.2%</td><td style="text-align:right">0.9%</td>
+        <td>Tỷ trọng rất nhỏ ở cả 2 nhóm, không đáng kể</td></tr>
   </table></div>
-  <div class="legend">Không thấy nhóm F2TT/F2BQ (khách mới đến 2 lần) trong bảng dữ liệu này ở cả 2 nhóm — có thể khách 2-lần nằm ở 1 pool riêng chưa được đưa vào bảng call log đang dùng, chưa xác nhận được lý do.</div>
 
   <div class="callout blue">
-    <strong>Ngược với giả thuyết "khách dễ":</strong> khách của nhóm NV cao có tỷ lệ "Lơ là + Bỏ quên" (khách đã nhạt) cao hơn hẳn nhóm còn lại (28,6% vs 9,4% cộng gộp) — tức họ đang chăm tập khách khó hơn về mặt cảm xúc, không phải được giao sẵn khách dễ chốt. Đồng thời khách quay lại nhanh hơn khi được nhóm này chăm (chu kỳ 45,8 so với 72,6 ngày) và số lần đến trung bình cao hơn hẳn — gợi ý rate cao đến từ năng lực chăm sóc thực sự, không phải may mắn về tập khách.
-    <p style="margin-top:8px">Lưu ý: <code>tag_mucnhiet</code>/<code>tag_segment</code> là phân loại tĩnh theo lịch sử đến salon (độc lập với log cuộc gọi), đáng tin hơn field StatusCall đã nêu ở PT1, nhưng chưa đối chiếu chéo với nguồn dữ liệu thứ 2 nào khác.</p>
+    <strong>Ngược với giả thuyết "khách dễ":</strong> khách của nhóm NV cao có tỷ lệ nhóm MQTT (khách mới quen, 3-5 lần) thấp hơn nhóm còn lại (4,9% vs 10,7%) và nhóm QTT (khách quen lâu năm, ≥6 lần) cao hơn (81,7% vs 76,8%) — tức nhóm NV cao đang chăm tập khách "cứng" hơn (đã quen sẵn từ trước) chứ không phải khách mới dễ thuyết phục hơn. Đồng thời khách quay lại nhanh hơn khi được nhóm này chăm (chu kỳ 45,8 so với 72,6 ngày) — gợi ý rate cao đến từ năng lực chăm sóc thực sự. Giá trị hóa đơn và cơ cấu dịch vụ (cắt tóc vs dịch vụ khác) thì không khác biệt giữa 2 nhóm.
+    <p style="margin-top:8px">Lưu ý: <code>tag_segment</code> là phân loại tĩnh theo lịch sử đến salon (độc lập với log cuộc gọi), đáng tin hơn field StatusCall đã nêu ở PT1, nhưng chưa đối chiếu chéo với nguồn dữ liệu thứ 2 nào khác.</p>
     <p style="margin-top:8px">Một yếu tố khác cần cân nhắc song song: ở PT1 đã thấy nhóm NV cao được phân vào <code>call_priority_group</code> mức ưu tiên cao nhiều hơn một chút (86,6% vs 83,7%) — nghĩa là hệ thống/quy trình có thể đang ưu tiên giao nhóm khách "đáng gọi hơn" cho nhóm NV này ở một mức độ nhỏ, cần cân nhắc khi đánh giá thuần năng lực cá nhân.</p>
   </div>
 </div>
