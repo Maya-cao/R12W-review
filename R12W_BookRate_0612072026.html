@@ -775,6 +775,46 @@ function buildTab4(){
   const alertCount = nvNoCalls.length + nvZeroBook.length;
   const kpiColor = bkNVColor(avgRate);
 
+  // ── Pre-compute analysis stats ─────────────────────────────────────────
+  // Distribution buckets
+  const distBkts = [
+    {l:'Chưa gọi / 0%', fn:n=>n.called===0||n.booked===0},
+    {l:'1–10%',         fn:n=>n.rate!=null&&n.rate>0&&n.rate<0.10},
+    {l:'10–15%',        fn:n=>n.rate!=null&&n.rate>=0.10&&n.rate<0.15},
+    {l:'15–20%',        fn:n=>n.rate!=null&&n.rate>=0.15&&n.rate<0.20},
+    {l:'20–25%',        fn:n=>n.rate!=null&&n.rate>=0.20&&n.rate<0.25},
+    {l:'25–30%',        fn:n=>n.rate!=null&&n.rate>=0.25&&n.rate<0.30},
+    {l:'>30%',          fn:n=>n.rate!=null&&n.rate>=0.30},
+  ];
+  distBkts.forEach(b=>{ b.cnt=nvs.filter(b.fn).length; });
+  const nvAboveTarget = nvs.filter(n=>n.rate!=null&&n.rate>=0.25).length;
+  const distBiggest   = distBkts.filter(b=>b.cnt>0).reduce((a,b2)=>b2.cnt>a.cnt?b2:a, distBkts[0]);
+
+  // Position stats (system-wide, always NV_DATA)
+  const posAgg={};
+  NV_DATA.forEach(n=>{
+    if(!posAgg[n.pos]) posAgg[n.pos]={called:0,booked:0,count:0};
+    posAgg[n.pos].called+=n.called; posAgg[n.pos].booked+=n.booked; posAgg[n.pos].count++;
+  });
+  const posRanked = Object.keys(posAgg).map(p=>{
+    const d=posAgg[p]; return {pos:p, r:d.called>0?d.booked/d.called:0, cnt:d.count};
+  }).sort((a,b2)=>b2.r-a.r);
+  const posTopObj = posRanked[0]||null;
+  const posBotObj = posRanked[posRanked.length-1]||null;
+
+  // Call-volume stats (filtered by GĐKV selection)
+  const cvBkts=[{l:'< 30',mn:1,mx:30},{l:'30–100',mn:30,mx:100},{l:'100–200',mn:100,mx:200},{l:'200–400',mn:200,mx:400},{l:'> 400',mn:400,mx:1e9}];
+  const cvvld=nvs.filter(n=>n.called>0&&n.rate!=null);
+  cvBkts.forEach(b=>{
+    const g=cvvld.filter(n=>n.called>=b.mn&&n.called<b.mx);
+    const tC=g.reduce((s,n)=>s+n.called,0), tB=g.reduce((s,n)=>s+n.booked,0);
+    b.cnt=g.length; b.r=tC>0?tB/tC:null;
+  });
+  const cvHasR   = cvBkts.filter(b=>b.r!=null&&b.cnt>0);
+  const cvBest   = cvHasR.length?cvHasR.reduce((a,b2)=>b2.r>a.r?b2:a):null;
+  const cvBig    = cvBkts.filter(b=>b.cnt>0).reduce((a,b2)=>b2.cnt>a.cnt?b2:a, cvBkts[0]);
+  const cvUpTrend= cvHasR.length>=2 && cvHasR[cvHasR.length-1].r > cvHasR[0].r;
+
   // KPI row
   html += '<div class="kpi-row">'
     + '<div class="kpi" style="border-color:#6366f1"><div class="lbl">Tổng nhân viên</div>'
@@ -810,7 +850,14 @@ function buildTab4(){
 
   // Distribution chart canvas
   html += '<div class="section-title">📊 Phân bổ NV theo dải Book Rate</div>';
-  html += '<canvas id="nv-dist-ch" width="760" height="210" style="width:100%;max-width:760px;display:block;margin-bottom:20px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  html += '<canvas id="nv-dist-ch" width="760" height="210" style="width:100%;max-width:760px;display:block;margin-bottom:10px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  html += '<div class="prose-box" style="margin-bottom:16px"><p>'
+    + 'Nhóm đông nhất: <strong>' + distBiggest.l + '</strong> (' + distBiggest.cnt + ' NV). '
+    + 'Chỉ <strong>' + nvAboveTarget + '/' + nvs.length + ' NV</strong> (' + pct(nvAboveTarget/nvs.length,0) + ') đạt ≥ 25%. '
+    + (alertCount > 0
+        ? '<strong style="color:#ef4444">' + alertCount + ' NV book = 0% hoặc chưa gọi</strong> — cần kiểm tra ngay.'
+        : 'Không có NV nào book = 0%.')
+    + '</p></div>';
 
   // Position breakdown
   const posOrder = ['Trưởng salon (SM)', 'Chuyên viên tư vấn', 'Stylist', 'Skinner'];
@@ -838,12 +885,32 @@ function buildTab4(){
     + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b"><div style="width:10px;height:10px;border-radius:2px;background:#8b5cf6"></div>Skinner</div>'
     + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b;margin-left:8px"><div style="width:20px;height:2px;background:#1e293b;opacity:.5"></div>TB vùng</div>'
     + '</div>';
-  html += '<canvas id="nv-pos-ch" width="760" height="260" style="width:100%;max-width:760px;display:block;margin-bottom:20px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  html += '<canvas id="nv-pos-ch" width="760" height="260" style="width:100%;max-width:760px;display:block;margin-bottom:10px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  if(posTopObj && posBotObj) {
+    const posGap = posTopObj.r - posBotObj.r;
+    html += '<div class="prose-box" style="margin-bottom:16px"><p>'
+      + '<strong>' + posTopObj.pos + '</strong> dẫn đầu với book rate <strong>' + pct(posTopObj.r) + '</strong>'
+      + (posGap > 0.01
+          ? ', cao hơn <strong>' + posBotObj.pos + '</strong> (' + pct(posBotObj.r) + ') tới <strong>' + pct(posGap) + '</strong>.'
+          : '.')
+      + ' Đây là vị trí được đào tạo chuyên về tư vấn — hiệu quả book cao hơn là kỳ vọng. '
+      + 'Đường đen thể hiện book rate trung bình toàn vùng; vùng nào có cột cao hơn đường = hiệu quả trên mức trung bình.'
+      + '</p></div>';
+  }
 
   // Combo 2: nhóm số gọi vs book rate
   html += '<div class="section-title">📞 Gọi nhiều có book tốt hơn không?</div>';
   html += '<div style="font-size:.78rem;color:#94a3b8;margin-bottom:10px">Book rate trung bình của NV theo số cuộc gọi đã thực hiện trong kỳ · số NV trong mỗi nhóm ghi bên dưới</div>';
-  html += '<canvas id="nv-call-ch" width="760" height="200" style="width:100%;max-width:760px;display:block;margin-bottom:20px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  html += '<canvas id="nv-call-ch" width="760" height="200" style="width:100%;max-width:760px;display:block;margin-bottom:10px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  if(cvBest && cvBig) {
+    html += '<div class="prose-box" style="margin-bottom:16px"><p>'
+      + 'Nhóm gọi <strong>' + cvBest.l + ' cuộc</strong> có book rate cao nhất (<strong>' + pct(cvBest.r) + '</strong>). '
+      + 'Đa số NV tập trung ở nhóm <strong>' + cvBig.l + ' cuộc</strong> (' + cvBig.cnt + ' NV). '
+      + (cvUpTrend
+          ? 'Book rate <strong>có xu hướng tăng theo số gọi</strong> — NV gọi nhiều hơn nhìn chung book hiệu quả hơn, nhưng chênh lệch không lớn.'
+          : 'Book rate <strong>không tăng rõ theo số gọi</strong> — chất lượng cuộc gọi và kỹ năng tư vấn quan trọng hơn số lượng.')
+      + '</p></div>';
+  }
 
   // Ranking table
   const showGDKV = sel === 'all';
@@ -1120,11 +1187,7 @@ function drawCallComboChart(canvas, nvs){
       ctx.fillText(pct(b.avgRate,1), x+barW/2, y-5);
     }
     ctx.fillStyle='#64748b'; ctx.font='10px system-ui'; ctx.textAlign='center';
-    ctx.fillText(b.label, x+barW/2, pad.top+cH+15);
-    if(b.count>0) {
-      ctx.fillStyle='#94a3b8'; ctx.font='9px system-ui';
-      ctx.fillText(b.count+' NV', x+barW/2, pad.top+cH+28);
-    }
+    ctx.fillText(b.label, x+barW/2, pad.top+cH+16);
   });
 
   // Y axis label
