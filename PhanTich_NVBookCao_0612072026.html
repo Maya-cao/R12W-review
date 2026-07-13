@@ -22,6 +22,7 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
 .section-title.green{border-color:#22c55e}
 .section-title.amber{border-color:#f59e0b}
 .section-title.red{border-color:#ef4444}
+.section-title.gray{border-color:#94a3b8}
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
 .kpi{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid #6366f1}
 .kpi .lbl{font-size:.72rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.03em}
@@ -31,10 +32,15 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
 .prose-box p{color:#334155;font-size:.88rem;margin-bottom:8px}
 .prose-box p:last-child{margin-bottom:0}
 .prose-box strong{color:#1e293b}
+.ask-box{background:#f1f5f9;border:1px dashed #94a3b8;border-radius:10px;padding:16px 20px;margin-bottom:16px;line-height:1.7}
+.ask-box .tag{display:inline-block;background:#64748b;color:#fff;font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:20px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.03em}
+.ask-box p{font-size:.85rem;color:#475569;margin-bottom:6px}
+.ask-box p:last-child{margin-bottom:0}
 .callout{border-left:3px solid #f59e0b;padding:10px 14px;margin:10px 0;background:#fffbeb;border-radius:0 8px 8px 0;font-size:.86rem;color:#92400e}
 .callout.red{border-color:#ef4444;background:#fef2f2;color:#991b1b}
 .callout.green{border-color:#22c55e;background:#f0fdf4;color:#166534}
 .callout.blue{border-color:#3b82f6;background:#eff6ff;color:#1e40af}
+.callout.gray{border-color:#94a3b8;background:#f8fafc;color:#475569}
 table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:20px;font-size:.83rem}
 th{background:#f1f5f9;color:#475569;text-align:left;padding:8px 10px;font-size:.72rem;text-transform:uppercase;letter-spacing:.02em}
 td{padding:8px 10px;border-top:1px solid #f1f5f9;vertical-align:top}
@@ -42,6 +48,7 @@ tr:hover td{background:#f8fafc}
 .tbl-wrap{overflow-x:auto}
 footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
 .legend{font-size:.76rem;color:#64748b;margin:6px 0 16px}
+.def{color:#94a3b8;font-weight:400;font-size:.76rem}
 </style>
 </head>
 <body>
@@ -49,38 +56,26 @@ footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
   <h1>Phân tích NV Booking cao & Ảnh hưởng Salon</h1>
   <div class="sub">Kỳ 06–12/07/2026 · Nguồn: THỐNG KÊ KẾT QUẢ NHÂN SỰ GỌI CHO KHÁCH + Pool_Callday_StatusHis (Temp_30ShineBI)</div>
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('t0',this)">📊 Tổng quan</button>
-    <button class="tab-btn" onclick="switchTab('t1',this)">👤 PT1 · NV Book cao</button>
+    <button class="tab-btn active" onclick="switchTab('t1',this)">👤 PT1 · NV Book cao</button>
     <button class="tab-btn" onclick="switchTab('t2',this)">🏠 PT2 · Ảnh hưởng Salon</button>
     <button class="tab-btn" onclick="switchTab('t3',this)">🎯 PT3 · Đặc điểm khách hàng</button>
   </div>
 </div>
 <div class="container">
 
-<!-- TAB 0: TỔNG QUAN -->
-<div class="tab-content active" id="t0">
-  <div class="kpi-row">
-    <div class="kpi"><div class="lbl">Tổng NV</div><div class="val">416</div></div>
-    <div class="kpi"><div class="lbl">Book rate hệ thống</div><div class="val">13.0%</div></div>
-    <div class="kpi" style="border-top-color:#22c55e"><div class="lbl">NV rate ≥25% (đủ mẫu)</div><div class="val">23</div><div class="sub">≥30 cuộc gọi, loại nhiễu mẫu nhỏ</div></div>
-    <div class="kpi" style="border-top-color:#f59e0b"><div class="lbl">Salon có ≥1 NV cao</div><div class="val">18</div><div class="sub">trên tổng số salon đang hoạt động</div></div>
-  </div>
-  <div class="prose-box">
-    <p><strong>Bối cảnh:</strong> sếp yêu cầu 3 phân tích sâu từ BC hiệu suất theo nhân viên kỳ 6-12/7 — (1) đặc điểm nhóm NV có tỷ lệ Booking &gt;25%, (2) ảnh hưởng của salon (cả team giỏi hay vài cá nhân kéo), (3) đặc điểm tập khách nhóm NV cao đang chăm (loại trừ khả năng do khách "dễ").</p>
-    <p><strong>Tóm tắt nhanh:</strong></p>
-    <p>• <strong>PT1:</strong> 23/416 NV đạt rate ≥25% (đủ mẫu ≥30 cuộc gọi) — Skinner chiếm đa số (17 người), không phải do lợi thế vị trí. Không có dữ liệu về kênh booking/kịch bản/giờ gọi — xem callout đỏ ở tab PT1.</p>
-    <p>• <strong>PT2:</strong> 18 salon có ít nhất 1 NV cao. Ở hầu hết các salon này, <strong>nhóm NV còn lại (không thuộc nhóm cao) vẫn đạt rate cao hơn trung bình hệ thống</strong> — gợi ý know-how cấp salon, không chỉ cá nhân đơn lẻ. Có một vài ngoại lệ (VD 145 THT) nơi 1 người kéo cả salon lên — xem chi tiết từng salon ở tab PT2.</p>
-    <p>• <strong>PT3:</strong> khách của nhóm NV cao thực ra "khó" hơn về mặt cảm xúc (nhiều khách Lơ là/Bỏ quên hơn), không phải khách dễ — ủng hộ giả thuyết đây là năng lực thực, không phải may mắn về tập khách.</p>
-  </div>
-</div>
-
 <!-- TAB 1: PT1 -->
-<div class="tab-content" id="t1">
-  <div class="section-title">Phân tích 1 — Nhân viên Booking &gt;25%</div>
-  <div class="prose-box">
-    <p><strong>Phương pháp:</strong> lọc rate ≥25% VÀ ≥30 cuộc gọi để loại nhiễu do mẫu nhỏ (lựa chọn phân tích của tôi, chưa phải định nghĩa chính thức của sếp — nếu tính tất cả rate≥25% không lọc volume thì có 28 người, 5 trong đó có &lt;30 cuộc gọi nên tỷ lệ dễ ảo, xem bảng phụ cuối trang).</p>
+<div class="tab-content active" id="t1">
+  <div class="ask-box">
+    <span class="tag">Yêu cầu đánh giá</span>
+    <p>Lập danh sách NV có tỷ lệ Booking &gt;25% trong tuần và phân tích nguyên nhân giúp đạt kết quả tốt. Nội dung cần đánh giá: số khách chăm sóc, số khách booking thành công, tỷ lệ booking, <b>kênh booking thành công</b> (gọi điện/tin nhắn/khách tự đặt/Skinner giới thiệu), <b>kịch bản chăm sóc</b> khác biệt, <b>thời điểm liên hệ</b> có ảnh hưởng không, <b>tần suất follow-up</b>.</p>
+    <p>Giả thuyết cần kiểm chứng: tỷ lệ cao do kỹ năng NV hay do Skinner tạo sẵn nhu cầu? Gọi điện hiệu quả hơn nhắn tin hay ngược lại? Có kịch bản/hành động lặp lại ở hầu hết NV tỷ lệ cao?</p>
   </div>
-  <div class="section-title amber" style="font-size:.9rem">Theo vị trí</div>
+  <div class="section-title gray" style="font-size:.9rem">Phương pháp</div>
+  <div class="prose-box">
+    <p>Lọc rate ≥25% VÀ ≥30 cuộc gọi trong tuần 6-12/7 để loại nhiễu do mẫu nhỏ (đây là lựa chọn phân tích, chưa phải ngưỡng chính thức trong yêu cầu — nếu tính tất cả rate≥25% không lọc volume thì có 28 người, 5 trong đó có &lt;30 cuộc gọi nên tỷ lệ dễ ảo, xem bảng phụ). Với phần hành vi gọi (follow-up, thời điểm liên hệ), vì mẫu 1 tuần của nhóm 23 NV chỉ có ~2.100 cuộc gọi — hơi mỏng để kết luận chắc — tôi lấy thêm toàn bộ lịch sử cuộc gọi có trong DB của đúng 23 người này từ 1/4 đến 13/7/2026 (~23.000 cuộc gọi) để kiểm tra xem các khác biệt thấy được trong 1 tuần có lặp lại ổn định hơn không.</p>
+  </div>
+
+  <div class="section-title amber" style="font-size:.9rem">Kết quả — Theo vị trí</div>
   <div class="tbl-wrap"><table>
     <tr><th>Vị trí</th><th style="text-align:right">Số NV</th><th style="text-align:right">% trong nhóm cao</th></tr>
     <tr><td>Skinner</td><td style='text-align:right'>17</td><td style='text-align:right'>73.9%</td></tr>
@@ -163,7 +158,6 @@ footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
         <td style="text-align:right">84</td><td style="text-align:right">21</td>
         <td style="text-align:right;font-weight:700;color:#1d4ed8">25.0%</td></tr>
   </table></div>
-
   <div class="prose-box"><p><strong>Bảng phụ — rate ≥25% nhưng &lt;30 cuộc gọi (dễ ảo do mẫu nhỏ, không tính vào nhóm chính):</strong></p></div>
   <div class="tbl-wrap"><table>
     <tr><th>Nhân viên</th><th>Salon</th><th>Gọi</th><th>Book</th><th>Rate</th></tr>
@@ -184,21 +178,46 @@ footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
         <td style="text-align:right">25.0%</td></tr>
   </table></div>
 
-  <div class="section-title red" style="font-size:.9rem">Hành vi gọi & giới hạn dữ liệu</div>
-  <div class="prose-box">
-    <p><strong>Follow-up:</strong> nhóm NV cao gọi lại cùng 1 khách nhiều ngày hơn nhóm còn lại — <strong>2,0%</strong> khách của nhóm cao bị gọi lại ≥2 ngày trong kỳ, so với <strong>1,0%</strong> ở nhóm còn lại (nhóm A: 2.093 cuộc gọi/2.052 khách; nhóm B: 46.883 cuộc/44.717 khách). Chênh lệch có nhưng mẫu nhóm cao còn nhỏ nên chưa đủ mạnh để kết luận chắc chắn.</p>
-    <div class="callout red">
-      <strong>Giới hạn dữ liệu:</strong> không có field nào phân biệt kênh booking thành công (gọi điện/tin nhắn/khách tự đặt/Skinner giới thiệu), kịch bản chăm sóc, hay giờ gọi trong ngày. Đã thử dùng <code>StatusCall='Đã book được lịch'</code> trong Pool_Callday_StatusHis để so outcome cuộc gọi 2 nhóm nhưng <strong>kết quả mâu thuẫn với báo cáo chính thức</strong>: nhóm rate cao (theo báo cáo) lại có tỷ lệ field này THẤP hơn (4,4% vs 9,0% — ngược chiều); tổng field này toàn hệ thống chỉ ra 4.342 lượt trong khi báo cáo gốc ghi 6.284 lượt book. Field này không phản ánh đúng "đã book" của báo cáo gốc → <strong>không dùng để kết luận về kịch bản/kỹ năng.</strong>
-    </div>
+  <div class="section-title red" style="font-size:.9rem">Kết quả — Hành vi gọi (kết nối, thời điểm, follow-up)</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Chỉ số</th><th style="text-align:right">Nhóm cao<br><span class="def">kỳ 6-12/7 (n=2.311 cuộc)</span></th><th style="text-align:right">Nhóm còn lại<br><span class="def">kỳ 6-12/7 (n=49.797 cuộc)</span></th>
+        <th style="text-align:right">Nhóm cao<br><span class="def">1/4-13/7 (n=23.183 cuộc)</span></th><th style="text-align:right">Nhóm còn lại<br><span class="def">1/4-13/7 (n=322.258 cuộc)</span></th></tr>
+    <tr><td>% cuộc gọi <b>kết nối được với khách</b> <span class="def">(nghe máy trao đổi được + khách bận từ chối + đã book — tức có nói chuyện, phân biệt với không bắt máy/sai số)</span></td>
+        <td style="text-align:right;font-weight:700">47.3%</td><td style="text-align:right">45.0%</td>
+        <td style="text-align:right;font-weight:700">41.4%</td><td style="text-align:right">40.5%</td></tr>
+    <tr><td>% cuộc gọi <b>không bắt máy</b></td>
+        <td style="text-align:right">1.7%</td><td style="text-align:right">2.8%</td>
+        <td style="text-align:right">3.0%</td><td style="text-align:right">3.2%</td></tr>
+    <tr><td>% cuộc gọi <b>sai số/không tồn tại</b></td>
+        <td style="text-align:right">8.1%</td><td style="text-align:right">9.7%</td>
+        <td style="text-align:right">9.4%</td><td style="text-align:right">11.3%</td></tr>
+    <tr><td>Số lần liên hệ lại trung bình / 1 khách <span class="def">(tần suất follow-up)</span></td>
+        <td style="text-align:right">—</td><td style="text-align:right">—</td>
+        <td style="text-align:right;font-weight:700">1.18 lần</td><td style="text-align:right">1.19 lần</td></tr>
+  </table></div>
+  <div class="callout gray">
+    <strong>Đọc kết quả — hầu hết khác biệt không đủ vững:</strong> trong đúng tuần 6-12/7, nhóm cao có vẻ "kết nối được" nhiều hơn (47,3% vs 45,0%) và tập trung gọi đầu tuần (Thứ 2 chiếm 35,3% cuộc gọi của nhóm cao, so với 23,4% ở nhóm còn lại). Nhưng khi mở rộng ra 3,5 tháng (1/4-13/7) với cùng 23 người này: chênh lệch "kết nối được" co lại còn rất nhỏ (41,4% vs 40,5%), và <b>phân bố gọi theo thứ trong tuần trở nên gần như đều nhau giữa 2 nhóm</b> (không còn thấy xu hướng tập trung đầu tuần). Tần suất follow-up cũng gần như bằng nhau ở mẫu lớn (1,18 vs 1,19 lần/khách). → <b>Kết luận: thời điểm liên hệ trong tuần và tần suất follow-up không phải là yếu tố phân biệt ổn định của nhóm NV book cao</b> — khác biệt thấy được trong 1 tuần nhiều khả năng là nhiễu do mẫu nhỏ, không phải "know-how" thật.
+  </div>
+  <div class="callout blue">
+    <strong>Một khác biệt nhỏ có vẻ ổn định hơn:</strong> nhóm cao được phân vào <code>call_priority_group</code> (nhóm ưu tiên gọi) mức 1 (ưu tiên cao) nhiều hơn một chút — 86,6% so với 83,7% ở nhóm còn lại, tính trên toàn bộ 3,5 tháng. Chênh lệch nhỏ, nhưng có thể là 1 phần lý do khách của nhóm cao dễ chốt hơn đôi chút — xem thêm ở PT3 vì đây liên quan tới đặc điểm khách được giao, không phải hành vi gọi.
+  </div>
+
+  <div class="callout red">
+    <strong>Giới hạn dữ liệu — không trả lời được:</strong> không có field nào phân biệt <b>kênh booking thành công</b> (gọi điện/tin nhắn/khách tự đặt/Skinner giới thiệu) hay <b>nội dung/kịch bản chăm sóc</b> trong DB đã khảo sát — cả 2 câu hỏi này của yêu cầu ban đầu chưa trả lời được bằng dữ liệu hiện có, cần quan sát định tính (nghe lại cuộc gọi, phỏng vấn NV) nếu muốn đào sâu.
+    <p style="margin-top:6px">Riêng field <code>StatusCall='Đã book được lịch'</code> trong Pool_Callday_StatusHis: đã thử dùng để so kết quả cuộc gọi 2 nhóm nhưng <b>kết quả mâu thuẫn với báo cáo chính thức</b> (nhóm rate cao theo báo cáo lại có tỷ lệ field này thấp hơn — 4,4% vs 9,0%; tổng field này toàn hệ thống ra 4.342 lượt trong khi báo cáo gốc ghi 6.284 lượt book) → field này không phản ánh đúng "đã book" của báo cáo gốc, không dùng được cho phân tích kịch bản/kỹ năng.</p>
   </div>
 </div>
 
 <!-- TAB 2: PT2 -->
 <div class="tab-content" id="t2">
-  <div class="section-title green">Phân tích 2 — Ảnh hưởng Salon</div>
+  <div class="ask-box">
+    <span class="tag">Yêu cầu đánh giá</span>
+    <p>Đối với các Salon có nhiều NV nằm trong nhóm Booking cao, đánh giá: tỷ lệ Booking chung của Salon, so sánh với tỷ lệ của các cá nhân xuất sắc. Xác định: cả Salon đều làm tốt, hay chỉ một vài cá nhân kéo kết quả lên, hoặc ngược lại nhiều NV khác đang kéo tỷ lệ Salon xuống.</p>
+    <p>Mục đích: xác định know-how đang là năng lực của cả Salon hay chỉ là năng lực cá nhân, để có hướng nhân rộng phù hợp.</p>
+  </div>
+  <div class="section-title gray" style="font-size:.9rem">Phương pháp</div>
   <div class="prose-box">
-    <p><strong>Cách đọc bảng:</strong> với mỗi salon có ≥1 NV thuộc nhóm cao (PT1), tôi tách riêng rate của "nhóm NV cao" và rate của "NV còn lại trong salon", để trả lời: khi bỏ người xuất sắc nhất ra, phần còn lại của salon có còn tốt hơn mặt bằng chung hay không.</p>
-    <p><strong>Book rate hệ thống (baseline):</strong> 13.0% — cột "so với hệ thống" là chênh lệch của riêng nhóm còn lại (không tính người cao) so với baseline này.</p>
+    <p>Với mỗi salon có ≥1 NV thuộc nhóm cao (PT1), tách riêng rate của "nhóm NV cao" và rate của "NV còn lại trong salon", để trả lời: khi bỏ người xuất sắc nhất ra, phần còn lại của salon có còn tốt hơn mặt bằng chung hay không. Book rate hệ thống (baseline) = 13.0%.</p>
   </div>
   <div class="tbl-wrap"><table>
     <tr>
@@ -429,31 +448,64 @@ footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
         </tr>
   </table></div>
   <div class="legend">"So với hệ thống" = rate của riêng nhóm còn lại (không tính NV cao) trừ đi book rate hệ thống (13.0%). Số dương (xanh) nghĩa là kể cả bỏ NV xuất sắc nhất ra, phần còn lại của salon vẫn tốt hơn mặt bằng chung.</div>
+  <div class="section-title amber" style="font-size:.9rem">Kết luận</div>
   <div class="prose-box">
-    <p><strong>Đọc kết quả:</strong> ở phần lớn salon trong bảng (99 TSN, 312 LVS, 927 HG, 237 NTT, 382 NT, 12 LDT, 575 AC, 401/1 NDT, 264 LLQ, 290 QT TH, 173 TN, 109 TQH...), <strong>nhóm NV còn lại vẫn có rate cao hơn baseline hệ thống</strong> dù đã loại người xuất sắc nhất ra — đây là dấu hiệu know-how cấp salon, đáng tìm hiểu để nhân rộng.</p>
-    <p><strong>Ngoại lệ đáng chú ý — 145 THT:</strong> chỉ 2 NV, người cao đạt 32,5% nhưng người còn lại chỉ 6,7% (thấp hơn cả baseline hệ thống) — đây là trường hợp rõ ràng 1 cá nhân kéo toàn bộ salon, không phải năng lực chung.</p>
+    <p><strong>Cả salon giỏi (không chỉ 1-2 cá nhân):</strong> ở phần lớn salon trong bảng (99 TSN, 312 LVS, 927 HG, 237 NTT, 382 NT, 12 LDT, 575 AC, 401/1 NDT, 264 LLQ, 290 QT TH, 173 TN, 109 TQH...), nhóm NV còn lại vẫn có rate cao hơn baseline hệ thống dù đã loại người xuất sắc nhất ra — đây là dấu hiệu know-how cấp salon, đáng tìm hiểu để nhân rộng.</p>
+    <p><strong>Ngoại lệ — 1 cá nhân kéo cả salon (145 THT):</strong> chỉ 2 NV, người cao đạt 32,5% nhưng người còn lại chỉ 6,7% (thấp hơn cả baseline hệ thống) — đây là trường hợp rõ ràng 1 cá nhân kéo toàn bộ salon, không phải năng lực chung.</p>
     <p>3/4 salon dẫn đầu về số NV cao (99 TSN, 312 LVS, 927 HG) đều thuộc GĐKV Nguyễn Thanh Sang — vùng này cũng có book rate vùng cao nhất hệ thống theo BC gốc, khớp với nhận định trên.</p>
   </div>
 </div>
 
 <!-- TAB 3: PT3 -->
 <div class="tab-content" id="t3">
-  <div class="section-title amber">Phân tích 3 — Đặc điểm khách hàng nhóm NV Booking cao</div>
-  <div class="prose-box">
-    <p><strong>Mục tiêu:</strong> loại trừ khả năng nhóm NV rate cao chỉ vì đang chăm tập khách "dễ" hơn. So sánh tập khách của nhóm NV cao (n=2.052 khách, từ 23 NV) với nhóm còn lại (n=44.717 khách, từ ~393 NV) qua dữ liệu <code>Pool_Callday_StatusHis</code> kỳ 6-12/7.</p>
+  <div class="ask-box">
+    <span class="tag">Yêu cầu đánh giá</span>
+    <p>Phân tích tập khách mà nhóm NV Booking cao đang chăm sóc. Tìm đặc điểm chung: khách mới hay cũ, tần suất quay lại, có phải khách thân thiết, nhóm dịch vụ sử dụng, giá trị hóa đơn, thời gian từ lần dùng gần nhất, nguồn khách, độ tuổi, hành vi đặt lịch (chủ động đặt/được gọi/được nhắn/được Skinner giới thiệu).</p>
+    <p>Mục tiêu: loại bỏ khả năng tỷ lệ Booking cao chỉ vì đang chăm một tập khách "dễ Booking" hơn những người khác.</p>
   </div>
+  <div class="section-title gray" style="font-size:.9rem">Phương pháp</div>
+  <div class="prose-box">
+    <p>So sánh đặc điểm khách (theo dữ liệu <code>Pool_Callday_StatusHis</code>, kỳ 6-12/7) mà nhóm NV cao đang gọi (n=2.052 khách, từ 23 NV) với khách của nhóm còn lại (n=44.717 khách, từ ~393 NV). Với mỗi khách chỉ lấy 1 dòng dữ liệu gần nhất trong kỳ.</p>
+    <div class="callout gray" style="margin-top:10px">Dữ liệu hiện có <b>không</b> trả lời được: nhóm dịch vụ sử dụng, giá trị hóa đơn, nguồn khách, độ tuổi, hành vi đặt lịch cụ thể (chủ động/được gọi/nhắn/Skinner giới thiệu) — các trường này không có trong bảng call log đang dùng, cần bảng khách hàng/bill riêng để bổ sung nếu cần đào sâu tiếp.</div>
+  </div>
+
+  <div class="section-title amber" style="font-size:.9rem">Kết quả — Chỉ số hành vi quay lại salon</div>
   <div class="tbl-wrap"><table>
-    <tr><th>Chỉ số</th><th style="text-align:right">Nhóm NV cao (n=2.052)</th><th style="text-align:right">Nhóm còn lại (n=44.717)</th><th>Chênh lệch</th></tr>
-    <tr><td>Số lần đến TB (total_visits)</td><td style="text-align:right;font-weight:700;color:#166534">43.6</td><td style="text-align:right">31.8</td><td>Nhóm cao chăm khách "quen" hơn (+11,8 lần)</td></tr>
-    <tr><td>Số ngày từ lần đến gần nhất (TB)</td><td style="text-align:right;font-weight:700">38.1</td><td style="text-align:right">34.0</td><td>Tương đương, chênh lệch nhỏ</td></tr>
-    <tr><td>Khoảng cách trung bình giữa 2 lần đến (ngày)</td><td style="text-align:right;font-weight:700;color:#166534">45.8</td><td style="text-align:right">72.6</td><td>Khách nhóm cao quay lại nhanh hơn (-26,8 ngày)</td></tr>
-    <tr><td>% Khách "Thân thiết" (tag_mucnhiet)</td><td style="text-align:right">65.9%</td><td style="text-align:right;font-weight:700">86.3%</td><td>Nhóm cao chăm ÍT khách thân thiết hơn</td></tr>
-    <tr><td>% Khách "Lơ là" + "Bỏ quên"</td><td style="text-align:right;font-weight:700;color:#991b1b">28.6%</td><td style="text-align:right">9.4%</td><td>Nhóm cao chăm NHIỀU khách đã nhạt hơn (+19,2đ)</td></tr>
-    <tr><td>% nhóm QTT (khách quen, đến gần đây)</td><td style="text-align:right;font-weight:700">81.7%</td><td style="text-align:right">76.8%</td><td>Nhóm cao có tỷ trọng QTT cao hơn</td></tr>
+    <tr><th>Đặc điểm</th><th style="text-align:right">Nhóm NV cao<br><span class="def">n=2.052 khách</span></th><th style="text-align:right">Nhóm còn lại<br><span class="def">n=44.717 khách</span></th><th>Ý nghĩa</th></tr>
+    <tr><td><b>Số lần khách đã đến salon</b> <span class="def">(trung bình mỗi khách, tính đến hiện tại)</span></td>
+        <td style="text-align:right;font-weight:700;color:#166534">43.6 lần</td><td style="text-align:right">31.8 lần</td>
+        <td>Khách nhóm cao là khách "quen" lâu năm hơn (+11,8 lần)</td></tr>
+    <tr><td><b>Số ngày kể từ lần khách đến gần nhất</b> <span class="def">(tính đến ngày gọi, trung bình)</span></td>
+        <td style="text-align:right;font-weight:700">38.1 ngày</td><td style="text-align:right">34.0 ngày</td>
+        <td>Gần tương đương, chênh lệch nhỏ, không đáng kể</td></tr>
+    <tr><td><b>Khoảng cách trung bình giữa 2 lần khách đến salon</b> <span class="def">(chu kỳ quay lại thông thường của khách, trung bình)</span></td>
+        <td style="text-align:right;font-weight:700;color:#166534">45.8 ngày</td><td style="text-align:right">72.6 ngày</td>
+        <td>Khách nhóm cao có chu kỳ quay lại nhanh hơn hẳn (-26,8 ngày) → khách trung thành/năng đến hơn</td></tr>
   </table></div>
+
+  <div class="section-title amber" style="font-size:.9rem">Kết quả — Mức độ "thân thiết" của khách <span class="def" style="font-size:.85rem">(tag_mucnhiet — phân loại có sẵn dựa trên tần suất & mức độ đều đặn ghé salon)</span></div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Nhóm thân thiết</th><th>Định nghĩa</th><th style="text-align:right">Nhóm NV cao</th><th style="text-align:right">Nhóm còn lại</th></tr>
+    <tr><td><b>Thân thiết</b></td><td class="def">Khách gắn bó, ghé đều đặn</td><td style="text-align:right">65.9%</td><td style="text-align:right;font-weight:700;color:#166534">86.3%</td></tr>
+    <tr><td><b>Lơ là</b></td><td class="def">Khách bắt đầu thưa dần</td><td style="text-align:right;font-weight:700;color:#991b1b">22.5%</td><td style="text-align:right">6.9%</td></tr>
+    <tr><td><b>Vô tâm</b></td><td class="def">Khách ít gắn bó</td><td style="text-align:right">5.6%</td><td style="text-align:right">4.3%</td></tr>
+    <tr><td><b>Bỏ quên</b></td><td class="def">Khách đã lâu không quay lại</td><td style="text-align:right;font-weight:700;color:#991b1b">6.1%</td><td style="text-align:right">2.5%</td></tr>
+  </table></div>
+
+  <div class="section-title amber" style="font-size:.9rem">Kết quả — Phân nhóm khách quen <span class="def" style="font-size:.85rem">(tag_segment — theo số lần đến × khoảng cách ngày tính từ bill trước)</span></div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Nhóm</th><th>Định nghĩa</th><th style="text-align:right">Nhóm NV cao</th><th style="text-align:right">Nhóm còn lại</th></tr>
+    <tr><td><b>QTT</b></td><td class="def">Đến ≥6 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right;font-weight:700">81.7%</td><td style="text-align:right">76.8%</td></tr>
+    <tr><td><b>MQTT</b></td><td class="def">Đến 3-5 lần, trong vòng 0-56 ngày từ bill trước</td><td style="text-align:right">4.9%</td><td style="text-align:right;font-weight:700">10.7%</td></tr>
+    <tr><td><b>QBQ</b></td><td class="def">Đến ≥6 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right;font-weight:700">10.7%</td><td style="text-align:right">9.2%</td></tr>
+    <tr><td><b>MQBQ</b></td><td class="def">Đến 3-5 lần, trong vòng 57-84 ngày từ bill trước</td><td style="text-align:right">2.7%</td><td style="text-align:right">3.4%</td></tr>
+  </table></div>
+  <div class="legend">Không thấy nhóm F2TT/F2BQ (khách mới đến 2 lần) trong bảng dữ liệu này ở cả 2 nhóm — có thể khách 2-lần nằm ở 1 pool riêng chưa được đưa vào bảng call log đang dùng, chưa xác nhận được lý do.</div>
+
   <div class="callout blue">
-    <strong>Ngược với giả thuyết "khách dễ":</strong> khách của nhóm NV rate cao có tỷ lệ "Lơ là/Bỏ quên" (khách đã nhạt) cao hơn hẳn nhóm còn lại (28,6% vs 9,4%) — tức họ đang chăm tập khách khó hơn về mặt cảm xúc, không phải được giao sẵn khách dễ chốt. Đồng thời khách quay lại nhanh hơn khi được nhóm này chăm (avg_gap_days 45,8 so với 72,6 ngày) và số lần đến trung bình cao hơn — gợi ý rate cao đến từ năng lực chăm sóc thực sự, không phải may mắn về tập khách.
+    <strong>Ngược với giả thuyết "khách dễ":</strong> khách của nhóm NV cao có tỷ lệ "Lơ là + Bỏ quên" (khách đã nhạt) cao hơn hẳn nhóm còn lại (28,6% vs 9,4% cộng gộp) — tức họ đang chăm tập khách khó hơn về mặt cảm xúc, không phải được giao sẵn khách dễ chốt. Đồng thời khách quay lại nhanh hơn khi được nhóm này chăm (chu kỳ 45,8 so với 72,6 ngày) và số lần đến trung bình cao hơn hẳn — gợi ý rate cao đến từ năng lực chăm sóc thực sự, không phải may mắn về tập khách.
     <p style="margin-top:8px">Lưu ý: <code>tag_mucnhiet</code>/<code>tag_segment</code> là phân loại tĩnh theo lịch sử đến salon (độc lập với log cuộc gọi), đáng tin hơn field StatusCall đã nêu ở PT1, nhưng chưa đối chiếu chéo với nguồn dữ liệu thứ 2 nào khác.</p>
+    <p style="margin-top:8px">Một yếu tố khác cần cân nhắc song song: ở PT1 đã thấy nhóm NV cao được phân vào <code>call_priority_group</code> mức ưu tiên cao nhiều hơn một chút (86,6% vs 83,7%) — nghĩa là hệ thống/quy trình có thể đang ưu tiên giao nhóm khách "đáng gọi hơn" cho nhóm NV này ở một mức độ nhỏ, cần cân nhắc khi đánh giá thuần năng lực cá nhân.</p>
   </div>
 </div>
 
