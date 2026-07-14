@@ -247,7 +247,7 @@ function buildTab1(){
     <div class="kpi" style="border-color:${kpiColor}">
       <div class="lbl">Book Rate TB hệ thống</div>
       <div class="val" style="color:${kpiColor}">${pct(a.avg)}</div>
-      <div class="sub">Mục tiêu: ${pct(META.bk_target)} · đạt ${(a.pctOfTarget*100).toFixed(0)}%</div>
+      <div class="sub">Mục tiêu: ${pct(META.bk_target)} · đạt ${(a.pctOfTarget*100).toFixed(0)}% ${arrowSpan(a.avg,a.avgPrv)}</div>
     </div>
     <div class="kpi" style="border-color:#ef4444">
       <div class="lbl">Còn cách mục tiêu</div>
