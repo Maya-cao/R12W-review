@@ -98,6 +98,7 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
   .header{background:linear-gradient(135deg,#0f172a,#1e293b)}
   .filter-bar{background:#1e293b;border-color:#334155}
   .filter-bar select{background:#0f172a;color:#e2e8f0;border-color:#475569}
+  .filter-bar .fb-div{background:#475569}
   .prose-box,.kpi,.rank-tbl,.rcard,.salon-grid > div{background:#1e293b}
   .rank-tbl th,.stbl th{background:#0f172a;color:#94a3b8}
   .rank-tbl td,.stbl td{border-color:#334155}
@@ -135,26 +136,51 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
     <option value="all">Tất cả GĐKV</option>
     <option value="Đoàn Trung Đức">Đoàn Trung Đức</option><option value="Nguyễn Thanh Sang">Nguyễn Thanh Sang</option><option value="Nguyễn Như Quỳnh">Nguyễn Như Quỳnh</option><option value="Trịnh Văn Quang">Trịnh Văn Quang</option><option value="Nguyễn Thị Huệ">Nguyễn Thị Huệ</option><option value="Nguyễn Việt Cường">Nguyễn Việt Cường</option><option value="Phan Thị Hồng Gấm">Phan Thị Hồng Gấm</option><option value="Tống Xuân Quyền">Tống Xuân Quyền</option>
   </select>
+  <div class="fb-div" style="width:1px;height:18px;background:#cbd5e1;margin:0 4px"></div>
+  <label>Kỳ báo cáo</label>
+  <select id="pf" onchange="navigatePeriod()" style="min-width:140px">
+    <option value="">Đang tải…</option>
+  </select>
 </div>
 
 <div id="t1" class="tab-content active"><div class="container" id="c1"></div></div>
 <div id="t2" class="tab-content"><div class="container" id="c2"></div></div>
 <div id="t3" class="tab-content"><div class="container" id="c3"></div></div>
-<div id="t4" class="tab-content"><div class="container">
-  <div style="background:#fff;border-radius:10px;padding:40px;text-align:center;color:#94a3b8;box-shadow:0 1px 3px rgba(0,0,0,.06)">
-    <div style="font-size:2rem;margin-bottom:12px">👤</div>
-    <h3 style="color:#64748b;margin-bottom:8px">Book Rate theo Nhân viên</h3>
-    <p style="font-size:.86rem;line-height:1.7">Cần file dữ liệu NV-level.<br>GĐKV đang xác nhận nguồn data — sẽ cập nhật sớm.</p>
-  </div>
-</div></div>
+<div id="t4" class="tab-content"><div class="container" id="c4"></div></div>
 
 <script>
 const RD = [{"rsm": "Đoàn Trung Đức", "short": "Đức", "color": "#f97316", "bk_cur": 0.14333646490403973, "bk_prv": 0.14052369077306734, "salons": [{"name": "382 NT", "rate": 0.1869983948635634, "book": 233.0, "pool": 3779.0}, {"name": "116 TK", "rate": 0.16077865897620763, "book": 223.0, "pool": 3592.0}, {"name": "55A NVL", "rate": 0.1523809523809524, "book": 160.0, "pool": 1509.0}, {"name": "109 TQH", "rate": 0.12978986402966625, "book": 105.0, "pool": 3069.0}, {"name": "90 NH", "rate": 0.12144053601340034, "book": 145.0, "pool": 1605.0}, {"name": "62 LH", "rate": 0.12018140589569161, "book": 106.0, "pool": 1235.0}, {"name": "65 CD", "rate": 0.1087202718006795, "book": 96.0, "pool": 1249.0}], "pool": 16038.0, "book": 1068.0}, {"rsm": "Nguyễn Thanh Sang", "short": "Sang", "color": "#f59e0b", "bk_cur": 0.14023754948947698, "bk_prv": 0.15065502183406113, "salons": [{"name": "575 AC", "rate": 0.20899470899470898, "book": 79.0, "pool": 2589.0}, {"name": "8 CVL", "rate": 0.20625, "book": 165.0, "pool": 3216.0}, {"name": "312 LVS", "rate": 0.1372854914196568, "book": 88.0, "pool": 3639.0}, {"name": "145 THT", "rate": 0.13524590163934427, "book": 33.0, "pool": 4687.0}, {"name": "99 TSN", "rate": 0.1347517730496454, "book": 95.0, "pool": 3712.0}, {"name": "708 LTT", "rate": 0.12962962962962962, "book": 14.0, "pool": 1603.0}, {"name": "730 TL10", "rate": 0.11699779249448124, "book": 159.0, "pool": 3328.0}, {"name": "927 HG", "rate": 0.08108108108108109, "book": 36.0, "pool": 3854.0}, {"name": "190 HB", "rate": 0.03333333333333333, "book": 4.0, "pool": 2182.0}], "pool": 28810.0, "book": 673.0}, {"rsm": "Nguyễn Như Quỳnh", "short": "Quỳnh", "color": "#6366f1", "bk_cur": 0.12031408308004053, "bk_prv": 0.11867977528089887, "salons": [{"name": "362 NGT BN", "rate": 0.13040671400903808, "book": 202.0, "pool": 2788.0}, {"name": "10 TP", "rate": 0.12688614540466392, "book": 185.0, "pool": 2230.0}, {"name": "4 LQD BN", "rate": 0.1257995735607676, "book": 59.0, "pool": 702.0}, {"name": "168 NVC", "rate": 0.12428977272727272, "book": 350.0, "pool": 3221.0}, {"name": "11 PKT", "rate": 0.0963302752293578, "book": 105.0, "pool": 1326.0}, {"name": "186 QT", "rate": 0.09533073929961089, "book": 49.0, "pool": 714.0}], "pool": 10981.0, "book": 950.0}, {"rsm": "Trịnh Văn Quang", "short": "Quang", "color": "#10b981", "bk_cur": 0.11660468168890833, "bk_prv": 0.1177186929165821, "salons": [{"name": "12 LDT", "rate": 0.19652173913043477, "book": 113.0, "pool": 2437.0}, {"name": "483 TN", "rate": 0.12448979591836734, "book": 122.0, "pool": 2205.0}, {"name": "32 NAT", "rate": 0.12272727272727273, "book": 54.0, "pool": 1314.0}, {"name": "1180 QT", "rate": 0.10977443609022557, "book": 146.0, "pool": 1941.0}, {"name": "76 PVH", "rate": 0.07865168539325842, "book": 98.0, "pool": 1697.0}], "pool": 9594.0, "book": 533.0}, {"rsm": "Nguyễn Thị Huệ", "short": "Huệ", "color": "#ef4444", "bk_cur": 0.11441647597254005, "bk_prv": 0.10517970401691332, "salons": [{"name": "595 BT TH", "rate": 0.13227513227513227, "book": 50.0, "pool": 783.0}, {"name": "290 QT TH", "rate": 0.12756598240469208, "book": 87.0, "pool": 893.0}, {"name": "80 TP TH", "rate": 0.116, "book": 87.0, "pool": 1120.0}, {"name": "58 NVC NA", "rate": 0.11220043572984749, "book": 103.0, "pool": 1108.0}, {"name": "304 NT TH", "rate": 0.09797297297297297, "book": 29.0, "pool": 788.0}, {"name": "68 LN NA", "rate": 0.09322033898305085, "book": 44.0, "pool": 875.0}], "pool": 5567.0, "book": 400.0}, {"rsm": "Nguyễn Việt Cường", "short": "Cường", "color": "#06b6d4", "bk_cur": 0.11102895871842268, "bk_prv": 0.11640414905877833, "salons": [{"name": "103 TN", "rate": 0.1736470588235294, "book": 369.0, "pool": 5468.0}, {"name": "401/1 NDT", "rate": 0.14343434343434344, "book": 71.0, "pool": 1633.0}, {"name": "1146 KVC", "rate": 0.14285714285714285, "book": 58.0, "pool": 1391.0}, {"name": "29 HB", "rate": 0.08993288590604027, "book": 134.0, "pool": 2533.0}, {"name": "36 N1 BD", "rate": 0.0892018779342723, "book": 57.0, "pool": 1358.0}, {"name": "1371 PVT", "rate": 0.08846761453396525, "book": 56.0, "pool": 1495.0}, {"name": "80 PL BD", "rate": 0.07857733664185278, "book": 95.0, "pool": 2332.0}, {"name": "255 NAN", "rate": 0.0546875, "book": 42.0, "pool": 2389.0}, {"name": "451 PVT", "rate": 0.054285714285714284, "book": 19.0, "pool": 1044.0}], "pool": 19643.0, "book": 901.0}, {"rsm": "Phan Thị Hồng Gấm", "short": "Gấm", "color": "#ec4899", "bk_cur": 0.10197075651621106, "bk_prv": 0.10213259828811838, "salons": [{"name": "173 TN", "rate": 0.13122171945701358, "book": 87.0, "pool": 1862.0}, {"name": "39 HBT", "rate": 0.1246031746031746, "book": 157.0, "pool": 1774.0}, {"name": "50BT4 NPC LD", "rate": 0.11694915254237288, "book": 138.0, "pool": 2561.0}, {"name": "264 LLQ", "rate": 0.10814249363867684, "book": 85.0, "pool": 1830.0}, {"name": "346 KT", "rate": 0.10170870626525631, "book": 125.0, "pool": 1592.0}, {"name": "202 DC", "rate": 0.08040665434380777, "book": 87.0, "pool": 2203.0}, {"name": "363 LNQ TN", "rate": 0.07705192629815745, "book": 92.0, "pool": 1456.0}, {"name": "148 TD", "rate": 0.06581740976645435, "book": 31.0, "pool": 1209.0}], "pool": 14487.0, "book": 802.0}, {"rsm": "Tống Xuân Quyền", "short": "Quyền", "color": "#8b5cf6", "bk_cur": 0.09145750296240439, "bk_prv": 0.08547199285873688, "salons": [{"name": "186 DTH", "rate": 0.13354531001589826, "book": 252.0, "pool": 2700.0}, {"name": "236 DBT", "rate": 0.10539845758354756, "book": 82.0, "pool": 2728.0}, {"name": "237 NTT", "rate": 0.09655172413793103, "book": 112.0, "pool": 4710.0}, {"name": "420 HTP", "rate": 0.08109360518999073, "book": 175.0, "pool": 3728.0}, {"name": "25 TD", "rate": 0.07515657620041753, "book": 108.0, "pool": 2951.0}, {"name": "7 DTP LA", "rate": 0.06718346253229975, "book": 26.0, "pool": 1162.0}, {"name": "113 THD AG", "rate": 0.06483516483516484, "book": 59.0, "pool": 1021.0}, {"name": "341 XVNT", "rate": 0.061837455830388695, "book": 35.0, "pool": 1286.0}], "pool": 20286.0, "book": 849.0}];
 const META = {"period": "03–09/07/2026", "dd_end": 9, "dd_start": 3, "mm": 7, "bk_target": 0.65, "alert_low": 0.08};
 const PREV_LABEL = "kỳ 8/07";
-const HISTORY = [{"key": "0707", "label": "1–7/07", "sys_avg": 0.12565195564737655, "regions": {"Nguyễn Như Quỳnh": 0.11976764052622586, "Nguyễn Việt Cường": 0.13123287671232878, "Tống Xuân Quyền": 0.09410056750692887, "Đoàn Trung Đức": 0.15061425061425063, "Nguyễn Thị Huệ": 0.10072951739618406, "Trịnh Văn Quang": 0.13658536585365855, "Nguyễn Thanh Sang": 0.16496291842052516, "Phan Thị Hồng Gấm": 0.10722250814891061}}, {"key": "0807", "label": "2–8/07", "sys_avg": 0.11709570312839454, "regions": {"Nguyễn Như Quỳnh": 0.11867977528089887, "Nguyễn Việt Cường": 0.11640414905877833, "Tống Xuân Quyền": 0.08547199285873688, "Đoàn Trung Đức": 0.14052369077306734, "Nguyễn Thị Huệ": 0.10517970401691332, "Trịnh Văn Quang": 0.1177186929165821, "Nguyễn Thanh Sang": 0.15065502183406113, "Phan Thị Hồng Gấm": 0.10213259828811838}}, {"key": "0907", "label": "3–9/07", "sys_avg": 0.11742080916650546, "regions": {"Nguyễn Như Quỳnh": 0.12031408308004053, "Nguyễn Việt Cường": 0.11102895871842268, "Tống Xuân Quyền": 0.09145750296240439, "Đoàn Trung Đức": 0.14333646490403973, "Nguyễn Thị Huệ": 0.11441647597254005, "Trịnh Văn Quang": 0.11660468168890833, "Nguyễn Thanh Sang": 0.14023754948947698, "Phan Thị Hồng Gấm": 0.10197075651621106}}];
+const HISTORY = [{"key": "0707", "label": "1–7/07", "sys_avg": 0.12565195564737655, "regions": {"Nguyễn Như Quỳnh": 0.11976764052622586, "Nguyễn Việt Cường": 0.13123287671232878, "Tống Xuân Quyền": 0.09410056750692887, "Đoàn Trung Đức": 0.15061425061425063, "Nguyễn Thị Huệ": 0.10072951739618406, "Trịnh Văn Quang": 0.13658536585365855, "Nguyễn Thanh Sang": 0.16496291842052516, "Phan Thị Hồng Gấm": 0.10722250814891061}}, {"key": "0807", "label": "2–8/07", "sys_avg": 0.11709570312839454, "regions": {"Nguyễn Như Quỳnh": 0.11867977528089887, "Nguyễn Việt Cường": 0.11640414905877833, "Tống Xuân Quyền": 0.08547199285873688, "Đoàn Trung Đức": 0.14052369077306734, "Nguyễn Thị Huệ": 0.10517970401691332, "Trịnh Văn Quang": 0.1177186929165821, "Nguyễn Thanh Sang": 0.15065502183406113, "Phan Thị Hồng Gấm": 0.10213259828811838}}, {"key": "0907", "label": "3–9/07", "sys_avg": 0.11742080916650546, "regions": {"Nguyễn Như Quỳnh": 0.12031408308004053, "Nguyễn Việt Cường": 0.11102895871842268, "Tống Xuân Quyền": 0.09145750296240439, "Đoàn Trung Đức": 0.14333646490403973, "Nguyễn Thị Huệ": 0.11441647597254005, "Trịnh Văn Quang": 0.11660468168890833, "Nguyễn Thanh Sang": 0.14023754948947698, "Phan Thị Hồng Gấm": 0.10197075651621106}}, {"key": "1007", "label": "4–10/07", "sys_avg": 0.12390237762453478, "regions": {"Nguyễn Như Quỳnh": 0.1296652558676414, "Nguyễn Việt Cường": 0.11894220414024172, "Tống Xuân Quyền": 0.10238276574910238, "Đoàn Trung Đức": 0.15138498000296252, "Nguyễn Thị Huệ": 0.10306153379812064, "Trịnh Văn Quang": 0.11316113161131611, "Nguyễn Thanh Sang": 0.15742937243907698, "Phan Thị Hồng Gấm": 0.1151917773878165}}, {"key": "1207", "label": "6–12/07", "sys_avg": 0.12798435137845526, "regions": {"Nguyễn Như Quỳnh": 0.10986145069274654, "Nguyễn Việt Cường": 0.11676286676286676, "Tống Xuân Quyền": 0.12163755224520416, "Đoàn Trung Đức": 0.15347274085138163, "Nguyễn Thị Huệ": 0.11536893599673868, "Trịnh Văn Quang": 0.10006877579092159, "Nguyễn Thanh Sang": 0.16459276018099547, "Phan Thị Hồng Gấm": 0.14210972850678733}}, {"key": "1307", "label": "7–13/07", "sys_avg": 0.11544506779867367, "regions": {"Nguyễn Như Quỳnh": 0.10670731707317073, "Nguyễn Việt Cường": 0.10158966716343766, "Tống Xuân Quyền": 0.1033001808318264, "Đoàn Trung Đức": 0.14776632302405499, "Nguyễn Thị Huệ": 0.09090909090909091, "Trịnh Văn Quang": 0.09891485809682804, "Nguyễn Thanh Sang": 0.14425051334702257, "Phan Thị Hồng Gấm": 0.13012259194395798}}, {"key": "1407", "label": "8–14/07", "sys_avg": 0.1071563817175317, "regions": {"Nguyễn Như Quỳnh": 0.10385465259022833, "Nguyễn Việt Cường": 0.10127253446447508, "Tống Xuân Quyền": 0.08748587925191414, "Đoàn Trung Đức": 0.14035087719298245, "Nguyễn Thị Huệ": 0.09090909090909091, "Trịnh Văn Quang": 0.0934203917629332, "Nguyễn Thanh Sang": 0.12622789783889982, "Phan Thị Hồng Gấm": 0.11372972972972974}}];
+const NV_DATA = [];
+const CURRENT_FILE = 'R12W_BookRate_0309072026.html';
 
 function pct(v,d=1){ return v==null?'—':(v*100).toFixed(d)+'%'; }
+
+// Period selector — fetch manifest and populate dropdown
+(function(){
+  const sel = document.getElementById('pf');
+  fetch('manifest.json?t='+Date.now())
+    .then(r=>r.json())
+    .then(list=>{
+      sel.innerHTML = '';
+      list.forEach(function(r){
+        const o = document.createElement('option');
+        o.value = r.file;
+        o.textContent = 'Kỳ ' + r.label;
+        if(r.file === CURRENT_FILE) o.selected = true;
+        sel.appendChild(o);
+      });
+    })
+    .catch(function(){
+      sel.innerHTML = '<option value="">Không tải được</option>';
+    });
+})();
+function navigatePeriod(){
+  const v = document.getElementById('pf').value;
+  if(v && v !== CURRENT_FILE) window.location.href = v;
+}
 function fmt(v){ return v==null?'—':Math.round(v).toLocaleString('vi'); }
 
 function bkColor(r){
@@ -162,6 +188,14 @@ function bkColor(r){
   if(r>=META.bk_target) return '#22c55e';
   if(r>=0.12) return '#f59e0b';
   return '#ef4444';
+}
+
+function bkNVColor(r){
+  if(r==null) return '#94a3b8';
+  if(r>=0.25) return '#22c55e';
+  if(r>=0.15) return '#f59e0b';
+  if(r>0) return '#ef4444';
+  return '#94a3b8';
 }
 
 function arrowSpan(cur,prv){
@@ -244,7 +278,7 @@ function buildTab1(){
     <div class="kpi" style="border-color:${kpiColor}">
       <div class="lbl">Book Rate TB hệ thống</div>
       <div class="val" style="color:${kpiColor}">${pct(a.avg)}</div>
-      <div class="sub">Mục tiêu: ${pct(META.bk_target)} · đạt ${(a.pctOfTarget*100).toFixed(0)}%</div>
+      <div class="sub">Mục tiêu: ${pct(META.bk_target)} · đạt ${(a.pctOfTarget*100).toFixed(0)}% ${arrowSpan(a.avg,a.avgPrv)}</div>
     </div>
     <div class="kpi" style="border-color:#ef4444">
       <div class="lbl">Còn cách mục tiêu</div>
@@ -740,6 +774,596 @@ window.toggleSeries = function(label){
 };
 
 // ══════════════════════════════════════════════════════
+//  TAB 4 — NHÂN VIÊN
+// ══════════════════════════════════════════════════════
+function buildTab4(){
+  const sel = document.getElementById('gf').value;
+  const nvs = NV_DATA.filter(n => sel === 'all' || n.gdkv === sel);
+  const c = document.getElementById('c4');
+  if(!nvs.length){
+    c.innerHTML = '<div class="prose-box"><p>Không có dữ liệu nhân viên cho kỳ này.</p></div>';
+    return;
+  }
+  nvs.sort((a,b) => (b.rate ?? -1) - (a.rate ?? -1));
+
+  const totalCalled = nvs.reduce((s,n) => s + n.called, 0);
+  const totalBooked = nvs.reduce((s,n) => s + n.booked, 0);
+  const avgRate = totalCalled > 0 ? totalBooked / totalCalled : 0;
+  const nvNoCalls  = nvs.filter(n => n.called === 0);
+  const nvZeroBook = nvs.filter(n => n.called > 0 && n.booked === 0);
+  const nvHighBook = nvs.filter(n => n.rate != null && n.rate > 0.5);
+
+  const POS_COLOR = {'Trưởng salon (SM)':'#22c55e','Chuyên viên tư vấn':'#f59e0b','Stylist':'#06b6d4','Skinner':'#8b5cf6'};
+  const posStat = {};
+  nvs.forEach(n => {
+    if(!posStat[n.pos]) posStat[n.pos] = {called:0,booked:0,count:0};
+    posStat[n.pos].called += n.called;
+    posStat[n.pos].booked += n.booked;
+    posStat[n.pos].count++;
+  });
+
+  let html = '';
+  const alertCount = nvNoCalls.length + nvZeroBook.length;
+  const kpiColor = bkNVColor(avgRate);
+
+  // ── Pre-compute analysis stats ─────────────────────────────────────────
+  // Distribution buckets
+  const distBkts = [
+    {l:'Chưa gọi / 0%', fn:n=>n.called===0||n.booked===0},
+    {l:'1–10%',         fn:n=>n.rate!=null&&n.rate>0&&n.rate<0.10},
+    {l:'10–15%',        fn:n=>n.rate!=null&&n.rate>=0.10&&n.rate<0.15},
+    {l:'15–20%',        fn:n=>n.rate!=null&&n.rate>=0.15&&n.rate<0.20},
+    {l:'20–25%',        fn:n=>n.rate!=null&&n.rate>=0.20&&n.rate<0.25},
+    {l:'25–30%',        fn:n=>n.rate!=null&&n.rate>=0.25&&n.rate<0.30},
+    {l:'>30%',          fn:n=>n.rate!=null&&n.rate>=0.30},
+  ];
+  distBkts.forEach(b=>{ b.cnt=nvs.filter(b.fn).length; });
+  const nvAboveTarget = nvs.filter(n=>n.rate!=null&&n.rate>=0.25).length;
+  const distBiggest   = distBkts.filter(b=>b.cnt>0).reduce((a,b2)=>b2.cnt>a.cnt?b2:a, distBkts[0]);
+
+  // Position stats (system-wide, always NV_DATA)
+  const posAgg={};
+  NV_DATA.forEach(n=>{
+    if(!posAgg[n.pos]) posAgg[n.pos]={called:0,booked:0,count:0};
+    posAgg[n.pos].called+=n.called; posAgg[n.pos].booked+=n.booked; posAgg[n.pos].count++;
+  });
+  const posRanked = Object.keys(posAgg).map(p=>{
+    const d=posAgg[p]; return {pos:p, r:d.called>0?d.booked/d.called:0, cnt:d.count};
+  }).sort((a,b2)=>b2.r-a.r);
+  const posTopObj = posRanked[0]||null;
+  const posBotObj = posRanked[posRanked.length-1]||null;
+
+  // Call-volume stats (filtered by GĐKV selection)
+  const cvBkts=[{l:'< 30',mn:1,mx:30},{l:'30–100',mn:30,mx:100},{l:'100–200',mn:100,mx:200},{l:'200–400',mn:200,mx:400},{l:'> 400',mn:400,mx:1e9}];
+  const cvvld=nvs.filter(n=>n.called>0&&n.rate!=null);
+  cvBkts.forEach(b=>{
+    const g=cvvld.filter(n=>n.called>=b.mn&&n.called<b.mx);
+    const tC=g.reduce((s,n)=>s+n.called,0), tB=g.reduce((s,n)=>s+n.booked,0);
+    b.cnt=g.length; b.r=tC>0?tB/tC:null;
+  });
+  const cvHasR   = cvBkts.filter(b=>b.r!=null&&b.cnt>0);
+  const cvBest   = cvHasR.length?cvHasR.reduce((a,b2)=>b2.r>a.r?b2:a):null;
+  const cvBig    = cvBkts.filter(b=>b.cnt>0).reduce((a,b2)=>b2.cnt>a.cnt?b2:a, cvBkts[0]);
+  const cvUpTrend= cvHasR.length>=2 && cvHasR[cvHasR.length-1].r > cvHasR[0].r;
+
+  // KPI row
+  html += '<div class="kpi-row">'
+    + '<div class="kpi" style="border-color:#6366f1"><div class="lbl">Tổng nhân viên</div>'
+    + '<div class="val">' + nvs.length + '</div>'
+    + '<div class="sub">Đã gọi: ' + nvs.filter(n=>n.called>0).length + ' NV</div></div>'
+    + '<div class="kpi" style="border-color:#06b6d4"><div class="lbl">Tổng cuộc gọi</div>'
+    + '<div class="val">' + totalCalled.toLocaleString('vi') + '</div>'
+    + '<div class="sub">Đã book: ' + totalBooked.toLocaleString('vi') + '</div></div>'
+    + '<div class="kpi" style="border-color:' + kpiColor + '"><div class="lbl">Book Rate TB (NV)</div>'
+    + '<div class="val" style="color:' + kpiColor + '">' + pct(avgRate) + '</div>'
+    + '<div class="sub">Tính trên tổng gọi / book</div></div>'
+    + '<div class="kpi" style="border-color:#ef4444"><div class="lbl">Cần chú ý</div>'
+    + '<div class="val" style="color:#ef4444">' + alertCount + ' NV</div>'
+    + '<div class="sub">Book 0%: ' + nvZeroBook.length + ' · Chưa gọi: ' + nvNoCalls.length + '</div></div>'
+    + '</div>';
+
+  // Alerts
+  if(alertCount > 0 || nvHighBook.length > 0){
+    html += '<div class="section-title red">⚠️ Điểm cần kiểm tra</div>';
+    if(nvNoCalls.length){
+      const names = nvNoCalls.map(n => '<strong>' + n.name + '</strong> (' + n.salon + ')').join(', ');
+      html += '<div class="callout red">🚫 <strong>' + nvNoCalls.length + ' NV chưa gọi khách nào:</strong> ' + names + '</div>';
+    }
+    if(nvZeroBook.length){
+      const names = nvZeroBook.map(n => '<strong>' + n.name + '</strong> (' + n.salon + ', ' + n.called.toLocaleString('vi') + ' cuộc)').join(', ');
+      html += '<div class="callout red">📵 <strong>' + nvZeroBook.length + ' NV đã gọi nhưng book rate = 0%:</strong> ' + names + '</div>';
+    }
+    if(nvHighBook.length){
+      const names = nvHighBook.map(n => '<strong>' + n.name + '</strong> (' + n.salon + ', ' + pct(n.rate) + ')').join(', ');
+      html += '<div class="callout blue">🔍 <strong>' + nvHighBook.length + ' NV book rate > 50%</strong> — cần xác nhận nhập liệu đúng: ' + names + '</div>';
+    }
+  }
+
+  // Distribution chart canvas
+  html += '<div class="section-title">📊 Phân bổ NV theo dải Book Rate</div>';
+  html += '<canvas id="nv-dist-ch" width="760" height="210" style="width:100%;max-width:760px;display:block;margin-bottom:10px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  html += '<div class="prose-box" style="margin-bottom:16px"><p>'
+    + 'Nhóm đông nhất: <strong>' + distBiggest.l + '</strong> (' + distBiggest.cnt + ' NV). '
+    + 'Chỉ <strong>' + nvAboveTarget + '/' + nvs.length + ' NV</strong> (' + pct(nvAboveTarget/nvs.length,0) + ') đạt ≥ 25%. '
+    + (alertCount > 0
+        ? '<strong style="color:#ef4444">' + alertCount + ' NV book = 0% hoặc chưa gọi</strong> — cần kiểm tra ngay.'
+        : 'Không có NV nào book = 0%.')
+    + '</p></div>';
+
+  // Position breakdown
+  const posOrder = ['Trưởng salon (SM)', 'Chuyên viên tư vấn', 'Stylist', 'Skinner'];
+  html += '<div class="section-title">👔 Book rate theo vị trí</div>';
+  html += '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">';
+  posOrder.forEach(pos => {
+    const p = posStat[pos];
+    if(!p) return;
+    const r = p.called > 0 ? p.booked / p.called : 0;
+    const pc2 = POS_COLOR[pos] || '#888';
+    html += '<div style="background:#fff;border-radius:10px;padding:12px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid ' + pc2 + ';min-width:150px">'
+      + '<div style="font-size:.72rem;font-weight:600;color:#64748b">' + pos + '</div>'
+      + '<div style="font-size:1.3rem;font-weight:800;color:' + bkNVColor(r) + '">' + pct(r) + '</div>'
+      + '<div style="font-size:.76rem;color:#94a3b8">' + p.count + ' NV · ' + p.booked.toLocaleString('vi') + ' book</div>'
+      + '</div>';
+  });
+  html += '</div>';
+
+  // Combo 1: book rate theo vị trí × GĐKV
+  html += '<div class="section-title">📊 Book Rate theo Vị trí × GĐKV</div>';
+  html += '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px">'
+    + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b"><div style="width:10px;height:10px;border-radius:2px;background:#22c55e"></div>SM</div>'
+    + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b"><div style="width:10px;height:10px;border-radius:2px;background:#f59e0b"></div>Tư vấn</div>'
+    + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b"><div style="width:10px;height:10px;border-radius:2px;background:#06b6d4"></div>Stylist</div>'
+    + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b"><div style="width:10px;height:10px;border-radius:2px;background:#8b5cf6"></div>Skinner</div>'
+    + '<div style="display:flex;align-items:center;gap:5px;font-size:.78rem;color:#64748b;margin-left:8px"><div style="width:20px;height:2px;background:#1e293b;opacity:.5"></div>TB vùng</div>'
+    + '</div>';
+  html += '<canvas id="nv-pos-ch" width="760" height="260" style="width:100%;max-width:760px;display:block;margin-bottom:10px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  if(posTopObj && posBotObj) {
+    const posGap = posTopObj.r - posBotObj.r;
+    html += '<div class="prose-box" style="margin-bottom:16px"><p>'
+      + '<strong>' + posTopObj.pos + '</strong> dẫn đầu với book rate <strong>' + pct(posTopObj.r) + '</strong>'
+      + (posGap > 0.01
+          ? ', cao hơn <strong>' + posBotObj.pos + '</strong> (' + pct(posBotObj.r) + ') tới <strong>' + pct(posGap) + '</strong>.'
+          : '.')
+      + ' Đây là vị trí được đào tạo chuyên về tư vấn — hiệu quả book cao hơn là kỳ vọng. '
+      + 'Đường đen thể hiện book rate trung bình toàn vùng; vùng nào có cột cao hơn đường = hiệu quả trên mức trung bình.'
+      + '</p></div>';
+  }
+
+  // Combo 2: nhóm số gọi vs book rate
+  html += '<div class="section-title">📞 Gọi nhiều có book tốt hơn không?</div>';
+  html += '<div style="font-size:.78rem;color:#94a3b8;margin-bottom:10px">Book rate trung bình của NV theo số cuộc gọi đã thực hiện trong kỳ · số NV trong mỗi nhóm ghi bên dưới</div>';
+  html += '<canvas id="nv-call-ch" width="760" height="200" style="width:100%;max-width:760px;display:block;margin-bottom:10px;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)"></canvas>';
+  if(cvBest && cvBig) {
+    html += '<div class="prose-box" style="margin-bottom:16px"><p>'
+      + 'Nhóm gọi <strong>' + cvBest.l + ' cuộc</strong> có book rate cao nhất (<strong>' + pct(cvBest.r) + '</strong>). '
+      + 'Đa số NV tập trung ở nhóm <strong>' + cvBig.l + ' cuộc</strong> (' + cvBig.cnt + ' NV). '
+      + (cvUpTrend
+          ? 'Book rate <strong>có xu hướng tăng theo số gọi</strong> — NV gọi nhiều hơn nhìn chung book hiệu quả hơn, nhưng chênh lệch không lớn.'
+          : 'Book rate <strong>không tăng rõ theo số gọi</strong> — chất lượng cuộc gọi và kỹ năng tư vấn quan trọng hơn số lượng.')
+      + '</p></div>';
+  }
+
+  // Ranking table
+  const showGDKV = sel === 'all';
+  const regionLabel = sel === 'all' ? 'Toàn hệ thống' : 'GĐKV ' + sel.split(' ').pop();
+  html += '<div class="section-title">🏆 Xếp hạng Nhân viên — ' + regionLabel + '</div>';
+  html += '<table class="rank-tbl"><thead><tr>'
+    + '<th>#</th><th>Nhân viên</th><th>Vị trí</th>'
+    + (showGDKV ? '<th>GĐKV</th>' : '')
+    + '<th>Salon</th><th>Số gọi</th><th>Book Rate</th>'
+    + '</tr></thead><tbody>';
+
+  nvs.forEach((n,i) => {
+    const bc   = bkNVColor(n.rate);
+    const fill = n.rate != null ? Math.min(n.rate / 0.30 * 100, 100).toFixed(0) : '0';
+    const pc2  = POS_COLOR[n.pos] || '#888';
+    const rowBg = (n.called === 0 || n.booked === 0) ? 'background:#fff5f5' : '';
+    const medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1);
+    html += '<tr style="' + rowBg + '">'
+      + '<td style="color:#94a3b8;width:32px;text-align:center">' + medal + '</td>'
+      + '<td style="font-weight:' + (i<3?'700':'400') + '">' + n.name + '</td>'
+      + '<td><span style="font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:8px;background:' + pc2 + '22;color:' + pc2 + '">' + n.pos + '</span></td>'
+      + (showGDKV ? '<td style="font-size:.78rem;color:#64748b">' + n.gdkv.split(' ').pop() + '</td>' : '')
+      + '<td style="font-size:.82rem;color:#64748b">' + n.salon + '</td>'
+      + '<td style="font-size:.82rem;color:#64748b">' + n.called.toLocaleString('vi') + '</td>'
+      + '<td><div class="bar-wrap"><div class="bar-bg" style="width:110px"><div class="bar-fill" style="width:' + fill + '%;background:' + bc + '"></div></div>'
+      + '<span class="bkv" style="color:' + bc + '">' + (n.rate!=null?pct(n.rate):'—') + '</span></div></td>'
+      + '</tr>';
+  });
+
+  html += '</tbody></table>';
+  c.innerHTML = html;
+  drawDistChart(document.getElementById('nv-dist-ch'), nvs);
+  drawPosComboChart(document.getElementById('nv-pos-ch'), NV_DATA);
+  drawCallComboChart(document.getElementById('nv-call-ch'), nvs);
+}
+
+// ══════════════════════════════════════════════════════
+//  CHARTS — NV Tab
+// ══════════════════════════════════════════════════════
+function drawDistChart(canvas, nvs){
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {top:28, right:20, bottom:46, left:44};
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,W,H);
+
+  const buckets = [
+    {label:'Chưa gọi / 0%',  color:'#ef4444', fn: n => n.called===0 || n.booked===0},
+    {label:'1–10%',            color:'#f97316', fn: n => n.rate!=null && n.rate>0    && n.rate<0.10},
+    {label:'10–15%',           color:'#f59e0b', fn: n => n.rate!=null && n.rate>=0.10 && n.rate<0.15},
+    {label:'15–20%',           color:'#eab308', fn: n => n.rate!=null && n.rate>=0.15 && n.rate<0.20},
+    {label:'20–25%',           color:'#84cc16', fn: n => n.rate!=null && n.rate>=0.20 && n.rate<0.25},
+    {label:'25–30%',           color:'#22c55e', fn: n => n.rate!=null && n.rate>=0.25 && n.rate<0.30},
+    {label:'>30%',             color:'#16a34a', fn: n => n.rate!=null && n.rate>=0.30},
+  ];
+  buckets.forEach(b => { b.count = nvs.filter(b.fn).length; });
+
+  const maxCount = Math.max(...buckets.map(b=>b.count), 1);
+  const barW = chartW / buckets.length;
+
+  // Gridlines + Y labels
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 1;
+  for(let i=1; i<=4; i++){
+    const y = pad.top + chartH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+chartW, y); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxCount*i/4), pad.left-5, y+4);
+  }
+
+  // X axis base
+  ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(pad.left, pad.top+chartH); ctx.lineTo(pad.left+chartW, pad.top+chartH); ctx.stroke();
+
+  // Bars
+  buckets.forEach((b,i) => {
+    const x  = pad.left + i*barW + barW*0.12;
+    const bw = barW * 0.76;
+    const bh = b.count > 0 ? (b.count/maxCount)*chartH : 0;
+    const y  = pad.top + chartH - bh;
+    ctx.fillStyle = b.color;
+    ctx.fillRect(x, y, bw, bh);
+    // Count label
+    if(b.count > 0){
+      ctx.fillStyle = '#1e293b'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(b.count, x+bw/2, y-6);
+    }
+    // X label (multi-line)
+    ctx.fillStyle = '#64748b'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(b.label, x+bw/2, pad.top+chartH+15);
+  });
+
+  // Y axis label
+  ctx.save();
+  ctx.translate(12, pad.top+chartH/2);
+  ctx.rotate(-Math.PI/2);
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Số NV', 0, 0);
+  ctx.restore();
+}
+
+function drawPosComboChart(canvas, allNvs){
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {top:24, right:20, bottom:46, left:50};
+  const cW  = W - pad.left - pad.right;
+  const cH  = H - pad.top  - pad.bottom;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+
+  const POS_ORDER  = ['Trưởng salon (SM)','Chuyên viên tư vấn','Stylist','Skinner'];
+  const POS_COLORS = {'Trưởng salon (SM)':'#22c55e','Chuyên viên tư vấn':'#f59e0b','Stylist':'#06b6d4','Skinner':'#8b5cf6'};
+
+  const gdkvMap = {};
+  allNvs.forEach(n => {
+    if(!gdkvMap[n.gdkv]) gdkvMap[n.gdkv] = {};
+    if(!gdkvMap[n.gdkv][n.pos]) gdkvMap[n.gdkv][n.pos] = {called:0,booked:0};
+    gdkvMap[n.gdkv][n.pos].called += n.called;
+    gdkvMap[n.gdkv][n.pos].booked += n.booked;
+  });
+
+  const gdkvList = Object.keys(gdkvMap).map(g => {
+    const tC = Object.values(gdkvMap[g]).reduce((s,p)=>s+p.called,0);
+    const tB = Object.values(gdkvMap[g]).reduce((s,p)=>s+p.booked,0);
+    return {name:g, short:g.split(' ').pop(), avg:tC>0?tB/tC:0, pd:gdkvMap[g]};
+  }).sort((a,b)=>b.avg-a.avg);
+
+  if(!gdkvList.length) return;
+  const nG   = gdkvList.length;
+  const nP   = POS_ORDER.length;
+  const gW   = cW / nG;
+  const barW = Math.min(14, (gW-12)/nP);
+  const gPad = (gW - nP*barW - (nP-1)*2) / 2;
+  const allRates = [];
+  gdkvList.forEach(g => POS_ORDER.forEach(pos => {
+    const pd2 = g.pd[pos];
+    if(pd2 && pd2.called>0) allRates.push(pd2.booked/pd2.called);
+  }));
+  const yMax = Math.min(Math.ceil(Math.max(...allRates,0.25)*10)/10+0.05, 0.45);
+  const toY  = r => pad.top + (1-r/yMax)*cH;
+
+  ctx.fillStyle='#f8fafc'; ctx.fillRect(pad.left,pad.top,cW,cH);
+
+  // Y grid
+  ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1;
+  [0,0.10,0.20,0.30,0.40].filter(t=>t<=yMax).forEach(t => {
+    const y=toY(t);
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(pad.left+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px system-ui'; ctx.textAlign='right';
+    ctx.fillText((t*100)+'%', pad.left-4, y+4);
+  });
+
+  // Target 25%
+  const ty=toY(0.25);
+  ctx.strokeStyle='#22c55e'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+  ctx.beginPath(); ctx.moveTo(pad.left,ty); ctx.lineTo(pad.left+cW,ty); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#22c55e'; ctx.font='bold 9px system-ui'; ctx.textAlign='left';
+  ctx.fillText('25%', pad.left+cW+3, ty+4);
+
+  // Bars
+  gdkvList.forEach((g,gi) => {
+    if(gi%2===0) {
+      ctx.fillStyle='rgba(0,0,0,.02)';
+      ctx.fillRect(pad.left+gi*gW, pad.top, gW, cH);
+    }
+    POS_ORDER.forEach((pos,pi) => {
+      const pd2=g.pd[pos];
+      if(!pd2||pd2.called===0) return;
+      const rate=pd2.booked/pd2.called;
+      const x=pad.left+gi*gW+gPad+pi*(barW+2);
+      const y=toY(rate);
+      const bh=pad.top+cH-y;
+      ctx.fillStyle=POS_COLORS[pos]+'cc'; ctx.fillRect(x,y,barW,bh);
+      ctx.fillStyle=POS_COLORS[pos];     ctx.fillRect(x,y,barW,2);
+      if(rate>=0.25||pi===0) {
+        ctx.fillStyle='#475569'; ctx.font='bold 8px system-ui'; ctx.textAlign='center';
+        ctx.fillText((rate*100).toFixed(0)+'%', x+barW/2, y-4);
+      }
+    });
+    ctx.fillStyle='#64748b'; ctx.font='600 10px system-ui'; ctx.textAlign='center';
+    ctx.fillText(g.short, pad.left+(gi+0.5)*gW, pad.top+cH+15);
+    ctx.fillStyle='#94a3b8'; ctx.font='9px system-ui';
+    ctx.fillText(pct(g.avg,1), pad.left+(gi+0.5)*gW, pad.top+cH+27);
+  });
+
+  // Avg line
+  ctx.strokeStyle='#334155'; ctx.lineWidth=2; ctx.setLineDash([]);
+  ctx.beginPath();
+  gdkvList.forEach((g,gi) => {
+    const cx=pad.left+(gi+0.5)*gW, cy=toY(g.avg);
+    gi===0?ctx.moveTo(cx,cy):ctx.lineTo(cx,cy);
+  });
+  ctx.stroke();
+  gdkvList.forEach((g,gi) => {
+    const cx=pad.left+(gi+0.5)*gW, cy=toY(g.avg);
+    ctx.fillStyle='#fff'; ctx.strokeStyle='#334155'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(cx,cy,3.5,0,Math.PI*2); ctx.fill(); ctx.stroke();
+  });
+}
+
+function drawCallComboChart(canvas, nvs){
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {top:24, right:50, bottom:46, left:50};
+  const cW  = W - pad.left - pad.right;
+  const cH  = H - pad.top  - pad.bottom;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+
+  const BUCKETS = [
+    {label:'< 30 gọi',  min:1,   max:30},
+    {label:'30 – 100',  min:30,  max:100},
+    {label:'100 – 200', min:100, max:200},
+    {label:'200 – 400', min:200, max:400},
+    {label:'> 400 gọi', min:400, max:1e9},
+  ];
+  const valid = nvs.filter(n=>n.called>0&&n.rate!=null);
+  BUCKETS.forEach(b => {
+    const grp=valid.filter(n=>n.called>=b.min&&n.called<b.max);
+    b.count=grp.length;
+    const tC=grp.reduce((s,n)=>s+n.called,0);
+    const tB=grp.reduce((s,n)=>s+n.booked,0);
+    b.avgRate=tC>0?tB/tC:null;
+  });
+
+  if(!BUCKETS.some(b=>b.count>0)) {
+    ctx.fillStyle='#94a3b8'; ctx.font='13px system-ui'; ctx.textAlign='center';
+    ctx.fillText('Không đủ dữ liệu', W/2, H/2); return;
+  }
+
+  const nB   = BUCKETS.length;
+  const gW   = cW / nB;
+  const barW = gW * 0.52;
+  const gPad = (gW-barW)/2;
+  const rMax = Math.max(...BUCKETS.filter(b=>b.avgRate!=null).map(b=>b.avgRate),0.30)+0.05;
+  const toY  = r => pad.top + (1-r/rMax)*cH;
+
+  ctx.fillStyle='#f8fafc'; ctx.fillRect(pad.left,pad.top,cW,cH);
+
+  // Y grid
+  ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1;
+  [0,0.10,0.20,0.30].filter(t=>t<=rMax).forEach(t => {
+    const y=toY(t);
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(pad.left+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px system-ui'; ctx.textAlign='right';
+    ctx.fillText((t*100)+'%', pad.left-4, y+4);
+  });
+
+  // Target 25%
+  if(0.25<=rMax) {
+    const ty=toY(0.25);
+    ctx.strokeStyle='#22c55e'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left,ty); ctx.lineTo(pad.left+cW,ty); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='#22c55e'; ctx.font='bold 9px system-ui'; ctx.textAlign='left';
+    ctx.fillText('25%', pad.left+cW+3, ty+4);
+  }
+
+  // Bars
+  BUCKETS.forEach((b,bi) => {
+    const x=pad.left+bi*gW+gPad;
+    if(b.avgRate!=null) {
+      const y=toY(b.avgRate), bh=pad.top+cH-y;
+      ctx.fillStyle='#6366f1cc'; ctx.fillRect(x,y,barW,bh);
+      ctx.fillStyle='#6366f1';   ctx.fillRect(x,y,barW,2);
+      ctx.fillStyle='#1e293b'; ctx.font='bold 10px system-ui'; ctx.textAlign='center';
+      ctx.fillText(pct(b.avgRate,1), x+barW/2, y-5);
+    }
+    ctx.fillStyle='#64748b'; ctx.font='10px system-ui'; ctx.textAlign='center';
+    ctx.fillText(b.label, x+barW/2, pad.top+cH+16);
+  });
+
+  // Y axis label
+  ctx.save();
+  ctx.translate(13,pad.top+cH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillStyle='#94a3b8'; ctx.font='11px system-ui'; ctx.textAlign='center';
+  ctx.fillText('Book Rate', 0, 0);
+  ctx.restore();
+}
+
+function drawScatterChart(canvas, nvs){
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {top:24, right:120, bottom:50, left:50};
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#fff'; ctx.fillRect(0,0,W,H);
+
+  const valid = nvs.filter(n => n.called > 0 && n.rate != null);
+  if(!valid.length){
+    ctx.fillStyle = '#94a3b8'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Không có dữ liệu', W/2, H/2); return;
+  }
+
+  const POS_COLOR2 = {'Trưởng salon (SM)':'#22c55e','Chuyên viên tư vấn':'#f59e0b','Stylist':'#06b6d4','Skinner':'#8b5cf6'};
+  const POS_SHORT  = {'Trưởng salon (SM)':'SM','Chuyên viên tư vấn':'Tư vấn','Stylist':'Stylist','Skinner':'Skinner'};
+
+  // Cap X at 90th percentile to handle outliers
+  const sortedC = [...valid].map(n=>n.called).sort((a,b)=>a-b);
+  const p90 = sortedC[Math.floor(sortedC.length * 0.90)] || sortedC[sortedC.length-1];
+  const xCap = p90;
+  const mainNvs    = valid.filter(n => n.called <= xCap);
+  const outlierNvs = valid.filter(n => n.called >  xCap);
+
+  const rawMaxR = Math.max(...valid.map(n=>n.rate));
+  const yMax    = Math.min(Math.ceil(rawMaxR*20)/20 + 0.05, 0.80);
+
+  const toX = c2 => pad.left + (Math.min(c2, xCap)/xCap)*chartW;
+  const toY = r2 => pad.top  + (1 - r2/yMax)*chartH;
+
+  // Background
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(pad.left, pad.top, chartW, chartH);
+
+  // Grid + axes
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+  const xTicks = 5;
+  for(let i=0; i<=xTicks; i++){
+    const x = pad.left + (i/xTicks)*chartW;
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top+chartH); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(Math.round(xCap*i/xTicks).toLocaleString('vi'), x, pad.top+chartH+15);
+  }
+  for(let i=0; i<=4; i++){
+    const y = pad.top + (i/4)*chartH;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+chartW, y); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(pct(yMax*(4-i)/4,0), pad.left-4, y+4);
+  }
+
+  // Target line 25%
+  const ty = toY(0.25);
+  if(ty >= pad.top && ty <= pad.top+chartH){
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 1.5; ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ty); ctx.lineTo(pad.left+chartW, ty); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#22c55e'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('25%', pad.left+chartW+4, ty+4);
+  }
+
+  // Dots — main NVs
+  mainNvs.forEach(n => {
+    const x = toX(n.called), y = toY(n.rate);
+    const col = POS_COLOR2[n.pos] || '#888';
+    ctx.fillStyle = col + 'cc'; ctx.strokeStyle = col; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  });
+
+  // Outliers — small diamond at right edge + label
+  if(outlierNvs.length){
+    const edgeX = pad.left + chartW - 2;
+    let oy = pad.top + 8;
+    ctx.font = '9px system-ui';
+    outlierNvs.sort((a,b)=>b.rate-a.rate).forEach(n => {
+      const col = POS_COLOR2[n.pos] || '#888';
+      const ey  = toY(n.rate);
+      // Diamond at right edge
+      ctx.fillStyle = col; ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(edgeX, ey-5); ctx.lineTo(edgeX+4, ey);
+      ctx.lineTo(edgeX, ey+5); ctx.lineTo(edgeX-4, ey); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+      // Label in margin
+      ctx.fillStyle = '#475569'; ctx.textAlign = 'left';
+      const shortName = n.name.split(' ').pop();
+      ctx.fillText(shortName + ' (' + n.called.toLocaleString('vi') + ')', pad.left+chartW+8, oy+4);
+      oy += 14;
+    });
+    // Note
+    ctx.fillStyle = '#94a3b8'; ctx.font = 'italic 9px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('◆ ngoài vùng (>' + xCap.toLocaleString('vi') + ' gọi)', pad.left+chartW+8, oy+8);
+  }
+
+  // Labels for top performers with meaningful call counts
+  const minCalls = Math.max(10, Math.round(sortedC[Math.floor(sortedC.length*0.20)]));
+  const candidates = mainNvs.filter(n => n.called >= minCalls).sort((a,b)=>b.rate-a.rate).slice(0,6);
+  const placed = [];
+  ctx.font = 'bold 9px system-ui';
+  candidates.forEach(n => {
+    const x = toX(n.called), y = toY(n.rate);
+    const shortName = n.name.split(' ').pop();
+    // Avoid overlap: check placed labels
+    const tooClose = placed.some(p => Math.abs(p.x-x)<38 && Math.abs(p.y-y)<14);
+    if(tooClose) return;
+    const align = x > pad.left + chartW*0.70 ? 'right' : 'left';
+    ctx.fillStyle = '#1e293b'; ctx.textAlign = align;
+    ctx.fillText(shortName, x + (align==='left'?7:-7), y-8);
+    placed.push({x, y});
+  });
+
+  // Legend
+  const posOrder2 = ['Trưởng salon (SM)','Chuyên viên tư vấn','Stylist','Skinner'];
+  let ly = pad.top + 10;
+  ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  posOrder2.forEach(pos => {
+    const col = POS_COLOR2[pos] || '#888';
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(pad.left+chartW+18, ly, 4.5, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#475569';
+    ctx.fillText(POS_SHORT[pos] || pos, pad.left+chartW+27, ly+4);
+    ly += 18;
+  });
+
+  // Axis labels
+  ctx.save();
+  ctx.translate(13, pad.top+chartH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Book Rate', 0, 0);
+  ctx.restore();
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Số cuộc gọi', pad.left+chartW/2, pad.top+chartH+38);
+}
+
+// ══════════════════════════════════════════════════════
 //  ROUTING
 // ══════════════════════════════════════════════════════
 let activeTab = 't1';
@@ -755,6 +1379,7 @@ function render(){
   buildTab1();
   buildTab2();
   buildTrend();
+  buildTab4();
 }
 
 render();
