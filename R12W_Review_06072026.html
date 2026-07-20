@@ -81,8 +81,28 @@ col.p2-wk { width:7%; }
 col.p2-chg { width:8%; }
 col.p2-trend { width:10%; }
 col.p2-vde { width:46%; }
+
+/* Period switcher nav */
+.period-nav { background:#0f172a; padding:8px 24px; display:flex; align-items:center; gap:12px; font-size:0.83em; }
+.period-nav a { color:#94a3b8; text-decoration:none; white-space:nowrap; }
+.period-nav a:hover { color:#fff; }
+.period-nav label { color:#64748b; white-space:nowrap; }
+.period-nav select { background:#1e293b; color:#e2e8f0; border:1px solid #334155; border-radius:6px; padding:4px 10px; font-size:0.95em; cursor:pointer; font-family:inherit; }
+.period-nav select:focus { outline:none; border-color:#3b82f6; }
 </style>
-</head><body><div class="wrap">
+</head><body>
+<div class="period-nav">
+  <a href="https://maya-cao.github.io/bccl-highlight-weekly/">📋 Tất cả kỳ</a>
+  <span style="color:#334155">|</span>
+  <label>Chọn kỳ:</label>
+  <select onchange="if(this.value)window.location.href=this.value"><option value="R12W_Review_13072026.html" >Tuần 13-19/7/2026 (20/07/2026)</option>
+<option value="R12W_Review_06072026.html" selected>Tuần 06-12/7/2026 (13/07/2026)</option>
+<option value="R12W_Review_01072026.html" >Tuần 01-05/7/2026 (07/07/2026)</option>
+<option value="R12W_Review_22062026.html" >Tuần 22-28/6/2026 (29/06/2026)</option>
+<option value="R12W_Review_15062026.html" >Tuần 15-21/6/2026 (22/06/2026)</option>
+<option value="R12W_Review_08062026.html" >Tuần 08-14/6/2026 (15/06/2026)</option></select>
+</div>
+<div class="wrap">
 <div class="hdr">
   <h1>BÁO CÁO HIGHLIGHT — Tuần 06-12/7/2026</h1>
   <div class="meta">
