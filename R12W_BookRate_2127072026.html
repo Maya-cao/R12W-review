@@ -455,32 +455,30 @@ function buildTab1(){
     </tr>`;
   }).join('');
 
-  html += `<div class="section-title green">📈 Salon book rate cao nhất hệ thống</div>`;
-  html += `<table class="rank-tbl"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Book Rate</th><th>Pool</th></tr></thead><tbody>${salonRows(top15,true)}</tbody></table>`;
+  if(allS.length>0){
+    html += `<div class="section-title green">📈 Salon book rate cao nhất hệ thống</div>`;
+    html += `<table class="rank-tbl"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Book Rate</th><th>Pool</th></tr></thead><tbody>${salonRows(top15,true)}</tbody></table>`;
+    const topRegions = [...new Set(top15.map(s=>s.short))];
+    html += `<div class="prose-box"><p>`;
+    if(top15[0]) html += `Salon dẫn đầu hệ thống: <strong>${top15[0].name}</strong> (GĐKV ${top15[0].short}) với <strong>${pct(top15[0].rate)}</strong>. `;
+    if(topRegions.length<=3) html += `Top salon tập trung ở ${topRegions.length} vùng (${topRegions.map(r=>'GĐKV '+r).join(', ')}) — các vùng không có salon trong top cần tìm hiểu gì đang làm khác biệt ở đây. `;
+    else html += `Top salon phân bổ ở ${topRegions.length} vùng — cho thấy có nhiều salon đơn lẻ đang làm được, vấn đề là chưa nhân rộng được cách làm ra toàn vùng. `;
+    html += `</p></div>`;
 
-  // Analysis of top salons
-  const topRegions = [...new Set(top15.map(s=>s.short))];
-  html += `<div class="prose-box"><p>`;
-  html += `Salon dẫn đầu hệ thống: <strong>${top15[0].name}</strong> (GĐKV ${top15[0].short}) với <strong>${pct(top15[0].rate)}</strong>. `;
-  if(topRegions.length<=3) html += `Top 15 salon tập trung ở ${topRegions.length} vùng (${topRegions.map(r=>'GĐKV '+r).join(', ')}) — các vùng không có salon trong top 15 cần tìm hiểu gì đang làm khác biệt ở đây. `;
-  else html += `Top 15 salon phân bổ ở ${topRegions.length} vùng — cho thấy có nhiều salon đơn lẻ đang làm được, vấn đề là chưa nhân rộng được cách làm ra toàn vùng. `;
-  html += `</p></div>`;
-
-  html += `<div class="section-title red">⚠️ Salon book rate thấp nhất hệ thống</div>`;
-  html += `<table class="rank-tbl"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Book Rate</th><th>Pool</th></tr></thead><tbody>${salonRows(bot15,false)}</tbody></table>`;
-
-  // Analysis of bottom salons
-  const botRegCount = {};
-  bot15.forEach(s=>{ botRegCount[s.short]=(botRegCount[s.short]||0)+1; });
-  const botRegSorted = Object.entries(botRegCount).sort((a,b)=>b[1]-a[1]);
-  html += `<div class="prose-box"><p>`;
-  html += `Salon thấp nhất hệ thống: <strong>${bot15[bot15.length-1]?.name}</strong> (GĐKV ${bot15[bot15.length-1]?.short}) chỉ <strong>${pct(bot15[bot15.length-1]?.rate)}</strong>. `;
-  if(botRegSorted[0]&&botRegSorted[0][1]>=3){
-    html += `<strong>Đáng chú ý: GĐKV ${botRegSorted[0][0]} có ${botRegSorted[0][1]} salon trong bottom 15</strong> — đây là dấu hiệu vấn đề hệ thống cả vùng, không phải cá biệt. `;
+    html += `<div class="section-title red">⚠️ Salon book rate thấp nhất hệ thống</div>`;
+    html += `<table class="rank-tbl"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Book Rate</th><th>Pool</th></tr></thead><tbody>${salonRows(bot15,false)}</tbody></table>`;
+    const botRegCount = {};
+    bot15.forEach(s=>{ botRegCount[s.short]=(botRegCount[s.short]||0)+1; });
+    const botRegSorted = Object.entries(botRegCount).sort((a,b)=>b[1]-a[1]);
+    html += `<div class="prose-box"><p>`;
+    if(bot15[bot15.length-1]) html += `Salon thấp nhất hệ thống: <strong>${bot15[bot15.length-1]?.name}</strong> (GĐKV ${bot15[bot15.length-1]?.short}) chỉ <strong>${pct(bot15[bot15.length-1]?.rate)}</strong>. `;
+    if(botRegSorted[0]&&botRegSorted[0][1]>=3){
+      html += `<strong>Đáng chú ý: GĐKV ${botRegSorted[0][0]} có ${botRegSorted[0][1]} salon trong bottom</strong> — đây là dấu hiệu vấn đề hệ thống cả vùng, không phải cá biệt. `;
+    }
+    const veryLow = bot15.filter(s=>s.rate<META.alert_low);
+    if(veryLow.length) html += `${veryLow.length} salon đang dưới ngưỡng cảnh báo ${(META.alert_low*100).toFixed(0)}% — cần kiểm tra ngay có phải dữ liệu bất thường hay NV không thực sự gọi book. `;
+    html += `</p></div>`;
   }
-  const veryLow = bot15.filter(s=>s.rate<META.alert_low);
-  if(veryLow.length) html += `${veryLow.length} salon đang dưới ngưỡng cảnh báo ${(META.alert_low*100).toFixed(0)}% — cần kiểm tra ngay có phải dữ liệu bất thường hay NV không thực sự gọi book. `;
-  html += `</p></div>`;
 
   document.getElementById('c1').innerHTML = html;
 }
