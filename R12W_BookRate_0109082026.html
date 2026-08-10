@@ -127,6 +127,7 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
     <button class="tab-btn" onclick="switchTab('t2',this)">🗺️ Phân tích theo Vùng</button>
     <button class="tab-btn" onclick="switchTab('t3',this)">📈 Xu hướng</button>
     <button class="tab-btn" onclick="switchTab('t4',this)">👤 Theo Nhân viên</button>
+    <button class="tab-btn" onclick="switchTab('t5',this)">🔄 Tỉ lệ xử lý data</button>
   </div>
 </div>
 
@@ -147,9 +148,10 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
 <div id="t2" class="tab-content"><div class="container" id="c2"></div></div>
 <div id="t3" class="tab-content"><div class="container" id="c3"></div></div>
 <div id="t4" class="tab-content"><div class="container" id="c4"></div></div>
+<div id="t5" class="tab-content"><div class="container" id="c5"></div></div>
 
 <script>
-const RD = [{"rsm": "Đoàn Trung Đức", "short": "Đức", "color": "#f97316", "bk_cur": 0.22445044350173543, "bk_prv": 0.1735266604303087, "salons": [{"name": "116 TK", "rate": 0.26982097186700765, "book": 211, "pool": 3522}, {"name": "382 NT", "rate": 0.2634920634920635, "book": 83, "pool": 3720}, {"name": "55A NVL", "rate": 0.22459893048128343, "book": 84, "pool": 1523}, {"name": "90 NH", "rate": 0.21153846153846154, "book": 55, "pool": 1624}, {"name": "62 LH", "rate": 0.21052631578947367, "book": 8, "pool": 1238}, {"name": "109 TQH", "rate": 0.1834319526627219, "book": 124, "pool": 3077}, {"name": "65 CD", "rate": 0.11486486486486487, "book": 17, "pool": 1239}], "pool": 15943, "book": 582}, {"rsm": "Phan Thị Hồng Gấm", "short": "Gấm", "color": "#ec4899", "bk_cur": 0.19467213114754098, "bk_prv": 0.0925, "salons": [{"name": "173 TN", "rate": 0.5454545454545454, "book": 6, "pool": 1898}, {"name": "346 KT", "rate": 0.2777777777777778, "book": 5, "pool": 1560}, {"name": "39 HBT", "rate": 0.18831168831168832, "book": 58, "pool": 1801}, {"name": "148 TD", "rate": 0.18181818181818182, "book": 16, "pool": 1215}, {"name": "264 LLQ", "rate": 0.15873015873015872, "book": 10, "pool": 1782}, {"name": "202 DC", "rate": 0, "book": 0, "pool": 2166}, {"name": "50BT4 NPC LD", "rate": 0, "book": 0, "pool": 2560}, {"name": "363 LNQ TN", "rate": 0, "book": 0, "pool": 1441}], "pool": 14423, "book": 95}, {"rsm": "Trịnh Văn Quang", "short": "Quang", "color": "#10b981", "bk_cur": 0.1811926605504587, "bk_prv": 0.13611615245009073, "salons": [{"name": "12 LDT", "rate": 0.21818181818181817, "book": 60, "pool": 2407}, {"name": "483 TN", "rate": 0.19155844155844157, "book": 59, "pool": 2146}, {"name": "32 NAT", "rate": 0.19135802469135801, "book": 31, "pool": 1301}, {"name": "76 PVH", "rate": 0.16317991631799164, "book": 39, "pool": 1669}, {"name": "1180 QT", "rate": 0.14814814814814814, "book": 48, "pool": 1922}], "pool": 9445, "book": 237}, {"rsm": "Nguyễn Như Quỳnh", "short": "Quỳnh", "color": "#6366f1", "bk_cur": 0.1806883365200765, "bk_prv": 0.14617169373549885, "salons": [{"name": "168 NVC", "rate": 0.20684292379471228, "book": 133, "pool": 3211}, {"name": "362 NGT BN", "rate": 0.2, "book": 1, "pool": 2781}, {"name": "10 TP", "rate": 0.1836734693877551, "book": 9, "pool": 2138}, {"name": "186 QT", "rate": 0.18181818181818182, "book": 22, "pool": 694}, {"name": "11 PKT", "rate": 0.13740458015267176, "book": 18, "pool": 1302}, {"name": "4 LQD BN", "rate": 0.061855670103092786, "book": 6, "pool": 693}], "pool": 10819, "book": 189}, {"rsm": "Nguyễn Thanh Sang", "short": "Sang", "color": "#f59e0b", "bk_cur": 0.15537190082644628, "bk_prv": 0.12257019438444924, "salons": [{"name": "927 HG", "rate": 0.24727272727272728, "book": 68, "pool": 3762}, {"name": "708 LTT", "rate": 0.21176470588235294, "book": 36, "pool": 1651}, {"name": "575 AC", "rate": 0.1951219512195122, "book": 80, "pool": 2540}, {"name": "190 HB", "rate": 0.18556701030927836, "book": 36, "pool": 2150}, {"name": "99 TSN", "rate": 0.16103896103896104, "book": 62, "pool": 3681}, {"name": "312 LVS", "rate": 0.1452991452991453, "book": 51, "pool": 3571}, {"name": "730 TL10", "rate": 0.09848484848484848, "book": 39, "pool": 3299}, {"name": "8 CVL", "rate": 0.031914893617021274, "book": 3, "pool": 3186}, {"name": "145 THT", "rate": 0.006896551724137931, "book": 1, "pool": 4562}], "pool": 28402, "book": 376}, {"rsm": "Nguyễn Việt Cường", "short": "Cường", "color": "#06b6d4", "bk_cur": 0.1484375, "bk_prv": 0.11104651162790698, "salons": [{"name": "255 NAN", "rate": 0.189873417721519, "book": 30, "pool": 2347}, {"name": "29 HB", "rate": 0.17207792207792208, "book": 53, "pool": 2518}, {"name": "401/1 NDT", "rate": 0.16666666666666666, "book": 33, "pool": 1650}, {"name": "103 TN", "rate": 0.16485507246376813, "book": 91, "pool": 5409}, {"name": "80 PL BD", "rate": 0.15527950310559005, "book": 25, "pool": 2311}, {"name": "36 N1 BD", "rate": 0.1318181818181818, "book": 29, "pool": 1348}, {"name": "1371 PVT", "rate": 0.11666666666666667, "book": 35, "pool": 1446}, {"name": "451 PVT", "rate": 0.08, "book": 6, "pool": 1038}, {"name": "1146 KVC", "rate": 0.02631578947368421, "book": 2, "pool": 1360}], "pool": 19427, "book": 304}, {"rsm": "Tống Xuân Quyền", "short": "Quyền", "color": "#8b5cf6", "bk_cur": 0.14308093994778068, "bk_prv": 0.09665144596651445, "salons": [{"name": "237 NTT", "rate": 0.18783542039355994, "book": 105, "pool": 4588}, {"name": "186 DTH", "rate": 0.1791044776119403, "book": 48, "pool": 2720}, {"name": "236 DBT", "rate": 0.15471698113207547, "book": 41, "pool": 2637}, {"name": "341 XVNT", "rate": 0.12244897959183673, "book": 6, "pool": 1229}, {"name": "420 HTP", "rate": 0.09965635738831616, "book": 58, "pool": 3647}, {"name": "7 DTP LA", "rate": 0.0962962962962963, "book": 13, "pool": 1144}, {"name": "25 TD", "rate": 0.05263157894736842, "book": 3, "pool": 2920}, {"name": "113 THD AG", "rate": 0, "book": 0, "pool": 1009}], "pool": 19894, "book": 274}, {"rsm": "Nguyễn Thị Huệ", "short": "Huệ", "color": "#ef4444", "bk_cur": 0.09230769230769231, "bk_prv": 0.0603448275862069, "salons": [{"name": "290 QT TH", "rate": 0.17391304347826086, "book": 4, "pool": 902}, {"name": "68 LN NA", "rate": 0.13513513513513514, "book": 5, "pool": 874}, {"name": "80 TP TH", "rate": 0.08974358974358974, "book": 7, "pool": 1170}, {"name": "58 NVC NA", "rate": 0.03508771929824561, "book": 2, "pool": 1135}, {"name": "595 BT TH", "rate": 0, "book": 0, "pool": 784}, {"name": "304 NT TH", "rate": 0, "book": 0, "pool": 773}], "pool": 5638, "book": 18}];
+const RD = [{"rsm": "Đoàn Trung Đức", "short": "Đức", "color": "#f97316", "bk_cur": 0.22445044350173543, "bk_prv": 0.1735266604303087, "salons": [{"name": "116 TK", "rate": 0.26982097186700765, "book": 211, "pool": 3522, "phan_phoi": 875, "xu_ly": 790, "ket_noi": 782, "den": 208}, {"name": "382 NT", "rate": 0.2634920634920635, "book": 83, "pool": 3720, "phan_phoi": 978, "xu_ly": 321, "ket_noi": 315, "den": 83}, {"name": "55A NVL", "rate": 0.22459893048128343, "book": 84, "pool": 1523, "phan_phoi": 381, "xu_ly": 374, "ket_noi": 374, "den": 83}, {"name": "90 NH", "rate": 0.21153846153846154, "book": 55, "pool": 1624, "phan_phoi": 384, "xu_ly": 260, "ket_noi": 260, "den": 55}, {"name": "62 LH", "rate": 0.21052631578947367, "book": 8, "pool": 1238, "phan_phoi": 347, "xu_ly": 38, "ket_noi": 38, "den": 8}, {"name": "109 TQH", "rate": 0.1834319526627219, "book": 124, "pool": 3077, "phan_phoi": 676, "xu_ly": 676, "ket_noi": 676, "den": 122}, {"name": "65 CD", "rate": 0.11486486486486487, "book": 17, "pool": 1239, "phan_phoi": 368, "xu_ly": 148, "ket_noi": 148, "den": 17}], "pool": 15943, "book": 582, "phan_phoi": 4009, "xu_ly": 2607, "ket_noi": 2593, "den": 576}, {"rsm": "Phan Thị Hồng Gấm", "short": "Gấm", "color": "#ec4899", "bk_cur": 0.19467213114754098, "bk_prv": 0.0925, "salons": [{"name": "173 TN", "rate": 0.5454545454545454, "book": 6, "pool": 1898, "phan_phoi": 526, "xu_ly": 11, "ket_noi": 11, "den": 6}, {"name": "346 KT", "rate": 0.2777777777777778, "book": 5, "pool": 1560, "phan_phoi": 467, "xu_ly": 18, "ket_noi": 18, "den": 5}, {"name": "39 HBT", "rate": 0.18831168831168832, "book": 58, "pool": 1801, "phan_phoi": 488, "xu_ly": 308, "ket_noi": 308, "den": 46}, {"name": "148 TD", "rate": 0.18181818181818182, "book": 16, "pool": 1215, "phan_phoi": 369, "xu_ly": 88, "ket_noi": 88, "den": 16}, {"name": "264 LLQ", "rate": 0.15873015873015872, "book": 10, "pool": 1782, "phan_phoi": 557, "xu_ly": 64, "ket_noi": 63, "den": 10}, {"name": "202 DC", "rate": 0, "book": 0, "pool": 2166, "phan_phoi": 669, "xu_ly": 0, "ket_noi": 0, "den": 0}, {"name": "50BT4 NPC LD", "rate": 0, "book": 0, "pool": 2560, "phan_phoi": 782, "xu_ly": 0, "ket_noi": 0, "den": 0}, {"name": "363 LNQ TN", "rate": 0, "book": 0, "pool": 1441, "phan_phoi": 463, "xu_ly": 0, "ket_noi": 0, "den": 0}], "pool": 14423, "book": 95, "phan_phoi": 4321, "xu_ly": 489, "ket_noi": 488, "den": 83}, {"rsm": "Trịnh Văn Quang", "short": "Quang", "color": "#10b981", "bk_cur": 0.1811926605504587, "bk_prv": 0.13611615245009073, "salons": [{"name": "12 LDT", "rate": 0.21818181818181817, "book": 60, "pool": 2407, "phan_phoi": 703, "xu_ly": 327, "ket_noi": 275, "den": 60}, {"name": "483 TN", "rate": 0.19155844155844157, "book": 59, "pool": 2146, "phan_phoi": 560, "xu_ly": 309, "ket_noi": 308, "den": 57}, {"name": "32 NAT", "rate": 0.19135802469135801, "book": 31, "pool": 1301, "phan_phoi": 379, "xu_ly": 291, "ket_noi": 162, "den": 32}, {"name": "76 PVH", "rate": 0.16317991631799164, "book": 39, "pool": 1669, "phan_phoi": 456, "xu_ly": 241, "ket_noi": 239, "den": 37}, {"name": "1180 QT", "rate": 0.14814814814814814, "book": 48, "pool": 1922, "phan_phoi": 481, "xu_ly": 324, "ket_noi": 324, "den": 46}], "pool": 9445, "book": 237, "phan_phoi": 2579, "xu_ly": 1492, "ket_noi": 1308, "den": 232}, {"rsm": "Nguyễn Như Quỳnh", "short": "Quỳnh", "color": "#6366f1", "bk_cur": 0.1806883365200765, "bk_prv": 0.14617169373549885, "salons": [{"name": "168 NVC", "rate": 0.20684292379471228, "book": 133, "pool": 3211, "phan_phoi": 819, "xu_ly": 684, "ket_noi": 643, "den": 132}, {"name": "362 NGT BN", "rate": 0.2, "book": 1, "pool": 2781, "phan_phoi": 895, "xu_ly": 5, "ket_noi": 5, "den": 1}, {"name": "10 TP", "rate": 0.1836734693877551, "book": 9, "pool": 2138, "phan_phoi": 673, "xu_ly": 50, "ket_noi": 49, "den": 9}, {"name": "186 QT", "rate": 0.18181818181818182, "book": 22, "pool": 694, "phan_phoi": 217, "xu_ly": 121, "ket_noi": 121, "den": 22}, {"name": "11 PKT", "rate": 0.13740458015267176, "book": 18, "pool": 1302, "phan_phoi": 392, "xu_ly": 131, "ket_noi": 131, "den": 16}, {"name": "4 LQD BN", "rate": 0.061855670103092786, "book": 6, "pool": 693, "phan_phoi": 204, "xu_ly": 97, "ket_noi": 97, "den": 7}], "pool": 10819, "book": 189, "phan_phoi": 3200, "xu_ly": 1088, "ket_noi": 1046, "den": 187}, {"rsm": "Nguyễn Thanh Sang", "short": "Sang", "color": "#f59e0b", "bk_cur": 0.15537190082644628, "bk_prv": 0.12257019438444924, "salons": [{"name": "927 HG", "rate": 0.24727272727272728, "book": 68, "pool": 3762, "phan_phoi": 1099, "xu_ly": 287, "ket_noi": 275, "den": 67}, {"name": "708 LTT", "rate": 0.21176470588235294, "book": 36, "pool": 1651, "phan_phoi": 465, "xu_ly": 171, "ket_noi": 170, "den": 36}, {"name": "575 AC", "rate": 0.1951219512195122, "book": 80, "pool": 2540, "phan_phoi": 670, "xu_ly": 449, "ket_noi": 410, "den": 81}, {"name": "190 HB", "rate": 0.18556701030927836, "book": 36, "pool": 2150, "phan_phoi": 587, "xu_ly": 194, "ket_noi": 194, "den": 36}, {"name": "99 TSN", "rate": 0.16103896103896104, "book": 62, "pool": 3681, "phan_phoi": 917, "xu_ly": 389, "ket_noi": 385, "den": 62}, {"name": "312 LVS", "rate": 0.1452991452991453, "book": 51, "pool": 3571, "phan_phoi": 992, "xu_ly": 351, "ket_noi": 351, "den": 52}, {"name": "730 TL10", "rate": 0.09848484848484848, "book": 39, "pool": 3299, "phan_phoi": 932, "xu_ly": 396, "ket_noi": 396, "den": 37}, {"name": "8 CVL", "rate": 0.031914893617021274, "book": 3, "pool": 3186, "phan_phoi": 964, "xu_ly": 94, "ket_noi": 94, "den": 3}, {"name": "145 THT", "rate": 0.006896551724137931, "book": 1, "pool": 4562, "phan_phoi": 1336, "xu_ly": 145, "ket_noi": 145, "den": 1}], "pool": 28402, "book": 376, "phan_phoi": 7962, "xu_ly": 2476, "ket_noi": 2420, "den": 375}, {"rsm": "Nguyễn Việt Cường", "short": "Cường", "color": "#06b6d4", "bk_cur": 0.1484375, "bk_prv": 0.11104651162790698, "salons": [{"name": "255 NAN", "rate": 0.189873417721519, "book": 30, "pool": 2347, "phan_phoi": 728, "xu_ly": 158, "ket_noi": 158, "den": 28}, {"name": "29 HB", "rate": 0.17207792207792208, "book": 53, "pool": 2518, "phan_phoi": 760, "xu_ly": 312, "ket_noi": 308, "den": 53}, {"name": "401/1 NDT", "rate": 0.16666666666666666, "book": 33, "pool": 1650, "phan_phoi": 438, "xu_ly": 198, "ket_noi": 198, "den": 32}, {"name": "103 TN", "rate": 0.16485507246376813, "book": 91, "pool": 5409, "phan_phoi": 1568, "xu_ly": 556, "ket_noi": 552, "den": 90}, {"name": "80 PL BD", "rate": 0.15527950310559005, "book": 25, "pool": 2311, "phan_phoi": 725, "xu_ly": 161, "ket_noi": 161, "den": 25}, {"name": "36 N1 BD", "rate": 0.1318181818181818, "book": 29, "pool": 1348, "phan_phoi": 397, "xu_ly": 220, "ket_noi": 220, "den": 29}, {"name": "1371 PVT", "rate": 0.11666666666666667, "book": 35, "pool": 1446, "phan_phoi": 435, "xu_ly": 303, "ket_noi": 300, "den": 35}, {"name": "451 PVT", "rate": 0.08, "book": 6, "pool": 1038, "phan_phoi": 335, "xu_ly": 75, "ket_noi": 75, "den": 6}, {"name": "1146 KVC", "rate": 0.02631578947368421, "book": 2, "pool": 1360, "phan_phoi": 435, "xu_ly": 128, "ket_noi": 76, "den": 2}], "pool": 19427, "book": 304, "phan_phoi": 5821, "xu_ly": 2111, "ket_noi": 2048, "den": 300}, {"rsm": "Tống Xuân Quyền", "short": "Quyền", "color": "#8b5cf6", "bk_cur": 0.14308093994778068, "bk_prv": 0.09665144596651445, "salons": [{"name": "237 NTT", "rate": 0.18783542039355994, "book": 105, "pool": 4588, "phan_phoi": 1212, "xu_ly": 559, "ket_noi": 559, "den": 105}, {"name": "186 DTH", "rate": 0.1791044776119403, "book": 48, "pool": 2720, "phan_phoi": 736, "xu_ly": 293, "ket_noi": 268, "den": 47}, {"name": "236 DBT", "rate": 0.15471698113207547, "book": 41, "pool": 2637, "phan_phoi": 783, "xu_ly": 265, "ket_noi": 265, "den": 40}, {"name": "341 XVNT", "rate": 0.12244897959183673, "book": 6, "pool": 1229, "phan_phoi": 383, "xu_ly": 49, "ket_noi": 49, "den": 6}, {"name": "420 HTP", "rate": 0.09965635738831616, "book": 58, "pool": 3647, "phan_phoi": 1091, "xu_ly": 656, "ket_noi": 582, "den": 57}, {"name": "7 DTP LA", "rate": 0.0962962962962963, "book": 13, "pool": 1144, "phan_phoi": 351, "xu_ly": 192, "ket_noi": 135, "den": 13}, {"name": "25 TD", "rate": 0.05263157894736842, "book": 3, "pool": 2920, "phan_phoi": 863, "xu_ly": 57, "ket_noi": 57, "den": 4}, {"name": "113 THD AG", "rate": 0, "book": 0, "pool": 1009, "phan_phoi": 340, "xu_ly": 0, "ket_noi": 0, "den": 0}], "pool": 19894, "book": 274, "phan_phoi": 5759, "xu_ly": 2071, "ket_noi": 1915, "den": 272}, {"rsm": "Nguyễn Thị Huệ", "short": "Huệ", "color": "#ef4444", "bk_cur": 0.09230769230769231, "bk_prv": 0.0603448275862069, "salons": [{"name": "290 QT TH", "rate": 0.17391304347826086, "book": 4, "pool": 902, "phan_phoi": 308, "xu_ly": 23, "ket_noi": 23, "den": 4}, {"name": "68 LN NA", "rate": 0.13513513513513514, "book": 5, "pool": 874, "phan_phoi": 279, "xu_ly": 37, "ket_noi": 37, "den": 5}, {"name": "80 TP TH", "rate": 0.08974358974358974, "book": 7, "pool": 1170, "phan_phoi": 355, "xu_ly": 81, "ket_noi": 78, "den": 7}, {"name": "58 NVC NA", "rate": 0.03508771929824561, "book": 2, "pool": 1135, "phan_phoi": 355, "xu_ly": 57, "ket_noi": 57, "den": 2}, {"name": "595 BT TH", "rate": 0, "book": 0, "pool": 784, "phan_phoi": 246, "xu_ly": 0, "ket_noi": 0, "den": 0}, {"name": "304 NT TH", "rate": 0, "book": 0, "pool": 773, "phan_phoi": 270, "xu_ly": 0, "ket_noi": 0, "den": 0}], "pool": 5638, "book": 18, "phan_phoi": 1813, "xu_ly": 198, "ket_noi": 195, "den": 18}];
 const META = {"period": "01–09/08/2026", "dd_end": 9, "dd_start": 1, "mm": 8, "bk_target": 0.65, "alert_low": 0.08};
 const PREV_LABEL = "kỳ 7/08";
 const HISTORY = [{"key": "0708", "label": "1–7/08", "sys_avg": 0.117365935772622, "regions": {"Nguyễn Như Quỳnh": 0.14617169373549885, "Nguyễn Việt Cường": 0.11104651162790698, "Tống Xuân Quyền": 0.09665144596651445, "Đoàn Trung Đức": 0.1735266604303087, "Nguyễn Thị Huệ": 0.0603448275862069, "Trịnh Văn Quang": 0.13611615245009073, "Nguyễn Thanh Sang": 0.12257019438444924, "Phan Thị Hồng Gấm": 0.0925}}, {"key": "0908", "label": "3–9/08", "sys_avg": 0.16502520060021636, "regions": {"Nguyễn Như Quỳnh": 0.1806883365200765, "Nguyễn Việt Cường": 0.1484375, "Tống Xuân Quyền": 0.14308093994778068, "Đoàn Trung Đức": 0.22445044350173543, "Nguyễn Thị Huệ": 0.09230769230769231, "Trịnh Văn Quang": 0.1811926605504587, "Nguyễn Thanh Sang": 0.15537190082644628, "Phan Thị Hồng Gấm": 0.19467213114754098}}, {"key": "1008", "label": "4–10/08", "sys_avg": 0.16668827866757083, "regions": {"Nguyễn Như Quỳnh": 0.18451242829827916, "Nguyễn Việt Cường": 0.15160349854227406, "Tống Xuân Quyền": 0.14345114345114346, "Đoàn Trung Đức": 0.22626339969372128, "Nguyễn Thị Huệ": 0.09230769230769231, "Trịnh Văn Quang": 0.18396946564885497, "Nguyễn Thanh Sang": 0.1590909090909091, "Phan Thị Hồng Gấm": 0.19230769230769232}}];
@@ -1431,9 +1433,213 @@ function drawScatterChart(canvas, nvs){
 }
 
 // ══════════════════════════════════════════════════════
+//  TAB 5 — TỈ LỆ XỬ LÝ DATA
+// ══════════════════════════════════════════════════════
+function buildTab5(){
+  const regs = filtered();
+  const c = document.getElementById('c5');
+
+  // Tổng hệ thống
+  const sys = {pool:0, pp:0, xl:0, kn:0, book:0, den:0};
+  regs.forEach(r => {
+    sys.pool += r.pool||0;
+    sys.pp   += r.phan_phoi||0;
+    sys.xl   += r.xu_ly||0;
+    sys.kn   += r.ket_noi||0;
+    sys.book += r.book||0;
+    sys.den  += r.den||0;
+  });
+  const p = (n,d) => d>0 ? (n/d*100).toFixed(1)+'%' : '—';
+  const fnum = v => v==null?'—':Math.round(v).toLocaleString('vi');
+
+  let html = '';
+
+  // ── KPI hệ thống ──
+  const xlPP   = sys.pp   > 0 ? sys.xl/sys.pp   : null;
+  const xlPool = sys.pool > 0 ? sys.xl/sys.pool : null;
+  const knXL   = sys.xl   > 0 ? sys.kn/sys.xl   : null;
+  const bkKN   = sys.kn   > 0 ? sys.book/sys.kn : null;
+  const denBk  = sys.book > 0 ? sys.den/sys.book : null;
+
+  const xlPPColor  = xlPP  == null ? '#94a3b8' : xlPP>=0.50 ? '#22c55e' : xlPP>=0.30 ? '#f59e0b' : '#ef4444';
+  const xlPoolColor = xlPool == null ? '#94a3b8' : xlPool>=0.15 ? '#22c55e' : xlPool>=0.08 ? '#f59e0b' : '#ef4444';
+
+  html += `<div class="kpi-row">
+    <div class="kpi" style="border-color:${xlPPColor}">
+      <div class="lbl">XL / Phân phối (hệ thống)</div>
+      <div class="val" style="color:${xlPPColor}">${xlPP!=null?(xlPP*100).toFixed(1)+'%':'—'}</div>
+      <div class="sub">Đã xử lý trên tổng phân phối trong kỳ</div>
+    </div>
+    <div class="kpi" style="border-color:${xlPoolColor}">
+      <div class="lbl">XL / Pool tháng (hệ thống)</div>
+      <div class="val" style="color:${xlPoolColor}">${xlPool!=null?(xlPool*100).toFixed(1)+'%':'—'}</div>
+      <div class="sub">Đã xử lý trên pool tháng ${META.mm}/2026</div>
+    </div>
+    <div class="kpi" style="border-color:#06b6d4">
+      <div class="lbl">KN / XL (kết nối / xử lý)</div>
+      <div class="val" style="color:#06b6d4">${knXL!=null?(knXL*100).toFixed(1)+'%':'—'}</div>
+      <div class="sub">Trong số đã xử lý, bao nhiêu % kết nối được</div>
+    </div>
+    <div class="kpi" style="border-color:#8b5cf6">
+      <div class="lbl">Book / KN</div>
+      <div class="val" style="color:#8b5cf6">${bkKN!=null?(bkKN*100).toFixed(1)+'%':'—'}</div>
+      <div class="sub">Tỉ lệ book trên kết nối</div>
+    </div>
+  </div>`;
+
+  // ── Phễu hệ thống ──
+  html += `<div class="section-title">🔄 Phễu xử lý data — Toàn hệ thống · Kỳ ${META.period}</div>`;
+  html += `<div style="background:#fff;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px;overflow-x:auto">`;
+  const funnelSteps = [
+    {label:'Pool tháng', val:sys.pool, pctLabel:'100%', color:'#64748b', pctOf:'(gốc)'},
+    {label:'Phân phối', val:sys.pp, pctLabel:p(sys.pp,sys.pool)+' pool', color:'#3b82f6', pctOf:'/ pool'},
+    {label:'Đã xử lý (XL)', val:sys.xl, pctLabel:p(sys.xl,sys.pp)+' PP · '+p(sys.xl,sys.pool)+' pool', color:'#06b6d4', pctOf:'/ PP'},
+    {label:'Kết nối (KN)', val:sys.kn, pctLabel:p(sys.kn,sys.xl)+' XL', color:'#8b5cf6', pctOf:'/ XL'},
+    {label:'Book', val:sys.book, pctLabel:p(sys.book,sys.kn)+' KN', color:'#22c55e', pctOf:'/ KN'},
+    {label:'Đến', val:sys.den, pctLabel:p(sys.den,sys.book)+' book', color:'#f59e0b', pctOf:'/ book'},
+  ];
+  const maxVal = sys.pool || 1;
+  html += `<div style="display:flex;flex-direction:column;gap:8px;max-width:680px">`;
+  funnelSteps.forEach(st => {
+    const fillPct = Math.min((st.val/maxVal)*100, 100).toFixed(1);
+    html += `<div style="display:flex;align-items:center;gap:10px">
+      <div style="width:130px;font-size:.82rem;color:#475569;text-align:right;flex-shrink:0">${st.label}</div>
+      <div style="flex:1;background:#f1f5f9;border-radius:4px;height:26px;position:relative;overflow:hidden">
+        <div style="height:100%;width:${fillPct}%;background:${st.color};border-radius:4px;transition:width .3s"></div>
+        <span style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:.8rem;color:#fff;font-weight:600;white-space:nowrap">${fnum(st.val)}</span>
+      </div>
+      <div style="width:180px;font-size:.78rem;color:#64748b;flex-shrink:0">${st.pctLabel}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  // ── Bảng theo GĐKV ──
+  html += `<div class="section-title">📋 Tỉ lệ xử lý theo GĐKV</div>`;
+  html += `<div style="overflow-x:auto;margin-bottom:16px"><table class="rank-tbl" style="min-width:760px">
+  <thead><tr>
+    <th>GĐKV</th>
+    <th style="text-align:right">Pool tháng</th>
+    <th style="text-align:right">PP</th>
+    <th style="text-align:right">XL</th>
+    <th style="text-align:right;color:#06b6d4">%XL/PP</th>
+    <th style="text-align:right;color:#3b82f6">%XL/Pool</th>
+    <th style="text-align:right">KN</th>
+    <th style="text-align:right">%KN/XL</th>
+    <th style="text-align:right">Book</th>
+    <th style="text-align:right">%BK/KN</th>
+    <th style="text-align:right">Đến</th>
+    <th style="text-align:right">%Đến/BK</th>
+  </tr></thead><tbody>`;
+
+  // Sort by XL/PP desc
+  const sortedRegs = [...regs].sort((a,b) => {
+    const ra = a.phan_phoi>0 ? a.xu_ly/a.phan_phoi : 0;
+    const rb = b.phan_phoi>0 ? b.xu_ly/b.phan_phoi : 0;
+    return rb - ra;
+  });
+
+  sortedRegs.forEach(r => {
+    const xlpp  = r.phan_phoi>0 ? r.xu_ly/r.phan_phoi : null;
+    const xlpool = r.pool>0 ? r.xu_ly/r.pool : null;
+    const knxl  = r.xu_ly>0 ? r.ket_noi/r.xu_ly : null;
+    const bkkn  = r.ket_noi>0 ? r.book/r.ket_noi : null;
+    const denbk = r.book>0 ? r.den/r.book : null;
+    const xlppC = xlpp==null?'#94a3b8':xlpp>=0.50?'#22c55e':xlpp>=0.30?'#f59e0b':'#ef4444';
+    const xlpoolC = xlpool==null?'#94a3b8':xlpool>=0.15?'#22c55e':xlpool>=0.08?'#f59e0b':'#ef4444';
+    html += `<tr>
+      <td><span class="dot" style="background:${r.color}"></span>GĐKV ${r.rsm}</td>
+      <td style="text-align:right;color:#64748b">${fnum(r.pool)}</td>
+      <td style="text-align:right">${fnum(r.phan_phoi)}</td>
+      <td style="text-align:right">${fnum(r.xu_ly)}</td>
+      <td style="text-align:right;font-weight:700;color:${xlppC}">${xlpp!=null?(xlpp*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right;font-weight:700;color:${xlpoolC}">${xlpool!=null?(xlpool*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right">${fnum(r.ket_noi)}</td>
+      <td style="text-align:right">${knxl!=null?(knxl*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right">${fnum(r.book)}</td>
+      <td style="text-align:right">${bkkn!=null?(bkkn*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right">${fnum(r.den)}</td>
+      <td style="text-align:right">${denbk!=null?(denbk*100).toFixed(1)+'%':'—'}</td>
+    </tr>`;
+  });
+
+  // Dòng tổng
+  const xlppS  = sys.pp>0   ? sys.xl/sys.pp   : null;
+  const xlpoolS = sys.pool>0 ? sys.xl/sys.pool : null;
+  const knxlS  = sys.xl>0   ? sys.kn/sys.xl   : null;
+  const bkknS  = sys.kn>0   ? sys.book/sys.kn : null;
+  const denbkS = sys.book>0  ? sys.den/sys.book : null;
+  html += `<tr style="font-weight:700;background:#f8fafc;border-top:2px solid #e2e8f0">
+    <td>Toàn hệ thống</td>
+    <td style="text-align:right">${fnum(sys.pool)}</td>
+    <td style="text-align:right">${fnum(sys.pp)}</td>
+    <td style="text-align:right">${fnum(sys.xl)}</td>
+    <td style="text-align:right;color:#06b6d4">${xlppS!=null?(xlppS*100).toFixed(1)+'%':'—'}</td>
+    <td style="text-align:right;color:#3b82f6">${xlpoolS!=null?(xlpoolS*100).toFixed(1)+'%':'—'}</td>
+    <td style="text-align:right">${fnum(sys.kn)}</td>
+    <td style="text-align:right">${knxlS!=null?(knxlS*100).toFixed(1)+'%':'—'}</td>
+    <td style="text-align:right">${fnum(sys.book)}</td>
+    <td style="text-align:right">${bkknS!=null?(bkknS*100).toFixed(1)+'%':'—'}</td>
+    <td style="text-align:right">${fnum(sys.den)}</td>
+    <td style="text-align:right">${denbkS!=null?(denbkS*100).toFixed(1)+'%':'—'}</td>
+  </tr>`;
+  html += `</tbody></table></div>`;
+
+  // ── Bảng theo Salon ──
+  html += `<div class="section-title">🏬 Tỉ lệ xử lý theo Salon</div>`;
+  const allSalons5 = regs.flatMap(r => r.salons.map(s => ({...s, rsm:r.rsm, short:r.short, color:r.color})));
+  // Sort by %XL/PP desc (nulls last)
+  allSalons5.sort((a,b) => {
+    const ra = a.phan_phoi>0 ? a.xu_ly/a.phan_phoi : -1;
+    const rb = b.phan_phoi>0 ? b.xu_ly/b.phan_phoi : -1;
+    return rb - ra;
+  });
+
+  html += `<div style="overflow-x:auto;margin-bottom:16px"><table class="rank-tbl" style="min-width:760px">
+  <thead><tr>
+    <th>#</th><th>Salon</th><th>Vùng</th>
+    <th style="text-align:right">Pool</th>
+    <th style="text-align:right">PP</th>
+    <th style="text-align:right">XL</th>
+    <th style="text-align:right;color:#06b6d4">%XL/PP</th>
+    <th style="text-align:right;color:#3b82f6">%XL/Pool</th>
+    <th style="text-align:right">KN</th>
+    <th style="text-align:right">%KN/XL</th>
+    <th style="text-align:right">Book</th>
+    <th style="text-align:right">%BK/KN</th>
+  </tr></thead><tbody>`;
+
+  allSalons5.forEach((s,i) => {
+    const xlpp   = s.phan_phoi>0 ? s.xu_ly/s.phan_phoi : null;
+    const xlpool = s.pool>0 ? s.xu_ly/s.pool : null;
+    const knxl   = s.xu_ly>0  ? s.ket_noi/s.xu_ly  : null;
+    const bkkn   = s.ket_noi>0 ? s.book/s.ket_noi   : null;
+    const xlppC  = xlpp==null?'#94a3b8':xlpp>=0.50?'#22c55e':xlpp>=0.30?'#f59e0b':'#ef4444';
+    const xlpoolC = xlpool==null?'#94a3b8':xlpool>=0.15?'#22c55e':xlpool>=0.08?'#f59e0b':'#ef4444';
+    html += `<tr>
+      <td style="color:#94a3b8;font-size:.78rem">${i+1}</td>
+      <td>${s.name}</td>
+      <td><span class="dot" style="background:${s.color}"></span>${s.short}</td>
+      <td style="text-align:right;color:#64748b;font-size:.78rem">${fnum(s.pool)}</td>
+      <td style="text-align:right;font-size:.82rem">${fnum(s.phan_phoi)}</td>
+      <td style="text-align:right;font-size:.82rem">${fnum(s.xu_ly)}</td>
+      <td style="text-align:right;font-weight:700;color:${xlppC}">${xlpp!=null?(xlpp*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right;font-weight:600;color:${xlpoolC}">${xlpool!=null?(xlpool*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right;font-size:.82rem">${fnum(s.ket_noi)}</td>
+      <td style="text-align:right;font-size:.82rem">${knxl!=null?(knxl*100).toFixed(1)+'%':'—'}</td>
+      <td style="text-align:right;font-size:.82rem">${fnum(s.book)}</td>
+      <td style="text-align:right;font-size:.82rem">${bkkn!=null?(bkkn*100).toFixed(1)+'%':'—'}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table></div>`;
+
+  c.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
 //  ROUTING
 // ══════════════════════════════════════════════════════
-let activeTab = (location.hash && location.hash.match(/^#t[1-4]$/)) ? location.hash.slice(1) : 't1';
+let activeTab = (location.hash && location.hash.match(/^#t[1-5]$/)) ? location.hash.slice(1) : 't1';
 function switchTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -1454,6 +1660,7 @@ function render(){
   buildTab2();
   buildTrend();
   buildTab4();
+  buildTab5();
 }
 
 render();
