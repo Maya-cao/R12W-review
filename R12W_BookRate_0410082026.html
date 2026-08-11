@@ -1594,18 +1594,21 @@ function buildTab5(){
     return rb - ra;
   });
 
-  html += `<div style="overflow-x:auto;margin-bottom:16px"><table class="rank-tbl" style="min-width:760px">
+  const stickyTh = 'position:sticky;top:0;background:#f8fafc;z-index:2;border-bottom:2px solid #e2e8f0';
+  html += `<div style="overflow:auto;max-height:580px;margin-bottom:16px"><table class="rank-tbl" style="min-width:760px">
   <thead><tr>
-    <th>#</th><th>Salon</th><th>Vùng</th>
-    <th style="text-align:right">Pool</th>
-    <th style="text-align:right">PP</th>
-    <th style="text-align:right">XL</th>
-    <th style="text-align:right;color:#06b6d4">%XL/PP</th>
-    <th style="text-align:right;color:#3b82f6">%XL/Pool</th>
-    <th style="text-align:right">KN</th>
-    <th style="text-align:right">%KN/XL</th>
-    <th style="text-align:right">Book</th>
-    <th style="text-align:right">%BK/KN</th>
+    <th style="${stickyTh}">#</th>
+    <th style="${stickyTh}">Salon</th>
+    <th style="${stickyTh}">Vùng</th>
+    <th style="${stickyTh};text-align:right">Pool</th>
+    <th style="${stickyTh};text-align:right">PP</th>
+    <th style="${stickyTh};text-align:right">XL</th>
+    <th style="${stickyTh};text-align:right;color:#06b6d4">%XL/PP</th>
+    <th style="${stickyTh};text-align:right;color:#3b82f6">%XL/Pool</th>
+    <th style="${stickyTh};text-align:right">KN</th>
+    <th style="${stickyTh};text-align:right">%KN/XL</th>
+    <th style="${stickyTh};text-align:right">Book</th>
+    <th style="${stickyTh};text-align:right">%BK/KN</th>
   </tr></thead><tbody>`;
 
   allSalons5.forEach((s,i) => {
