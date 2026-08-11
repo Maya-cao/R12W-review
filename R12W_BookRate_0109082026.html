@@ -55,6 +55,11 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
 .rank-tbl th{background:#f1f5f9;font-size:.73rem;font-weight:600;padding:8px 13px;text-align:left;color:#475569}
 .rank-tbl td{padding:9px 13px;border-top:1px solid #f1f5f9;font-size:.84rem;vertical-align:middle}
 .rank-tbl tr:hover td{background:#fafbff}
+/* Sticky table — dùng cho bảng salon Tab 5 */
+.sticky-tbl{width:100%;border-collapse:separate;border-spacing:0;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.sticky-tbl th{position:sticky;top:0;z-index:3;background:#f1f5f9;font-size:.73rem;font-weight:600;padding:8px 13px;text-align:left;color:#475569;box-shadow:0 2px 0 #cbd5e1}
+.sticky-tbl td{padding:9px 13px;border-top:1px solid #f1f5f9;font-size:.84rem;vertical-align:middle}
+.sticky-tbl tr:hover td{background:#fafbff}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;flex-shrink:0}
 .bar-wrap{display:flex;align-items:center;gap:7px}
 .bar-bg{height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden;width:160px}
@@ -100,9 +105,9 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1
   .filter-bar select{background:#0f172a;color:#e2e8f0;border-color:#475569}
   .filter-bar .fb-div{background:#475569}
   .prose-box,.kpi,.rank-tbl,.rcard,.salon-grid > div{background:#1e293b}
-  .rank-tbl th,.stbl th{background:#0f172a;color:#94a3b8}
-  .rank-tbl td,.stbl td{border-color:#334155}
-  .rank-tbl tr:hover td{background:#162032}
+  .rank-tbl th,.stbl th,.sticky-tbl th{background:#0f172a;color:#94a3b8}
+  .rank-tbl td,.stbl td,.sticky-tbl td{border-color:#334155}
+  .rank-tbl tr:hover td,.sticky-tbl tr:hover td{background:#162032}
   .rcard-analysis{color:#94a3b8}
   .rcard-analysis strong,.prose-box strong{color:#e2e8f0}
   .prose-box p{color:#cbd5e1}
@@ -1594,21 +1599,20 @@ function buildTab5(){
     return rb - ra;
   });
 
-  const stickyTh = 'position:sticky;top:0;background:#f1f5f9;z-index:2;box-shadow:0 2px 0 #e2e8f0';
-  html += `<div style="overflow:auto;max-height:580px;margin-bottom:16px"><table class="rank-tbl" style="min-width:760px;border-collapse:separate;border-spacing:0">
+  html += `<div style="overflow-x:auto;margin-bottom:16px"><table class="sticky-tbl" style="min-width:760px">
   <thead><tr>
-    <th style="${stickyTh}">#</th>
-    <th style="${stickyTh}">Salon</th>
-    <th style="${stickyTh}">Vùng</th>
-    <th style="${stickyTh};text-align:right">Pool</th>
-    <th style="${stickyTh};text-align:right">PP</th>
-    <th style="${stickyTh};text-align:right">XL</th>
-    <th style="${stickyTh};text-align:right;color:#06b6d4">%XL/PP</th>
-    <th style="${stickyTh};text-align:right;color:#3b82f6">%XL/Pool</th>
-    <th style="${stickyTh};text-align:right">KN</th>
-    <th style="${stickyTh};text-align:right">%KN/XL</th>
-    <th style="${stickyTh};text-align:right">Book</th>
-    <th style="${stickyTh};text-align:right">%BK/KN</th>
+    <th>#</th>
+    <th>Salon</th>
+    <th>Vùng</th>
+    <th style="text-align:right">Pool</th>
+    <th style="text-align:right">PP</th>
+    <th style="text-align:right">XL</th>
+    <th style="text-align:right;color:#06b6d4">%XL/PP</th>
+    <th style="text-align:right;color:#3b82f6">%XL/Pool</th>
+    <th style="text-align:right">KN</th>
+    <th style="text-align:right">%KN/XL</th>
+    <th style="text-align:right">Book</th>
+    <th style="text-align:right">%BK/KN</th>
   </tr></thead><tbody>`;
 
   allSalons5.forEach((s,i) => {
