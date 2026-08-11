@@ -8,6 +8,14 @@
     "file": "R12W_BookRate_0110082026.html"
   },
   {
+    "label": "4–10/08/2026",
+    "dd_s": 4,
+    "dd_e": 10,
+    "mm": 8,
+    "year": 2026,
+    "file": "R12W_BookRate_0410082026.html"
+  },
+  {
     "label": "1–9/08/2026",
     "dd_s": 1,
     "dd_e": 9,
