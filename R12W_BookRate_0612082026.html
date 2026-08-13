@@ -1518,6 +1518,48 @@ function buildTab5(){
   });
   html += `</div></div>`;
 
+  // ── Nhận xét & Phân tích phễu ──
+  const levelXLPP = xlPP==null ? {label:'—',color:'#94a3b8'} : xlPP>=0.50 ? {label:'Tốt',color:'#22c55e'} : xlPP>=0.30 ? {label:'Trung bình',color:'#f59e0b'} : {label:'Cần cải thiện',color:'#ef4444'};
+  const drops5 = [
+    {step:'PP → XL (xử lý)', from:sys.pp, to:sys.xl},
+    {step:'XL → KN (kết nối)', from:sys.xl, to:sys.kn},
+    {step:'KN → Book', from:sys.kn, to:sys.book},
+    {step:'Book → Đến', from:sys.book, to:sys.den},
+  ];
+  const bottleneck5 = drops5.reduce((best, d) => {
+    const drop = d.from>0 ? (d.from-d.to)/d.from : 0;
+    return drop > best.drop ? {step:d.step, drop, from:d.from, to:d.to} : best;
+  }, {step:'—', drop:0, from:0, to:0});
+  const ppPoolPct = sys.pool>0 ? (sys.pp/sys.pool*100).toFixed(1) : null;
+  const unprocessedPct = xlPool!=null ? (100-xlPool*100).toFixed(1) : null;
+
+  html += '<div class="section-title">📝 Nhận xét & Phân tích</div>';
+  html += '<div style="background:#fff;border-radius:10px;padding:18px 22px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">';
+  html += '<div style="background:#f8fafc;border-radius:8px;padding:14px 16px;border-left:3px solid '+xlPPColor+'">';
+  html += '<div style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Mức xử lý data</div>';
+  html += '<div style="font-size:.88rem;color:#1e293b;line-height:1.7">';
+  if(xlPP!=null) html += 'Hệ thống xử lý <strong>'+(xlPP*100).toFixed(1)+'%</strong> lượng phân phối — đánh giá: <span style="color:'+levelXLPP.color+';font-weight:700">'+levelXLPP.label+'</span>.';
+  if(xlPool!=null) html += ' Tính trên pool tháng, bao phủ đạt <strong>'+(xlPool*100).toFixed(1)+'%</strong> — còn <strong>'+unprocessedPct+'%</strong> pool chưa được xử lý trong kỳ.';
+  html += '</div></div>';
+  html += '<div style="background:#f8fafc;border-radius:8px;padding:14px 16px;border-left:3px solid #f97316">';
+  html += '<div style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Điểm nghẽn chính</div>';
+  html += '<div style="font-size:.88rem;color:#1e293b;line-height:1.7">Bước <strong>'+bottleneck5.step+'</strong> có drop lớn nhất trong phễu — <strong>'+(bottleneck5.drop*100).toFixed(1)+'%</strong> data bị mất ('+fnum(bottleneck5.from)+' → '+fnum(bottleneck5.to)+' KH).</div>';
+  html += '</div>';
+  html += '<div style="background:#f8fafc;border-radius:8px;padding:14px 16px;border-left:3px solid #3b82f6">';
+  html += '<div style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Phân phối vs Pool tháng</div>';
+  html += '<div style="font-size:.88rem;color:#1e293b;line-height:1.7">';
+  if(ppPoolPct) html += 'Trong kỳ phân phối <strong>'+ppPoolPct+'%</strong> pool tháng ('+fnum(sys.pp)+'/'+fnum(sys.pool)+' KH). ';
+  if(knXL!=null) html += 'Trong số đã xử lý, kết nối thành công <strong>'+(knXL*100).toFixed(1)+'%</strong>.';
+  html += '</div></div>';
+  html += '<div style="background:#f8fafc;border-radius:8px;padding:14px 16px;border-left:3px solid #8b5cf6">';
+  html += '<div style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Hiệu quả cuối phễu</div>';
+  html += '<div style="font-size:.88rem;color:#1e293b;line-height:1.7">';
+  if(bkKN!=null) html += 'Book/KN đạt <strong>'+(bkKN*100).toFixed(1)+'%</strong>';
+  if(denBk!=null) html += ', <strong>'+(denBk*100).toFixed(1)+'%</strong> KH đã book đến cắt tóc.';
+  if(sys.book&&sys.pool) html += ' Từ pool tháng, <strong>'+(sys.book/sys.pool*100).toFixed(2)+'%</strong> KH đã book được lịch.';
+  html += '</div></div>';
+  html += '</div></div>';
+
   // ── Bảng theo GĐKV ──
   html += `<div class="section-title">📋 Tỉ lệ xử lý theo GĐKV</div>`;
   html += `<div style="overflow-x:auto;margin-bottom:16px"><table class="rank-tbl" style="min-width:760px">
@@ -1588,6 +1630,29 @@ function buildTab5(){
     <td style="text-align:right">${denbkS!=null?(denbkS*100).toFixed(1)+'%':'—'}</td>
   </tr>`;
   html += `</tbody></table></div>`;
+
+  // ── So sánh vùng ──
+  {
+    const bestXLPP  = sortedRegs[0];
+    const worstXLPP = sortedRegs[sortedRegs.length-1];
+    const bestBKKN  = [...regs].sort((a,b)=>{
+      const ra=a.ket_noi>0?a.book/a.ket_noi:0;
+      const rb=b.ket_noi>0?b.book/b.ket_noi:0;
+      return rb-ra;
+    })[0];
+    const bestXLPPVal  = bestXLPP.phan_phoi>0 ? bestXLPP.xu_ly/bestXLPP.phan_phoi*100 : 0;
+    const worstXLPPVal = worstXLPP.phan_phoi>0 ? worstXLPP.xu_ly/worstXLPP.phan_phoi*100 : 0;
+    const gapXLPP = (bestXLPPVal - worstXLPPVal).toFixed(1);
+    const bestBKKNVal = bestBKKN.ket_noi>0 ? (bestBKKN.book/bestBKKN.ket_noi*100).toFixed(1) : '—';
+    html += '<div style="background:#fff;border-radius:10px;padding:18px 22px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px">';
+    html += '<div style="font-size:.8rem;font-weight:600;color:#475569;text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px">🔍 So sánh vùng — Điểm nổi bật</div>';
+    html += '<div style="display:flex;flex-direction:column;gap:12px">';
+    html += '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">🏆</span><div style="font-size:.9rem;color:#1e293b;line-height:1.65"><span style="font-weight:700;color:#22c55e">Vùng xử lý cao nhất:</span> GĐKV '+bestXLPP.rsm+' với %XL/PP = <strong>'+bestXLPPVal.toFixed(1)+'%</strong>'+(bestXLPP.pool>0?' (XL/Pool = '+(bestXLPP.xu_ly/bestXLPP.pool*100).toFixed(1)+'%)':'')+'. Cho thấy quy trình phân phối và follow-up data hiệu quả.</div></div>';
+    html += '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">⚠️</span><div style="font-size:.9rem;color:#1e293b;line-height:1.65"><span style="font-weight:700;color:#ef4444">Vùng xử lý thấp nhất:</span> GĐKV '+worstXLPP.rsm+' với %XL/PP = <strong>'+worstXLPPVal.toFixed(1)+'%</strong> — cần rà soát lại quy trình phân phối, kiểm tra xem data có bị tắc ở khâu nào không.</div></div>';
+    html += '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">📐</span><div style="font-size:.9rem;color:#1e293b;line-height:1.65"><span style="font-weight:700">Khoảng cách vùng tốt–yếu:</span> <strong>'+gapXLPP+'%</strong> — '+(parseFloat(gapXLPP)>20?'chênh lệch lớn giữa các vùng, cần chuẩn hóa quy trình phân phối để đồng đều hơn.':'chênh lệch ở mức chấp nhận được, tiếp tục duy trì.')+'</div></div>';
+    html += '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">📞</span><div style="font-size:.9rem;color:#1e293b;line-height:1.65"><span style="font-weight:700;color:#8b5cf6">Hiệu quả book cao nhất:</span> GĐKV '+bestBKKN.rsm+' với %BK/KN = <strong>'+bestBKKNVal+'%</strong> — chuyển đổi từ kết nối thành book tốt nhất hệ thống.</div></div>';
+    html += '</div></div>';
+  }
 
   // ── Bảng theo Salon ──
   html += `<div class="section-title">🏬 Tỉ lệ xử lý theo Salon</div>`;
