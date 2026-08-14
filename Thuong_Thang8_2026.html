@@ -1,0 +1,419 @@
+<title>30Shine Thưởng Tháng 8</title>
+<style>
+  :root {
+    --bg: #FBF6EC;
+    --surface: #FFFFFF;
+    --surface-2: #F4EBD9;
+    --ink: #1A1512;
+    --ink-muted: #6B5D4A;
+    --gold: #B8860A;
+    --gold-strong: #8C6708;
+    --gold-wash: #F4E4B8;
+    --red: #C93B3F;
+    --divider: rgba(26,21,18,0.22);
+    --shadow: rgba(26,21,18,0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1A1512;
+      --surface: #252019;
+      --surface-2: #2E2820;
+      --ink: #FBF6EC;
+      --ink-muted: #B8A992;
+      --gold: #F0B429;
+      --gold-strong: #F7C948;
+      --gold-wash: #3A2E14;
+      --red: #FF6B6E;
+      --divider: rgba(251,246,236,0.2);
+      --shadow: rgba(0,0,0,0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #1A1512;
+    --surface: #252019;
+    --surface-2: #2E2820;
+    --ink: #FBF6EC;
+    --ink-muted: #B8A992;
+    --gold: #F0B429;
+    --gold-strong: #F7C948;
+    --gold-wash: #3A2E14;
+    --red: #FF6B6E;
+    --divider: rgba(251,246,236,0.2);
+    --shadow: rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: clamp(20px, 6vw, 40px) clamp(16px, 5vw, 28px) 48px;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    text-align: center;
+    padding: clamp(28px, 8vw, 48px) 0 clamp(32px, 8vw, 44px);
+    animation: rise 0.6s ease-out both;
+  }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--gold-strong);
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    margin: 0 0 16px;
+    font-size: clamp(30px, 8vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  .hero h1 span {
+    color: var(--gold-strong);
+  }
+
+  .hero-sub {
+    margin: 0 auto;
+    max-width: 44ch;
+    font-size: clamp(16px, 4vw, 18px);
+    color: var(--ink-muted);
+  }
+
+  .pot {
+    margin: clamp(24px, 6vw, 32px) auto 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 18px 32px;
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 10px 30px var(--shadow);
+    border: 1px solid var(--divider);
+  }
+
+  .pot-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .pot-amount {
+    font-size: clamp(34px, 9vw, 46px);
+    font-weight: 900;
+    color: var(--gold-strong);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .pot-amount .unit {
+    font-size: 0.55em;
+    margin-left: 2px;
+  }
+
+  /* ---------- Tickets ---------- */
+
+  .tickets {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 8px;
+  }
+
+  .ticket {
+    display: flex;
+    align-items: stretch;
+    background: var(--surface);
+    border-radius: 20px 8px 8px 20px;
+    box-shadow: 0 8px 24px var(--shadow);
+    border: 1px solid var(--divider);
+    overflow: hidden;
+    animation: rise 0.6s ease-out both;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .ticket:nth-child(1) { animation-delay: 0.05s; }
+  .ticket:nth-child(2) { animation-delay: 0.12s; }
+  .ticket:nth-child(3) { animation-delay: 0.19s; }
+  .ticket:nth-child(4) { animation-delay: 0.26s; }
+
+  .ticket:hover,
+  .ticket:active {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px var(--shadow);
+  }
+
+  .ticket {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ticket-head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--gold-wash);
+    border-bottom: 2px dashed var(--divider);
+  }
+
+  .ticket-head::before,
+  .ticket-head::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--divider);
+  }
+
+  .ticket-head::before { left: -8px; }
+  .ticket-head::after { right: -8px; }
+
+  .ticket-icon {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+  }
+
+  .ticket-icon svg {
+    width: 100%;
+    height: 100%;
+    color: var(--gold-strong);
+  }
+
+  .ticket-title {
+    margin: 0;
+    font-size: clamp(17px, 4.4vw, 19px);
+    font-weight: 800;
+  }
+
+  .ticket-who {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .ticket-body {
+    padding: 16px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tiers {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tiers li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .tiers li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .tier-label {
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .tier-amount {
+    flex: 0 0 auto;
+    font-size: clamp(18px, 4.6vw, 21px);
+    font-weight: 900;
+    color: var(--red);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .tie-note {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  /* ---------- Footer / CTA ---------- */
+
+  .cta {
+    margin-top: clamp(32px, 8vw, 44px);
+    text-align: center;
+    padding: clamp(24px, 6vw, 32px) clamp(16px, 5vw, 24px);
+    border-radius: 20px;
+    background: var(--surface-2);
+    border: 1px solid var(--divider);
+  }
+
+  .cta p {
+    margin: 0;
+  }
+
+  .cta-main {
+    font-size: clamp(18px, 4.6vw, 21px);
+    font-weight: 800;
+  }
+
+  .cta-note {
+    margin-top: 8px !important;
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero, .ticket { animation: none; }
+    .ticket:hover, .ticket:active { transform: none; }
+  }
+
+  a, button {
+    font: inherit;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--gold-strong);
+    outline-offset: 2px;
+  }
+</style>
+
+<div class="page">
+
+  <header class="hero">
+    <p class="eyebrow">30Shine · Tháng 8/2026</p>
+    <h1>Ai cũng có cơ hội <span>được thưởng</span></h1>
+    <p class="hero-sub">Chăm khách tốt, khách quay lại, salon phục vụ nhanh — đều được thưởng ngay trong tháng này.</p>
+    <div class="pot">
+      <span class="pot-label">Tổng thưởng tháng này</span>
+      <span class="pot-amount">40.000.000<span class="unit">+đ</span></span>
+    </div>
+  </header>
+
+  <main class="tickets">
+
+    <article class="ticket">
+      <div class="ticket-head">
+        <div class="ticket-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <h2 class="ticket-title">Chăm khách giỏi</h2>
+          <p class="ticket-who">NV chăm sóc khách hàng, đã chăm ít nhất 100 khách trong tháng</p>
+        </div>
+      </div>
+      <div class="ticket-body">
+        <p class="ticket-desc" style="margin:0;font-size:14px;color:var(--ink-muted)">Đo bằng: trong số khách đã chăm, bao nhiêu % quay lại dùng dịch vụ trong 7 ngày sau khi gọi.</p>
+        <ul class="tiers">
+          <li><span class="tier-label">Top 10 người có tỷ lệ cao nhất (từ 35% trở lên)</span><span class="tier-amount">500.000đ</span></li>
+          <li><span class="tier-label">Top 50 người tiếp theo (từ 22% trở lên)</span><span class="tier-amount">200.000đ</span></li>
+        </ul>
+        <p class="tie-note">Nếu đông người cùng đạt mức trên, ưu tiên ai có số khách quay lại thực tế (số người, không phải %) nhiều hơn.</p>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="ticket-head">
+        <div class="ticket-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg>
+        </div>
+        <div>
+          <h2 class="ticket-title">Thợ giữ chân khách</h2>
+          <p class="ticket-who">Chỉ áp dụng Stylist và Skinner (không tính lễ tân, thu ngân)</p>
+        </div>
+      </div>
+      <div class="ticket-body">
+        <ul class="tiers">
+          <li><span class="tier-label">Top 10 có nhiều khách quay lại từ lần 2 trở lên nhất</span><span class="tier-amount">500.000đ</span></li>
+          <li><span class="tier-label">Top 10 có tổng lượt phục vụ khách quay lại nhiều nhất</span><span class="tier-amount">500.000đ</span></li>
+        </ul>
+        <p class="tie-note">Vào cả 2 Top thì được thưởng cả 2 — tối đa 1.000.000đ/người.</p>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="ticket-head">
+        <div class="ticket-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1m-6 4h1m4 0h1m-6 4h1m4 0h1"/></svg>
+        </div>
+        <div>
+          <h2 class="ticket-title">Salon đạt chỉ tiêu</h2>
+          <p class="ticket-who">Thưởng cho SM quản lý salon</p>
+        </div>
+      </div>
+      <div class="ticket-body">
+        <p class="ticket-desc" style="margin:0;font-size:14px;color:var(--ink-muted)">Đo bằng: % hoàn thành mục tiêu lượt khách của salon trong tháng.</p>
+        <ul class="tiers">
+          <li><span class="tier-label">Top 3 salon đạt từ 95% trở lên</span><span class="tier-amount">1.000.000đ</span></li>
+          <li><span class="tier-label">Top 3 salon đạt từ 90% đến dưới 95%</span><span class="tier-amount">700.000đ</span></li>
+          <li><span class="tier-label">Top 3 salon đạt từ 87% đến dưới 90%</span><span class="tier-amount">500.000đ</span></li>
+          <li><span class="tier-label">Top 10 salon đạt từ 85% đến dưới 87%</span><span class="tier-amount">300.000đ</span></li>
+        </ul>
+        <p class="tie-note">Nếu đông salon cùng đạt 1 mức, ưu tiên salon có tỷ lệ khách quay lại dùng dịch vụ trong 7 ngày cao hơn.</p>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="ticket-head">
+        <div class="ticket-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        </div>
+        <div>
+          <h2 class="ticket-title">Salon giảm chờ lâu</h2>
+          <p class="ticket-who">Thưởng cho salon, phải đạt cả 2 điều kiện</p>
+        </div>
+      </div>
+      <div class="ticket-body">
+        <p class="ticket-desc" style="margin:0;font-size:14px;color:var(--ink-muted)">Điều kiện: (1) nằm trong top tỷ lệ khách chờ lâu thấp nhất, và (2) tỷ lệ bill bị khách đánh giá thấp (1-2-3 sao) phải dưới 0,28%.</p>
+        <ul class="tiers">
+          <li><span class="tier-label">Top 1 salon</span><span class="tier-amount">2.000.000đ</span></li>
+          <li><span class="tier-label">Top 2–5 salon tiếp theo</span><span class="tier-amount">1.000.000đ</span></li>
+        </ul>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="cta">
+    <p class="cta-main">Cứ làm tốt là có thưởng — bắt đầu ngay hôm nay!</p>
+    <p class="cta-note">Hỏi quản lý salon (SM) để biết thêm chi tiết cách tính thưởng.</p>
+  </footer>
+
+</div>
